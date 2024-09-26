@@ -53,6 +53,8 @@ builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
 builder.Services.AddScoped<ISegurancaServico, SegurancaServico>();
 builder.Services.AddScoped<ITokenServico, TokenServico>();
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
+builder.Services.AddHttpClient<ICepServico, CepServico>();
+builder.Services.AddScoped<IConsultarCepServico, ConsultarCepServico>();
 
 // Configuração da conexão com o BD
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);

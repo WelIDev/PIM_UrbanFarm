@@ -1,6 +1,5 @@
 ﻿using Aplicacao.DTOs;
 using Aplicacao.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PIM_UrbanFarm.Controllers;
