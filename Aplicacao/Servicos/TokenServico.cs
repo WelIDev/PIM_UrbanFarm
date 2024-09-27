@@ -1,5 +1,4 @@
-﻿
-using Aplicacao.Interfaces;
+﻿using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;

@@ -1,6 +1,6 @@
 ﻿using Dominio.Entidades;
 
-namespace Dominio.Interfaces;
+namespace Dominio.Interfaces.Servicos;
 
 public interface ICepServico
 {

@@ -3,6 +3,8 @@ using Aplicacao.Interfaces;
 using Aplicacao.Servicos;
 using Dominio.Entidades;
 using Dominio.Interfaces;
+using Dominio.Interfaces.Repositorios;
+using Dominio.Interfaces.Servicos;
 using Infraestrutura.Repositorios;
 using Infraestrutura.Servicos;
 using Microsoft.IdentityModel.Tokens;
@@ -17,7 +19,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PIM_UrbanFarmAPI", Version = "v1" });
+    c.SwaggerDoc("v1",
+        new OpenApiInfo { Title = "PIM_UrbanFarmAPI", Version = "v1" });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -47,6 +50,7 @@ builder.Services.AddSwaggerGen(c =>
 // Configuração de injeção de dependência
 // Repositorios
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -55,6 +59,7 @@ builder.Services.AddScoped<ITokenServico, TokenServico>();
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 builder.Services.AddHttpClient<ICepServico, CepServico>();
 builder.Services.AddScoped<IConsultarCepServico, ConsultarCepServico>();
+builder.Services.AddScoped<IClienteServico, ClienteServico>();
 
 // Configuração da conexão com o BD
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
@@ -62,7 +67,8 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 // Configuração do JWT
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultAuthenticateScheme =
+            JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
@@ -75,7 +81,9 @@ builder.Services.AddAuthentication(options =>
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey =
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"] ?? string.Empty)),
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"] ??
+                                           string.Empty)),
             ClockSkew = TimeSpan.Zero
         };
     });

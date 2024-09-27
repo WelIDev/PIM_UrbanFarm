@@ -6,8 +6,6 @@ namespace Dominio.Entidades;
 
 public class Endereco
 {
-    [JsonProperty("cep")]
-    public string Cep { get; set; }
     [JsonProperty("logradouro")]
     public string Rua { get; set; }
     [JsonProperty("bairro")]
@@ -16,4 +14,6 @@ public class Endereco
     public string Cidade { get; set; }
     [JsonProperty("uf")]
     public string Estado { get; set; }
+    [JsonProperty("cep")]
+    public string Cep { get; set; }
 }

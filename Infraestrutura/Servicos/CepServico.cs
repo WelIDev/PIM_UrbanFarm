@@ -1,5 +1,6 @@
 ﻿using Dominio.Entidades;
 using Dominio.Interfaces;
+using Dominio.Interfaces.Servicos;
 using Newtonsoft.Json;
 
 namespace Infraestrutura.Servicos;

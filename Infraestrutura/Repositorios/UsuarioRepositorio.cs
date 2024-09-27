@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using Dominio.Entidades;
 using Dominio.Enums;
 using Dominio.Interfaces;
+using Dominio.Interfaces.Repositorios;
 using Microsoft.Extensions.Configuration;
 
 namespace Infraestrutura.Repositorios;
@@ -32,15 +33,14 @@ public class UsuarioRepositorio : IUsuarioRepositorio
                     command.Parameters.AddWithValue("@Senha", usuario.Senha);
                     command.Parameters.AddWithValue("@Funcao", usuario.Funcao);
 
-                    if (command.ExecuteNonQuery() > 0)
+                    if (command.ExecuteNonQuery() <= 0)
                     {
-                        connection.Close();
-                        return true;
+                        return false;
                     }
+                    connection.Close();
+                    return true;
                 }
             }
-
-            return false;
         }
         catch (SqlException e)
         {
@@ -153,7 +153,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
                             Funcao = (Funcao)reader.GetInt32(4),
                             DataCriacao = reader.GetDateTime(5)
                         };
-                        usuarios.Add(usuario);
+                        usuarios.Add(usuario);      
                     }
                     reader.Close();
                     connection.Close();
@@ -182,15 +182,14 @@ public class UsuarioRepositorio : IUsuarioRepositorio
 
                     command.Parameters.AddWithValue("@Id", id);
 
-                    if (command.ExecuteNonQuery() > 0)
+                    if (command.ExecuteNonQuery() <= 0)
                     {
-                        connection.Close();
-                        return true;
+                        return false;
                     }
+                    connection.Close();
+                    return true;
                 }
             }
-
-            return false;
         }
         catch (Exception e)
         {

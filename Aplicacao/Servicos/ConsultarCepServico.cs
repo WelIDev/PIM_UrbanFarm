@@ -1,6 +1,7 @@
 ﻿using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using Dominio.Interfaces;
+using Dominio.Interfaces.Servicos;
 
 namespace Aplicacao.Servicos;
 
