@@ -4,9 +4,9 @@ namespace Dominio.Interfaces.Repositorios;
 
 public interface IClienteRepositorio
 {
-    bool InserirCliente(Cliente cliente);
+    void InserirCliente(Cliente cliente);
     Cliente? ObterPorId(int id);
     List<Cliente> ObterClientes();
-    bool ExcluirCliente(int id);
-    bool AtualizarCliente(Cliente cliente);
+    void ExcluirCliente(Cliente cliente);
+    void AtualizarCliente(Cliente cliente);
 }

@@ -5,11 +5,13 @@ using Dominio.Entidades;
 using Dominio.Interfaces;
 using Dominio.Interfaces.Repositorios;
 using Dominio.Interfaces.Servicos;
-using Infraestrutura.Repositorios;
+using Infraestrutura.Persistencia;
+using Infraestrutura.Persistencia.Repositorios;
 using Infraestrutura.Servicos;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,6 +53,7 @@ builder.Services.AddSwaggerGen(c =>
 // Repositorios
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -60,9 +63,12 @@ builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 builder.Services.AddHttpClient<ICepServico, CepServico>();
 builder.Services.AddScoped<IConsultarCepServico, ConsultarCepServico>();
 builder.Services.AddScoped<IClienteServico, ClienteServico>();
+builder.Services.AddScoped<IFornecedorServico, FornecedorServico>();
 
-// Configuração da conexão com o BD
+// Configuração da conexão com o banco de dados
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration
+    .GetConnectionString("Default")));
 
 // Configuração do JWT
 builder.Services.AddAuthentication(options =>
@@ -103,5 +109,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Executa a atualização do banco de dados(migrations)
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();

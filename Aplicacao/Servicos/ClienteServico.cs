@@ -22,26 +22,88 @@ public class ClienteServico : IClienteServico
             throw new ArgumentException("Nome e Email são obrigatórios.");
         }
         
-        return _clienteRepositorio.InserirCliente(cliente);
+        try
+        {
+            _clienteRepositorio.InserirCliente(cliente);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Ocorreu um erro ao tentar inserir o cliente." + e.Message);
+            return false;
+        }
     }
 
     public Cliente ObterPorId(int id)
     {
-        return _clienteRepositorio.ObterPorId(id) ?? throw new InvalidOperationException();
+        if (id <= 0)
+        {
+            throw new ArgumentException("ID inválido.");
+        }
+
+        var cliente = _clienteRepositorio.ObterPorId(id);
+        if (cliente == null)
+        {
+            throw new KeyNotFoundException("Cliente não encontrado.");
+        }
+
+        return cliente;
     }
 
     public List<Cliente> ObterClientes()
     {
-        return _clienteRepositorio.ObterClientes();
+        var clientes = _clienteRepositorio.ObterClientes();
+        if (clientes == null || clientes.Count == 0)
+        {
+            throw new KeyNotFoundException("Nenhum cliente encontrado.");
+        }
+
+        return clientes;
     }
 
     public bool ExcluirCliente(int id)
     {
-        return _clienteRepositorio.ExcluirCliente(id);
+        if (id <= 0)
+        {
+            throw new ArgumentException("ID inválido.");
+        }
+
+        var cliente = _clienteRepositorio.ObterPorId(id);
+        try
+        {
+            if (cliente != null)
+            {
+                _clienteRepositorio.ExcluirCliente(cliente);
+            }
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Ocorreu um erro ao tentar excluir: " + e.Message);
+            return false;
+        }
+
     }
 
     public bool AtualizarCliente(Cliente cliente)
     {
-        return _clienteRepositorio.AtualizarCliente(cliente);
+        ArgumentNullException.ThrowIfNull(cliente);
+
+        if (string.IsNullOrWhiteSpace(cliente.Nome))
+        {
+            throw new ArgumentException("Nome do fornecedor é obrigatório.");
+        }
+
+        try
+        {
+            _clienteRepositorio.AtualizarCliente(cliente);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Ocorreu um erro ao tentar alterar: " + e.Message);
+            return false;
+        }
     }
 }
