@@ -8,5 +8,5 @@ public interface IClienteServico
     Cliente ObterPorId(int id);
     List<Cliente> ObterClientes();
     bool ExcluirCliente(int id);
-    bool AtualizarCliente(Cliente id);
+    bool AtualizarCliente(Cliente cliente);
 }

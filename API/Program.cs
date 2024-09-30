@@ -54,6 +54,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -64,6 +65,7 @@ builder.Services.AddHttpClient<ICepServico, CepServico>();
 builder.Services.AddScoped<IConsultarCepServico, ConsultarCepServico>();
 builder.Services.AddScoped<IClienteServico, ClienteServico>();
 builder.Services.AddScoped<IFornecedorServico, FornecedorServico>();
+builder.Services.AddScoped<IProdutoServico, ProdutoServico>();
 
 // Configuração da conexão com o banco de dados
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);

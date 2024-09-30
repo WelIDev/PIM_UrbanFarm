@@ -10,4 +10,5 @@ public class Fornecedor
     public string Telefone { get; set; }
     public int EnderecoId { get; set; }
     public Endereco Endereco { get; set; }
+    public ICollection<Produto> Produtos { get; set; }
 }

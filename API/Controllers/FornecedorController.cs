@@ -32,7 +32,7 @@ public class FornecedorController : Controller
         {
             return BadRequest(e.Message);
         }
-        catch (Exception e)
+        catch (Exception )
         {
             return StatusCode(500, "Ocorreu um erro ao tentar inserir o fornecedor.");
         }
@@ -54,7 +54,7 @@ public class FornecedorController : Controller
         {
             return NotFound(e.Message);
         }
-        catch (Exception e)
+        catch (Exception )
         {
             return StatusCode(500, "Ocorreu um erro ao tentar obter o fornecedor.");
         }
@@ -72,7 +72,7 @@ public class FornecedorController : Controller
         {
             return NotFound(e.Message);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar obter todos fornecedores.");
         }
@@ -94,7 +94,7 @@ public class FornecedorController : Controller
         {
             return BadRequest(e.Message);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar alterar o fornecedor.");
         }
@@ -116,7 +116,7 @@ public class FornecedorController : Controller
         {
             return BadRequest(e.Message);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar excluir o fornecedor.");
         }

@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<Fornecedor> Fornecedores { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
+    public DbSet<Produto> Produtos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,5 +22,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new FornecedorConfiguracao());
         modelBuilder.ApplyConfiguration(new ClienteConfiguracao());
         modelBuilder.ApplyConfiguration(new EnderecoConfiguracao());
+        modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
     }
 }
