@@ -15,6 +15,7 @@ public class AppDbContext : DbContext
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Produto> Produtos { get; set; }
+    public DbSet<Meta> Metas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,5 +24,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ClienteConfiguracao());
         modelBuilder.ApplyConfiguration(new EnderecoConfiguracao());
         modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
+        modelBuilder.ApplyConfiguration(new MetaConfiguracao());
     }
 }
