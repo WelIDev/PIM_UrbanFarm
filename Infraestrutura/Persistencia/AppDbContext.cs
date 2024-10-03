@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<Meta> Metas { get; set; }
+    public DbSet<Comissao> Comissoes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,5 +26,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new EnderecoConfiguracao());
         modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
         modelBuilder.ApplyConfiguration(new MetaConfiguracao());
+        modelBuilder.ApplyConfiguration(new ComissaoConfiguracao());
     }
 }
