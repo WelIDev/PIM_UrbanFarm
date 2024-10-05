@@ -15,10 +15,6 @@ public class VendedorConfiguracao : IEntityTypeConfiguration<Vendedor>
         builder.Property(v => v.Telefone).HasMaxLength(15);
         builder.Property(v => v.DataContratacao);
 
-        builder.HasOne(v => v.Endereco).WithMany().HasForeignKey(v => v.EnderecoId);
-
-        builder.HasOne(v => v.Meta).WithMany().HasForeignKey(v => v.MetaId);
-
-        builder.HasMany(v => v.Comissoes).WithOne(c => c.Vendedor).HasForeignKey(c => c.VendedorId).OnDelete(DeleteBehavior.NoAction);
+        builder.HasOne(v => v.Endereco).WithOne().HasForeignKey<Vendedor>(v => v.EnderecoId);
     }
 }

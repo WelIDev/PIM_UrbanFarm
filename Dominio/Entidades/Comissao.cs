@@ -7,6 +7,4 @@ public class Comissao
     public DateTime Data {  get; set; }
     public int MetaId { get; set; }
     public Meta Meta { get; set; }
-    public int VendedorId { get; set; }
-    public Vendedor Vendedor { get; set; }
 }

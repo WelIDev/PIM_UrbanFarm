@@ -13,5 +13,8 @@ public class MetaConfiguracao : IEntityTypeConfiguration<Meta>
         builder.Property(m => m.Valor);
         builder.Property(m => m.Periodo);
         builder.Property(m => m.DataCriacao).HasDefaultValueSql("GETDATE()");
+
+        builder.HasOne(m => m.Vendedor).WithMany(v => v.Metas).HasForeignKey(m => m.VendedorId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -1,14 +1,13 @@
-﻿namespace Dominio.Entidades;
+﻿using Dominio.Entidades;
 
-public class Vendedor
+namespace Aplicacao.DTOs;
+
+public class VendedorDTO
 {
-    public int Id { get; set; }
     public string Nome { get; set; }
     public double Salario { get; set; }
     public string CpfCnpj { get; set; }
     public string Telefone { get; set; }
     public DateTime DataContratacao { get; set; }
-    public int EnderecoId { get; set; }
     public Endereco Endereco { get; set; }
-    public ICollection<Meta> Metas { get; set; }
 }

@@ -12,7 +12,7 @@ public class VendedorRepositorio : IVendedorRepositorio
         _context = context;
     }
 
-    public void InserirVendedor(Vendedor? vendedor)
+    public void InserirVendedor(Vendedor vendedor)
     {
         _context.Vendedores.Add(vendedor);
         _context.SaveChanges();

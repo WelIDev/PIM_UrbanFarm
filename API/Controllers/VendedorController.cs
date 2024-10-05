@@ -1,4 +1,5 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,24 @@ public class VendedorController : Controller
     }
 
     [HttpPost]
-    public ActionResult Inserir(Vendedor vendedor)
+    public ActionResult Inserir(VendedorDTO vendedorDto)
     {
+        var vendedor = new Vendedor
+        {
+            Nome = vendedorDto.Nome,
+            Salario = vendedorDto.Salario,
+            CpfCnpj = vendedorDto.CpfCnpj,
+            Telefone = vendedorDto.Telefone,
+            DataContratacao = vendedorDto.DataContratacao,
+            Endereco = new Endereco
+            {
+                Rua = vendedorDto.Endereco.Rua,
+                Bairro = vendedorDto.Endereco.Bairro,
+                Cidade = vendedorDto.Endereco.Cidade,
+                Estado = vendedorDto.Endereco.Estado,
+                Cep = vendedorDto.Endereco.Cep
+            }
+        };
         try
         {
             if (_vendedorServico.InserirVendedor(vendedor))
