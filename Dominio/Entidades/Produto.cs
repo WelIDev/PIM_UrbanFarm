@@ -7,5 +7,6 @@ public class Produto
     public double Preco { get; set; }
     public int Estoque { get; set; }
     public string Descricao { get; set; }
-    public ICollection<Fornecedor> Fornecedores { get; set; }
+    public IList<Fornecedor> Fornecedores { get; set; }
+    public IList<Venda> Vendas { get; set; }
 }

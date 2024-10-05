@@ -2,7 +2,7 @@
 
 namespace Aplicacao.DTOs;
 
-public class VendedorDTO
+public record VendedorDto
 {
     public string Nome { get; set; }
     public double Salario { get; set; }

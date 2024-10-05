@@ -10,5 +10,6 @@ public class Vendedor
     public DateTime DataContratacao { get; set; }
     public int EnderecoId { get; set; }
     public Endereco Endereco { get; set; }
-    public ICollection<Meta> Metas { get; set; }
+    public IList<Meta> Metas { get; set; }
+    public IList<Venda> Vendas { get; set; }    
 }

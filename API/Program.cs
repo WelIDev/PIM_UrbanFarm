@@ -58,6 +58,7 @@ builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 builder.Services.AddScoped<IMetaRepositorio, MetaRepositorio>();
 builder.Services.AddScoped<IComissaoRepositorio, ComissaoRepositorio>();
 builder.Services.AddScoped<IVendedorRepositorio, VendedorRepositorio>();
+builder.Services.AddScoped<IVendaRepositorio, VendaRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -72,6 +73,7 @@ builder.Services.AddScoped<IProdutoServico, ProdutoServico>();
 builder.Services.AddScoped<IMetaServico, MetaServico>();
 builder.Services.AddScoped<IComissaoServico, ComissaoServico>();
 builder.Services.AddScoped<IVendedorServico, VendedorServico>();
+builder.Services.AddScoped<IVendaServico, VendaServico>();
 
 // Configuração da conexão com o banco de dados
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);

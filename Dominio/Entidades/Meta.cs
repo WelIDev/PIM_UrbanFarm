@@ -9,5 +9,5 @@ public class Meta
     public DateTime DataCriacao { get; set; }
     public int VendedorId { get; set; }
     public Vendedor Vendedor { get; set; }
-    public ICollection<Comissao> Comissoes { get; set; }
+    public IList<Comissao> Comissoes { get; set; } = new List<Comissao>();
 }

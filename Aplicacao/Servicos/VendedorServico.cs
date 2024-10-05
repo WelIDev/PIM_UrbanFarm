@@ -32,7 +32,7 @@ public class VendedorServico : IVendedorServico
     {
         if (id <= 0)
         {
-            throw new AggregateException("ID inválido");
+            throw new ArgumentException("ID inválido");
         }
 
         var vendedor = _vendedorRepositorio.ObterPorId(id);
@@ -43,7 +43,7 @@ public class VendedorServico : IVendedorServico
 
         return vendedor;
     }
-
+    
     public List<Vendedor?> ObterVendedores()
     {
         var vendedores = _vendedorRepositorio.ObterVendedores();

@@ -23,6 +23,11 @@ public class ProdutoRepositorio : IProdutoRepositorio
         return _context.Produtos.Find(id);
     }
 
+    public IList<Produto> ObterProdutosPorId(IList<int> produtoIds)
+    {
+        return _context.Produtos.Where(p => produtoIds.Contains(p.Id)).ToList();
+    }
+
     public List<Produto> ObterProdutos()
     {
         return _context.Produtos.ToList();

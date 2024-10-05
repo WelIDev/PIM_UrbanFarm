@@ -271,6 +271,40 @@ namespace Infraestrutura.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("Dominio.Entidades.Venda", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Data")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<int>("FormaDePagamento")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("float");
+
+                    b.Property<int>("VendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("VendedorId");
+
+                    b.ToTable("Vendas");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Vendedor", b =>
                 {
                     b.Property<int>("Id")
@@ -326,6 +360,21 @@ namespace Infraestrutura.Migrations
                     b.ToTable("FornecedorProduto");
                 });
 
+            modelBuilder.Entity("VendaProduto", b =>
+                {
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProdutoId", "VendaId");
+
+                    b.HasIndex("VendaId");
+
+                    b.ToTable("VendaProduto");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Cliente", b =>
                 {
                     b.HasOne("Dominio.Entidades.Endereco", "Endereco")
@@ -370,6 +419,25 @@ namespace Infraestrutura.Migrations
                     b.Navigation("Vendedor");
                 });
 
+            modelBuilder.Entity("Dominio.Entidades.Venda", b =>
+                {
+                    b.HasOne("Dominio.Entidades.Cliente", "Cliente")
+                        .WithMany("Vendas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entidades.Vendedor", "Vendedor")
+                        .WithMany("Vendas")
+                        .HasForeignKey("VendedorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Vendedor");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Vendedor", b =>
                 {
                     b.HasOne("Dominio.Entidades.Endereco", "Endereco")
@@ -396,6 +464,26 @@ namespace Infraestrutura.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VendaProduto", b =>
+                {
+                    b.HasOne("Dominio.Entidades.Produto", null)
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entidades.Venda", null)
+                        .WithMany()
+                        .HasForeignKey("VendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dominio.Entidades.Cliente", b =>
+                {
+                    b.Navigation("Vendas");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Meta", b =>
                 {
                     b.Navigation("Comissoes");
@@ -404,6 +492,8 @@ namespace Infraestrutura.Migrations
             modelBuilder.Entity("Dominio.Entidades.Vendedor", b =>
                 {
                     b.Navigation("Metas");
+
+                    b.Navigation("Vendas");
                 });
 #pragma warning restore 612, 618
         }

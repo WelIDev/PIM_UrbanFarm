@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
     public DbSet<Meta> Metas { get; set; }
     public DbSet<Comissao> Comissoes { get; set; }
     public DbSet<Vendedor> Vendedores { get; set; }
+    public DbSet<Venda> Vendas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,5 +30,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new MetaConfiguracao());
         modelBuilder.ApplyConfiguration(new ComissaoConfiguracao());
         modelBuilder.ApplyConfiguration(new VendedorConfiguracao());
+        modelBuilder.ApplyConfiguration(new VendaConfiguracao());
     }
 }

@@ -17,7 +17,7 @@ public class VendedorController : Controller
     }
 
     [HttpPost]
-    public ActionResult Inserir(VendedorDTO vendedorDto)
+    public ActionResult InserirVendedor(VendedorDto vendedorDto)
     {
         var vendedor = new Vendedor
         {
@@ -72,7 +72,7 @@ public class VendedorController : Controller
         }
         catch (Exception )
         {
-            return StatusCode(500, "Ocorreu um erro ao tentar obter o vendedor.");
+                return StatusCode(500, "Ocorreu um erro ao tentar obter o vendedor.");
         }
     }
 
