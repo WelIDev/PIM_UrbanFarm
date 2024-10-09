@@ -4,6 +4,7 @@ using Infraestrutura.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestrutura.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241005211032_venda")]
+    partial class venda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,25 +175,6 @@ namespace Infraestrutura.Migrations
                     b.ToTable("Fornecedores");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.HistoricoCompra", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId")
-                        .IsUnique();
-
-                    b.ToTable("HistoricoCompra");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Meta", b =>
                 {
                     b.Property<int>("Id")
@@ -298,15 +282,15 @@ namespace Infraestrutura.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Data")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("FormaDePagamento")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HistoricoCompraId")
                         .HasColumnType("int");
 
                     b.Property<double>("Valor")
@@ -317,7 +301,7 @@ namespace Infraestrutura.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HistoricoCompraId");
+                    b.HasIndex("ClienteId");
 
                     b.HasIndex("VendedorId");
 
@@ -427,17 +411,6 @@ namespace Infraestrutura.Migrations
                     b.Navigation("Endereco");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.HistoricoCompra", b =>
-                {
-                    b.HasOne("Dominio.Entidades.Cliente", "Cliente")
-                        .WithOne("HistoricoCompra")
-                        .HasForeignKey("Dominio.Entidades.HistoricoCompra", "ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Meta", b =>
                 {
                     b.HasOne("Dominio.Entidades.Vendedor", "Vendedor")
@@ -451,9 +424,9 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio.Entidades.Venda", b =>
                 {
-                    b.HasOne("Dominio.Entidades.HistoricoCompra", "HistoricoCompra")
+                    b.HasOne("Dominio.Entidades.Cliente", "Cliente")
                         .WithMany("Vendas")
-                        .HasForeignKey("HistoricoCompraId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -463,7 +436,7 @@ namespace Infraestrutura.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("HistoricoCompra");
+                    b.Navigation("Cliente");
 
                     b.Navigation("Vendedor");
                 });
@@ -510,12 +483,6 @@ namespace Infraestrutura.Migrations
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Cliente", b =>
-                {
-                    b.Navigation("HistoricoCompra")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Dominio.Entidades.HistoricoCompra", b =>
                 {
                     b.Navigation("Vendas");
                 });

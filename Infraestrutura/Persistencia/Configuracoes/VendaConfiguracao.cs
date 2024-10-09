@@ -16,7 +16,7 @@ public class VendaConfiguracao : IEntityTypeConfiguration<Venda>
         builder.HasOne(v => v.Vendedor).WithMany(v => v.Vendas).HasForeignKey(v => v.VendedorId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(v => v.Cliente).WithMany(c => c.Vendas).HasForeignKey(v => v.ClienteId)
+        builder.HasOne(v => v.HistoricoCompra).WithMany(c => c.Vendas).HasForeignKey(v => v.HistoricoCompraId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasMany(v => v.Produtos).WithMany(p => p.Vendas)

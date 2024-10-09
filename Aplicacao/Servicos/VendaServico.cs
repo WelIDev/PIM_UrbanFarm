@@ -26,7 +26,7 @@ public class VendaServico : IVendaServico
             {
                 Valor = vendaDto.Valor,
                 VendedorId = vendaDto.VendedorId,
-                ClienteId = vendaDto.ClienteId,
+                HistoricoCompraId = vendaDto.HistoricoCompraId,
                 FormaDePagamento = vendaDto.FormaDePagamento,
                 Produtos = produtos
             };
@@ -83,7 +83,7 @@ public class VendaServico : IVendaServico
             
             venda.Valor = vendaDto.Valor;
             venda.VendedorId = vendaDto.VendedorId;
-            venda.ClienteId = vendaDto.ClienteId;
+            venda.HistoricoCompraId = vendaDto.HistoricoCompraId;
             venda.FormaDePagamento = vendaDto.FormaDePagamento;
             venda.Produtos = produtos;
             

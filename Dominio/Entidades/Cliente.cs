@@ -12,5 +12,5 @@ public class Cliente
     public DateTime DataNascimento { get; set; }
     public int EnderecoId { get; set; }
     public Endereco Endereco { get; set; }
-    public IList<Venda> Vendas { get; set; } = new List<Venda>();
+    public HistoricoCompra HistoricoCompra { get; set; }
 }
