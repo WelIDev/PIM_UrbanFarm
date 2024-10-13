@@ -19,7 +19,8 @@ public class AppDbContext : DbContext
     public DbSet<Comissao> Comissoes { get; set; }
     public DbSet<Vendedor> Vendedores { get; set; }
     public DbSet<Venda> Vendas { get; set; }
-    public DbSet<HistoricoCompra?> HistoricoCompras { get; set; }
+    public DbSet<HistoricoCompra> HistoricoCompras { get; set; }
+    public DbSet<AbastecimentoEstoque> AbastecimentosEstoque { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,5 +33,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ComissaoConfiguracao());
         modelBuilder.ApplyConfiguration(new VendedorConfiguracao());
         modelBuilder.ApplyConfiguration(new VendaConfiguracao());
+        modelBuilder.ApplyConfiguration(new AbastecimentoEstoqueConfiguracao());
     }
 }

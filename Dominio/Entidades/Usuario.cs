@@ -10,5 +10,8 @@ namespace Dominio.Entidades
         public string Senha { get; set; }
         public Funcao Funcao { get; set; }
         public DateTime DataCriacao { get; set; }
+
+        public IList<AbastecimentoEstoque> AbastecimentosEstoque { get; set; } =
+            new List<AbastecimentoEstoque>();
     }
 }

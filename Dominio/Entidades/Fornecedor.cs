@@ -11,4 +11,7 @@ public class Fornecedor
     public int EnderecoId { get; set; }
     public Endereco Endereco { get; set; }
     public IList<Produto> Produtos { get; set; } = new List<Produto>();
+
+    public IList<AbastecimentoEstoque> AbastecimentosEstoque { get; set; } =
+        new List<AbastecimentoEstoque>();
 }
