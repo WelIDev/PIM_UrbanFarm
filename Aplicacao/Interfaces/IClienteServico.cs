@@ -1,10 +1,11 @@
-﻿using Dominio.Entidades;
+﻿using Aplicacao.DTOs;
+using Dominio.Entidades;
 
 namespace Aplicacao.Interfaces;
 
 public interface IClienteServico
 {
-    bool InserirCliente(Cliente cliente);
+    bool InserirCliente(ClienteDto clienteDto);
     Cliente ObterPorId(int id);
     List<Cliente> ObterClientes();
     bool ExcluirCliente(int id);

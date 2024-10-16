@@ -1,4 +1,5 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
 
@@ -13,17 +14,24 @@ public class ClienteServico : IClienteServico
         _clienteRepositorio = clienteRepositorio;
     }
 
-    public bool InserirCliente(Cliente cliente)
+    public bool InserirCliente(ClienteDto clienteDto)
     {
-        ArgumentNullException.ThrowIfNull(cliente);
-        
-        if (string.IsNullOrWhiteSpace(cliente.Nome) || string.IsNullOrWhiteSpace(cliente.Email))
+        ArgumentNullException.ThrowIfNull(clienteDto);
+        if (string.IsNullOrWhiteSpace(clienteDto.Nome) || string.IsNullOrWhiteSpace(clienteDto.Email))
         {
             throw new ArgumentException("Nome e Email são obrigatórios.");
         }
         
         try
         {
+            var cliente = new Cliente
+            {
+                Nome = clienteDto.Nome,
+                Email = clienteDto.Email,
+                CpfCnpj = clienteDto.CpfCnpj,
+                Telefone = clienteDto.Telefone,
+                Endereco = clienteDto.Endereco
+            };
             _clienteRepositorio.InserirCliente(cliente);
             return true;
         }

@@ -1,4 +1,5 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,15 +17,15 @@ public class ClienteController : Controller
     }
 
     [HttpPost]
-    public ActionResult InserirCliente([FromBody] Cliente cliente)
+    public ActionResult InserirCliente([FromBody] ClienteDto clienteDto)
     {
-        var resultado = _clienteServico.InserirCliente(cliente);
+        var resultado = _clienteServico.InserirCliente(clienteDto);
 
         if (resultado == false)
         {
             return BadRequest("Ocorreu um erro ao incluir o cliente");
         }
-        return Ok("Cliente incluído com sucesso! Id: " + cliente.Id);
+        return Ok("Cliente incluído com sucesso!");
     }
 
     [HttpGet]

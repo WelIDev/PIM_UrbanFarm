@@ -104,6 +104,16 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policyBuilder =>
+    {
+        policyBuilder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configura o pipeline de solicitação HTTP
@@ -120,6 +130,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseCors("AllowAll");
 // Executa a atualização do banco de dados(migrations)
 using (var scope = app.Services.CreateScope())
 {

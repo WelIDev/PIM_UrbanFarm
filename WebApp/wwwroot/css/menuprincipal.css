@@ -1,0 +1,72 @@
+
+/*----------------------------------------CAIXAS-----------------------------------------------*/
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 56px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px; /* Ajuste o valor para controlar o espaço entre o título e as caixas */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria duas colunas de largura igual */
+    gap: 20px; /* Espaço entre as caixas */
+    max-width: 1000px; /* Define a largura máxima do contêiner */
+    width: 100%; /* Garante que o contêiner ocupe toda a largura disponível */
+}
+
+.box {
+    background-color: #00000080; /* Fundo azul da caixa */
+    border-radius: 15px; /* Bordas arredondadas da caixa */
+    padding: 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.box:hover {
+    background-color: #000000cc;
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image img {
+    border-radius: 10px; /* Bordas arredondadas da imagem */
+    background-color: #172031; /* Fundo da imagem */
+    padding: 5px;
+    width: 80px; /* Ajustar conforme necessário */
+    height: 80px; /* Ajustar conforme necessário */
+}
+
+.text-content {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.description {
+    background-color: #172031; /* Fundo branco para a descrição */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 10px;
+    color: white;
+    margin-top: 10px;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+}

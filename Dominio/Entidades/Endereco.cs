@@ -7,6 +7,7 @@ namespace Dominio.Entidades;
 public class Endereco
 {
     public int Id { get; set; }
+    public int Numero { get; set; }
     [JsonProperty("logradouro")] public string Rua { get; set; }
     [JsonProperty("bairro")] public string Bairro { get; set; }
     [JsonProperty("localidade")] public string Cidade { get; set; }

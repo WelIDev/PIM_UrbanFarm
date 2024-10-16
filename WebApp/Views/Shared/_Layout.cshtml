@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css"> <!-- Link para o CSS -->
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="hamburger" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <img src="~/imagens/logonovaurbanfarmpng.png" alt="Logo" class="img-top-bar">
+    <div class="right-icon" onclick="toggleDropdown()">
+        <img src="~/imagens/usuario.png" alt="Ícone Direito" width="30" height="30">
+    </div>
+    <div class="dropdown" id="dropdown">
+        <ul>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Configurações</a></li>
+            <li><a href="#">Sair</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="#">Gestão de Clientes</a></li>
+        <li><a href="#">Gestão de Pedidos</a></li>
+        <li><a href="#">Gestão de Fornecedores</a></li>
+        <li><a href="#">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    @RenderBody() <!-- Aqui será renderizado o conteúdo das views -->
+</div>
+
+<footer>
+    <p>©</p>
+</footer>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+        const content = document.querySelector('.content');
+        content.classList.toggle('shifted');
+    }
+
+    function toggleDropdown() {
+        const dropdown = document.getElementById('dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>
