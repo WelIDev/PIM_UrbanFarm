@@ -2,20 +2,16 @@
     ViewData["Title"] = "UF - Menu Principal";
     Layout = "_Layout";
 }
-
-<!DOCTYPE html>
-<html lang="pt-BR">
 <head>
     <link rel="stylesheet" href="~/css/menuprincipal.css" asp-append-version="true">
     <link rel="stylesheet" href="css/site.css"/>
     <title>@ViewData["Title"]</title>
 </head>
-<body>
 
     <div class="main-content">
         <div class="container">
             <!-- Primeira Caixa -->
-            <a href="@Url.Action("GestaoDeClientes", "Menu")" class="box">
+            <a href="@Url.Action("Index", "Cliente")" class="box">
                 <div class="box-content">
                     <div class="image">
                         <img src="~/imagens/gestaodeclientes.png" alt="Imagem de Gestão de Clientes">
@@ -68,5 +64,3 @@
         </div>
     </div>
 
-</body>
-</html>

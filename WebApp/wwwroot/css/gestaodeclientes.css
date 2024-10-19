@@ -1,0 +1,231 @@
+﻿/* Estilo geral do corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #172031;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 30px; /* Ajuste a altura conforme necessário */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00000080;
+    z-index: 1000;
+    text-shadow: #ffffff;
+    text-align: center;
+}
+
+.img-top-bar {
+    width: 100px;
+    height: 100px;
+    padding-top: 10px;
+}
+
+header {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+/* Estilo das abas */
+.tab {
+    display: block; /* Originalmente escondido */
+    padding: 20px;
+}
+
+
+
+.tab-buttons {
+    display: flex;
+    justify-content: space-between; /* Distribui os botões ao longo do contêiner */
+    padding: 10px;
+    background-color: #00000049;
+    margin-top: 54px;
+}
+
+.tab-buttons .tab-buttons-left {
+    display: flex;
+    align-items: center;
+}
+
+.tab-buttons .tab-button {
+    background-color: #00000049;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.tab-buttons .tab-button:hover {
+    background-color: #000000cc;
+}
+
+.tab-buttons .tab-button.active {
+    background-color: #000000cc;
+}
+
+.tab-buttons .back-button {
+    background-color: #00000049;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: auto; /* Move o botão para o lado esquerdo */
+}
+
+.tab-buttons .back-button:hover {
+    background-color: #000000cc;
+}
+
+/* Estilo da tabela de clientes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+td {
+    vertical-align: middle;
+}
+
+/* Ajuste das colunas da tabela */
+th.col-esquerda, td.col-esquerda {
+    text-align: left;
+}
+
+th.col-direita, td.col-direita {
+    text-align: right;
+}
+
+/* Botões de ação */
+button.editar {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button.editar:hover {
+    background-color: #e68900;
+}
+
+button.excluir {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button.excluir:hover {
+    background-color: #da190b;
+}
+
+
+/* Estilo das notificações */
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.notification.visible {
+    display: block;
+    opacity: 1;
+}
+
+.notification.hidden {
+    display: none;
+    opacity: 0;
+}
+
+#successNotification {
+    background-color: #4CAF50;
+}
+
+#editNotification {
+    background-color: #ff9800;
+}
+
+#deleteNotification {
+    background-color: #f44336;
+}
+
+/* Estilo do contêiner de busca e filtro */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Estilo do rótulo da busca */
+.search-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: white;
+}
+
+/* Estilo do campo de busca */
+.search-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1;
+    max-width: 300px; /* Limitar a largura máxima */
+}
+
+/* Estilo do rótulo do filtro */
+.filter-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Estilo do seletor de filtro */
+.filter-select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    max-width: 200px; /* Limitar a largura máxima */
+}
