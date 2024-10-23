@@ -24,13 +24,33 @@ public class ClienteController : Controller
         return View("GestaoDeClientes", clientes);
     }
 
-    public IActionResult Adicionar()
+    [HttpGet]
+    public IActionResult AdicionarCliente()
     {
         return View();
     }
 
-    public IActionResult Visualizar()
+    [HttpPost]
+    public async Task<IActionResult> Adicionar(ClienteModel clienteModel)
     {
-        throw new NotImplementedException();
+        if (!ModelState.IsValid)
+        {
+            return View("AdicionarCliente", clienteModel);
+        }
+
+        var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Cliente/InserirCliente", clienteModel);
+        if (response.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
+        }
+        return View("AdicionarCliente",clienteModel);
+    }
+
+    public async Task<IActionResult> ObterEndereco(string cep)
+    {
+        var endereco = await _httpClient.GetStringAsync($"https://localhost:7124/api/Cep/ConsultarCep/?cep={cep}");
+        var resultado = JsonConvert.DeserializeObject<EnderecoModel>(endereco);
+
+        return Json(resultado);
     }
 }

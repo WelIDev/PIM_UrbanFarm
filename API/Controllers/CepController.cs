@@ -14,8 +14,8 @@ public class CepController : Controller
         _consultarCepServico = consultarCepServico;
     }
 
-    [HttpPost]
-    public ActionResult ConsultarCep([FromBody] string cep)
+    [HttpGet]
+    public ActionResult ConsultarCep(string cep)
     {
         var endereco = _consultarCepServico.Execute(cep);
         return Ok(endereco);
