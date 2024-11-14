@@ -1,0 +1,412 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #172031;
+    transition: margin-left 0.3s; /* Transição suave */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00000080;
+    z-index: 1000;
+    text-shadow: white;
+    text-align: center;
+}
+
+.img-top-bar {
+    width: 100px;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    left: 20px; /* Ajustado para ficar no canto direito */
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 115px; /* Abaixo da barra superior */
+    left: -250px; /* Inicialmente escondido */
+    height: calc(100% - 30px); /* Altura da página menos a barra superior */
+    background-color: #000000cc;
+    padding: 15px;
+    transition: left 0.3s; /* Transição suave para a sidebar */
+    z-index: 999; /* Um nível abaixo da barra superior */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    display: block;
+    padding: 10px;
+}
+
+/* Ícone de perfil */
+.profile-icon {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    right: 20px; /* Ajuste conforme necessário */
+}
+
+.img-perfil {
+    width: 30px; /* Ajustar conforme necessário */
+    height: 30px; /* Ajustar conforme necessário */
+    padding-top: 10px;
+
+}
+
+/* Menu de perfil */
+.profile-menu {
+    position: absolute;
+    top: 60px; /* Abaixo da barra superior */
+    right: 20px; /* Alinhado à direita */
+    background-color: #000000;
+    display: none; /* Inicialmente escondido */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.profile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-menu li {
+    margin: 15px;
+}
+
+.profile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+/* Estilo das abas */
+.tab {
+    display: none;
+    padding: 20px;
+}
+
+.tab-buttons {
+    display: flex;
+    justify-content: space-between; /* Distribui os botões ao longo do contêiner */
+    padding: 10px;
+    background-color: #00000049;
+    margin-top: 60px;
+}
+
+.tab-buttons .tab-buttons-left {
+    display: flex;
+    align-items: center;
+}
+
+.tab-buttons .tab-button {
+    background-color: #00000049;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.tab-buttons .tab-button:hover {
+    background-color: #000000cc;
+}
+
+.tab-buttons .tab-button.active {
+    background-color: #000000cc;
+}
+
+.tab-buttons .back-button {
+    background-color: #00000049;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: auto; /* Move o botão para o lado esquerdo */
+}
+
+.tab-buttons .back-button:hover {
+    background-color: #000000cc;
+}
+
+.main-content {
+    transition: margin-left 0.3s; /* Transição suave para a margem */
+    margin-left: 0; /* Valor inicial */
+}
+
+.container {
+    max-width: 1000px;
+    width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 35px; /* Adiciona espaço para evitar sobreposição com a top-bar */
+    margin-left: 350px;
+}
+
+h3{
+    margin: 12px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.total {
+    position: fixed;
+    bottom: 20px; /* Ajuste conforme necessário */
+    right: 10px; /* Ajuste conforme necessário */
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* Garante que o elemento fique acima de outros */
+}
+
+.comprasrealizadas {
+    margin: 30px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    gap: 20px; /* Reduzido o espaço entre os botões */
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px;
+    background:#233049;
+    color: white;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background: rgb(1, 1, 32);
+}
+
+.tab-button:hover {
+    background: rgb(1, 1, 32);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.carrinho-container {
+    display: flex; /* Flexbox para as duas seções lado a lado */
+    justify-content: space-between; /* Espaçamento igual entre as colunas */
+    gap: 20px; /* Espaçamento entre as colunas */
+}
+
+.adicionar-itens, .previsao {
+    width: 48%; /* Mantido a largura */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    transition: background 0.2s;
+}
+
+li div {
+    display: flex;
+    align-items: center;
+}
+
+li button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    min-width: 30px;
+}
+
+li .quantidade {
+    min-width: 30px;
+    text-align: center;
+    line-height: 1;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #218838;
+}
+
+button#finalizar {
+
+    background: #28a745; /* Cor verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 12px; /* Aumentar o tamanho do botão */
+    font-size: 16px; /* Aumentar o tamanho da fonte */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Estilo ao passar o mouse sobre o botão */
+button#finalizar:hover {
+    background: #218838; /* Tom de verde mais escuro */
+}
+
+.filtro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filtro label {
+    margin-right: 10px;
+    color: #333;
+}
+
+.filtro input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.filtro select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.acao-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.acao-button.editar {
+    background-color: #ffc107;
+}
+
+.acao-button.excluir {
+    background-color: #dc3545;
+}
+
+/* Estilo das notificações */
+.notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.notification.visible {
+    display: block;
+    opacity: 1;
+}
+
+.notification.hidden {
+    display: none;
+    opacity: 0;
+}
+
+#successNotification {
+    background-color: #4CAF50;
+}
+
+#editNotification {
+    background-color: #ff9800;
+}
+
+#deleteNotification {
+    background-color: #f44336;
+}

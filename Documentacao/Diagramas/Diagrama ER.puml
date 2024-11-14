@@ -1,0 +1,148 @@
+﻿@startuml
+
+skinparam pageWidth 2100
+skinparam pageHeight 2970
+
+skinparam topMargin 150
+skinparam bottomMargin 100
+skinparam leftMargin 150
+skinparam rightMargin 100
+
+
+entity Enderecos {
+    * Id : int [PK]
+    --
+    Rua : nvarchar(100)
+    Bairro : nvarchar(100)
+    Cidade : nvarchar(100)
+    Estado : nvarchar(50)
+    Cep : nvarchar(20)
+}
+
+entity Clientes {
+    * Id : int [PK]
+    --
+    Nome : nvarchar(100)
+    Email : nvarchar(100)
+    CpfCnpj : nvarchar(20)
+    Telefone : nvarchar(20)
+    DataNascimento : datetime2
+    EnderecoId : int [FK]
+}
+
+entity Fornecedores {
+    * Id : int [PK]
+    --
+    Nome : nvarchar(100)
+    Email : nvarchar(100)
+    Cnpj : nvarchar(20)
+    InscricaoEstadual : nvarchar(20)
+    Telefone : nvarchar(20)
+    EnderecoId : int [FK]
+}
+
+entity Produtos {
+    * Id : int [PK]
+    --
+    Nome : nvarchar(100)
+    Preco : float
+    Estoque : int
+    Descricao : nvarchar(255)
+}
+
+entity Usuarios {
+    * Id : int [PK]
+    --
+    Nome : nvarchar(100)
+    Email : nvarchar(100)
+    Senha : nvarchar(255)
+    Funcao : int
+    DataCriacao : datetime2
+}
+
+entity HistoricoCompras {
+    * Id : int [PK]
+    --
+    ClienteId : int [FK]
+}
+
+entity Vendas {
+    * Id : int [PK]
+    --
+    Data : datetime2
+    Valor : float
+    FormaDePagamento : int
+    VendedorId : int [FK]
+    HistoricoCompraId : int [FK]
+}
+
+entity FornecedorProduto {
+    * FornecedorId : int [FK]
+    * ProdutoId : int [FK]
+}
+
+entity VendaProduto {
+    * ProdutoId : int [FK]
+    * VendaId : int [FK]
+}
+
+entity AbastecimentosEstoque {
+    * Id : int [PK]
+    --
+    ProdutoId : int [FK]
+    Quantidade : int
+    Data : datetime2
+    FornecedorId : int [FK]
+    UsuarioId : int [FK]
+    Observacoes : nvarchar(max)
+}
+
+entity Vendedores {
+    * Id : int [PK]
+    --
+    Nome : nvarchar(100)
+    Salario : float
+    CpfCnpj : nvarchar(14)
+    EnderecoId : int [FK]
+    Telefone : nvarchar(15)
+    DataContratacao : datetime2
+}
+
+entity Metas {
+    * Id : int [PK]
+    --
+    Descricao : nvarchar(255)
+    Valor : float
+    Periodo : int
+    DataCriacao : datetime2
+    VendedorId : int [FK]
+}
+
+entity Comissoes {
+    * Id : int [PK]
+    --
+    Valor : float
+    Data : datetime2
+    MetaId : int [FK]
+}
+
+Clientes -left-> Enderecos : "possui"
+Fornecedores --> Enderecos : "possui"
+Vendedores --> Enderecos : "possui"
+
+Clientes --> HistoricoCompras : "realiza"
+HistoricoCompras --> Vendas : "tem"
+Vendas --> VendaProduto : "contém"
+VendaProduto --> Produtos
+
+Fornecedores --> FornecedorProduto : "oferece"
+FornecedorProduto --> Produtos
+
+Produtos --> AbastecimentosEstoque
+AbastecimentosEstoque --> Usuarios
+AbastecimentosEstoque --> Fornecedores
+
+Vendedores --> Metas : "define"
+Metas --> Comissoes : "gera"
+
+@enduml

@@ -24,7 +24,6 @@ public class VendaServico : IVendaServico
             var produtos = _produtoRepositorio.ObterProdutosPorId(vendaDto.ProdutoIds);
             var venda = new Venda
             {
-                Valor = vendaDto.Valor,
                 VendedorId = vendaDto.VendedorId,
                 HistoricoCompraId = vendaDto.HistoricoCompraId,
                 FormaDePagamento = vendaDto.FormaDePagamento,
@@ -81,7 +80,6 @@ public class VendaServico : IVendaServico
 
             var produtos = _produtoRepositorio.ObterProdutosPorId(vendaDto.ProdutoIds);
             
-            venda.Valor = vendaDto.Valor;
             venda.VendedorId = vendaDto.VendedorId;
             venda.HistoricoCompraId = vendaDto.HistoricoCompraId;
             venda.FormaDePagamento = vendaDto.FormaDePagamento;

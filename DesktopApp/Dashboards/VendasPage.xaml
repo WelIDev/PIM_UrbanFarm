@@ -1,0 +1,49 @@
+﻿<Page x:Class="DesktopApp.Dashboards.VendasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      mc:Ignorable="d"
+      Title="VendasPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <ComboBox x:Name="PeriodoComboBox" Width="200" Margin="10" 
+        SelectionChanged="PeriodoComboBox_SelectionChanged">
+            <ComboBoxItem Content="Mês"/>
+            <ComboBoxItem Content="Trimestre"/>
+            <ComboBoxItem Content="Ano"/>
+        </ComboBox>
+
+        <DataGrid x:Name="VendasDataGrid" AutoGenerateColumns="False" Grid.Row="1" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}"/>
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding Valor}"/>
+                <DataGridTextColumn Header="Forma de Pagamento" Binding="{Binding FormaDePagamento}"/>
+                <DataGridTextColumn Header="Vendedor ID" Binding="{Binding VendedorId}"/>
+                <DataGridTextColumn Header="Nome do Vendedor" Binding="{Binding NomeVendedor}"/>
+                <DataGridTemplateColumn Header="Produtos Vendidos">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding ProdutosVendidos}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Nome}"/>
+                                            <TextBlock Text="{Binding Quantidade}"/>
+                                            <TextBlock Text="{Binding Preco}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

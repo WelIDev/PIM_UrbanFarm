@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Page Update="Main\LoginWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="imagens\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="imagens\celeirourbanfarm.png" />
+      <Resource Include="imagens\celeirourbanfarm.png" />
+      <None Remove="imagens\fazendaurbana.png" />
+      <Resource Include="imagens\fazendaurbana.png" />
+      <None Remove="imagens\fornecedor.png" />
+      <Resource Include="imagens\fornecedor.png" />
+      <None Remove="imagens\gestaodeclientes.png" />
+      <Resource Include="imagens\gestaodeclientes.png" />
+      <None Remove="imagens\gestaodepedidos.png" />
+      <Resource Include="imagens\gestaodepedidos.png" />
+      <None Remove="imagens\logonovaurbanfarmpng.png" />
+      <Resource Include="imagens\logonovaurbanfarmpng.png" />
+      <None Remove="imagens\perfil.png" />
+      <Resource Include="imagens\perfil.png" />
+      <None Remove="imagens\usuario.png" />
+      <Resource Include="imagens\usuario.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="OxyPlot.Wpf"/>
+    </ItemGroup>
+
+</Project>

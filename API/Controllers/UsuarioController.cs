@@ -19,7 +19,6 @@ public class UsuarioController : Controller
     }
 
     [HttpPost]
-    [Authorize]
     public ActionResult InserirUsuario([FromBody] UsuarioDto usuarioDto)
     {
         var usuario = new Usuario

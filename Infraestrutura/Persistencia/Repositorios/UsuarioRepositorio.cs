@@ -20,7 +20,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
 
     public Usuario? ObterPorEmail(string email)
     {
-        return _context.Usuarios.Find(email);
+        return _context.Usuarios.FirstOrDefault(u => u.Email == email);
     }
 
     public Usuario? ObterPorId(int id)

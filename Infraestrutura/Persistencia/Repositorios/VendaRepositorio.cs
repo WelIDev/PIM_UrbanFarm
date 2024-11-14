@@ -1,5 +1,6 @@
 ﻿using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infraestrutura.Persistencia.Repositorios;
 
@@ -25,7 +26,7 @@ public class VendaRepositorio : IVendaRepositorio
 
     public List<Venda> ObterVendas()
     {
-        return _context.Vendas.ToList();
+        return new List<Venda>(_context.Vendas.Include(v => v.Produtos)).ToList();
     }
 
     public void AlterarVenda(Venda venda)

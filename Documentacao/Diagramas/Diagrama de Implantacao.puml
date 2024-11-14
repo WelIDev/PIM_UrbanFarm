@@ -1,0 +1,25 @@
+﻿@startuml 
+
+
+node "Interfaces" {
+    artifact "Desktop" as Desktop
+    artifact "Mobile" as Mobile
+    artifact "Web" as Web
+}
+
+node "Servidor Firewall" {
+    artifact Firewall
+}
+
+node "Servidor de Banco de Dados" {
+    database SqlServer
+}
+
+node "Servidor de Aplicação" {
+    artifact "API Asp.Net" as API
+}
+
+"Interfaces" -- "Servidor Firewall" : TCP/IP
+"Servidor Firewall" -down- "Servidor de Aplicação" : TCP/IP
+"Servidor de Aplicação" -down- "Servidor de Banco de Dados" : TCP/IP
+@enduml

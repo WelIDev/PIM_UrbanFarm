@@ -6,6 +6,7 @@ using Dominio.Interfaces;
 using Dominio.Interfaces.Repositorios;
 using Dominio.Interfaces.Servicos;
 using Infraestrutura.Persistencia;
+using Infraestrutura.Persistencia.DbInitializer;
 using Infraestrutura.Persistencia.Repositorios;
 using Infraestrutura.Servicos;
 using Microsoft.IdentityModel.Tokens;
@@ -136,6 +137,7 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
+    DbInitializer.Seed(dbContext);
 }
 
 app.Run();

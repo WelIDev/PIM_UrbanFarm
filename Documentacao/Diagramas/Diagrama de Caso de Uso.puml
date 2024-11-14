@@ -1,0 +1,57 @@
+﻿@startuml
+skinparam pageWidth 170mm
+skinparam pageHeight 257mm
+
+left to right direction
+actor Vendedor
+actor Administrador
+
+usecase "Manter Cliente" as UC1
+usecase "Ver Histórico de Compras" as UC2
+
+usecase "Vender Produto" as UC3
+usecase "Receber Comissão" as UC4
+usecase "Consultar Metas" as UC5
+usecase "Atualizar Comissão" as UC6
+
+usecase "Manter Fornecedor" as UC7
+usecase "Manter Produto" as UC8
+usecase "Abastecer Estoque" as UC9
+
+usecase "Registrar Venda" as UC10
+usecase "Emitir Nota Fiscal" as UC11
+
+usecase "Registrar Abastecimento de Estoque" as UC12
+usecase "Excluir Abastecimento de Estoque" as UC13
+
+usecase "Manter Meta" as UC14
+usecase "Calcular Comissão" as UC15
+
+usecase "Autenticar" as UC16
+usecase "Atualizar Senha" as UC17
+usecase "Excluir Usuário" as UC18
+
+Vendedor --> UC1
+Vendedor --> UC2
+Vendedor --> UC3
+Vendedor --> UC4
+Vendedor --> UC5
+Vendedor --> UC6
+Vendedor --> UC10
+Vendedor --> UC11
+
+Administrador --> UC1
+Administrador --> UC2
+Administrador --> UC7
+Administrador --> UC8
+Administrador --> UC9
+Administrador --> UC14
+Administrador --> UC15
+Administrador --> UC16
+Administrador --> UC17
+Administrador --> UC18
+
+UC3 .down.> UC10 : "Vende"
+UC10 .down.> UC11 : "Emitir"
+UC8 .down.> UC9 : "Abastecer"
+@enduml

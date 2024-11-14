@@ -12,8 +12,7 @@ let editingRow = null;
 // Define a data atual no campo de data de nascimento, se a página de adicionar estiver aberta
 if (dataNascimentoInput) {
     document.addEventListener('DOMContentLoaded', function () {
-        const hoje = new Date().toISOString().split('T')[0];
-        dataNascimentoInput.value = hoje;
+        dataNascimentoInput.value = new Date().toISOString().split('T')[0];
     });
 }
 

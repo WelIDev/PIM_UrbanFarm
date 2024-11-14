@@ -1,0 +1,139 @@
+﻿@startuml
+skinparam pageWidth 170mm
+skinparam pageHeight 257mm
+
+left to right direction
+enum Funcao{
+    Administrador,
+    Vendedor
+}
+enum FormaDePagamento{
+     Pix,
+     Credito,
+     Debito,
+     Dinheiro
+}
+class AbastecimentoEstoque {
+    +Id: int
+    +Quantidade: int
+    +Data: DateTime
+    +Observacoes: string
+    +RegistrarAbastecimento(): void
+    +AtualizarEstoque(): void
+    +ExcluirAbastecimento(): void
+}
+class Cliente {
+    +Id: int
+    +Nome: string
+    +Email: string
+    +CpfCnpj: string
+    +Telefone: string
+    +DataNascimento: DateTime
+    +CadastrarCliente(): void
+    +AtualizarCliente(): void
+    +ExcluirCliente(): void
+    +VerHistorico(): HistoricoCompra
+}
+class Comissao {
+    +Id: int
+    +Valor: double
+    +Data: DateTime
+    +CalcularComissao(): double
+    +EmitirComissao(): void
+}
+class Endereco {
+    +Id: int
+    +Numero: int
+    +Rua: string
+    +Bairro: string
+    +Cidade: string
+    +Estado: string
+    +Cep: string
+    +AtualizarEndereco(): void
+    +ExcluirEndereco(): void
+}
+class Fornecedor {
+    +Id: int
+    +Nome: string
+    +Email: string
+    +Cnpj: string
+    +InscricaoEstadual: string
+    +Telefone: string
+    +CadastrarFornecedor(): void
+    +AtualizarFornecedor(): void
+    +ExcluirFornecedor(): void
+}
+class HistoricoCompra {
+    +Id: int
+    +RegistrarCompra(): void
+    +AtualizarCompra(): void
+    +ExcluirCompra(): void
+}
+class Meta {
+    +Id: int
+    +Descricao: string
+    +Valor: double
+    +Periodo: int
+    +DataCriacao: DateTime
+    +DefinirMeta(): void
+    +AtualizarMeta(): void
+    +ExcluirMeta(): void
+}
+class Produto {
+    +Id: int
+    +Nome: string
+    +Preco: double
+    +Estoque: int
+    +Descricao: string
+    +CadastrarProduto(): void
+    +AtualizarProduto(): void
+    +ExcluirProduto(): void
+    +AlterarEstoque(): void
+}
+class Usuario {
+    +Id: int
+    +Nome: string
+    +Email: string
+    +Senha: string
+    +Funcao: Funcao
+    +DataCriacao: DateTime
+    +Autenticar(): bool
+    +AtualizarSenha(): void
+    +ExcluirUsuario(): void
+}
+class Venda {
+    +Id: int
+    +Data: DateTime
+    +Valor: double
+    +FormaDePagamento: FormaDePagamento
+    +RegistrarVenda(): void
+    +AtualizarVenda(): void
+    +ExcluirVenda(): void
+    +EmitirNotaFiscal(): void
+}
+class Vendedor {
+    +Id: int
+    +Nome: string
+    +Cpf: string
+    +Comissao: double
+    +DataAdmissao: DateTime
+    +VenderProduto(): void
+    +ReceberComissao(): void
+    +AtualizarComissao(): void
+    +ConsultarMetas(): Meta
+}
+
+Cliente "1" -- "1" Endereco
+Cliente "1" -- "1" HistoricoCompra
+Fornecedor "1" -- "1" Endereco
+Fornecedor "1" -- "*" Produto
+Fornecedor "1" -- "*" AbastecimentoEstoque
+HistoricoCompra "1" -- "*" Venda
+Meta "1" -- "*" Comissao
+Meta "1" -- "1" Vendedor
+Produto "*" -- "*" Venda
+Produto "*" -- "1" AbastecimentoEstoque
+Usuario "1" -- "*" AbastecimentoEstoque
+Venda "*" -- "1" Vendedor
+
+@enduml
