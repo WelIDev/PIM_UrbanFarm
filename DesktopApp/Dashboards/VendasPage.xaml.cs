@@ -1,76 +1,187 @@
-﻿using System.Net.Http;
-using System.Net.Http.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using OxyPlot.Wpf;
+using DateTimeAxis = OxyPlot.Axes.DateTimeAxis;
+using LinearAxis = OxyPlot.Axes.LinearAxis;
+using LineSeries = OxyPlot.Series.LineSeries;
 
-namespace DesktopApp.Dashboards;
-
-public partial class VendasPage : Page
+namespace DesktopApp.Dashboards
 {
-    private readonly HttpClient _client = new HttpClient();
-    private List<Venda> _todasAsVendas = [];
-
-    public VendasPage()
+    public partial class VendasPage : Page
     {
-        InitializeComponent();
-        LoadVendas();
-    }
+        private List<Vendedor> _vendedores;
+        private List<Venda> _vendasTotais;
+        private List<Venda> _vendasAtuais;
+        private DateTime? _dataInicio;
+        private DateTime? _dataFim;
 
-    private async void LoadVendas()
-    {
-        var response = await _client.GetAsync("https://localhost:7124/api/Venda/ObterVendas");
-        response.EnsureSuccessStatusCode();
-        
-        _todasAsVendas = await response.Content.ReadFromJsonAsync<List<Venda>>() ?? throw new InvalidOperationException();
-        AtualizarDataGrid(_todasAsVendas);
-    }
-
-    private void AtualizarDataGrid(List<Venda> vendas)
-    {
-        VendasDataGrid.ItemsSource = vendas;
-    }
-
-    private void PeriodoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var selecionado = (e.AddedItems[0] as ComboBoxItem)?.Content.ToString();
-        var agora = DateTime.Now;
-
-        var vendasFiltradas = _todasAsVendas;
-
-        switch (selecionado)
+        public VendasPage()
         {
-            case "Mês":
-                vendasFiltradas = _todasAsVendas.Where(v => v.Data >= agora.AddMonths(-1)).ToList();
-                break;
-            case "Trimestre":
-                vendasFiltradas = _todasAsVendas.Where(v => v.Data >= agora.AddMonths(-3)).ToList();
-                break;
-            case "Ano":
-                vendasFiltradas = _todasAsVendas.Where(v => v.Data >= agora.AddYears(-1)).ToList();
-                break;
+            InitializeComponent();
+            CarregarVendedores();
+            CarregarVendasTotais();
+            AtualizarGraficoVendasTotais();
         }
-        
-        AtualizarDataGrid(vendasFiltradas);
+
+        private async void CarregarVendedores()
+        {
+            // Substitua por sua chamada à API para carregar os dados dos vendedores
+            _vendedores = new List<Vendedor>
+            {
+                new Vendedor
+                {
+                    VendedorId = 1, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 500 },
+                        new Venda { Data = DateTime.Now.AddDays(-1), Valor = 300 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 2, NomeVendedor = "Vendedor 2", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 700 },
+                        new Venda { Data = DateTime.Now.AddDays(-1), Valor = 400 }
+                    }
+                }
+            };
+
+            VendedoresCardsControl.ItemsSource = _vendedores;
+        }
+
+        private void ExibirGraficoVendas(List<Venda> vendas)
+        {
+            var model = new PlotModel { Title = "Gráfico de Vendas" };
+            var series = new LineSeries { Title = "Valor das Vendas", MarkerType = MarkerType.Circle };
+
+            foreach (var venda in vendas)
+            {
+                series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(venda.Data), venda.Valor));
+            }
+
+            model.Series.Add(series);
+            
+            model.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, StringFormat = "dd/MM/yyyy" });
+            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, MaximumPadding = 0.2, Title = "Valor (R$)"
+            });
+
+            var plotView = (PlotView)FindName("GraficoVendas");
+            if (plotView != null)
+            {
+                plotView.Model = model;
+            }
+        }
+
+        private async void CarregarVendasTotais()
+        {
+            // Substitua por sua chamada à API para carregar os dados de vendas totais
+            _vendasTotais = new List<Venda>
+            {
+                new Venda { Data = DateTime.Now, Valor = 1200 },
+                new Venda { Data = DateTime.Now.AddDays(-1), Valor = 700 },
+                new Venda { Data = DateTime.Now.AddDays(-2), Valor = 450 }
+            };
+
+            // Definindo vendas atuais como vendas totais inicialmente
+            _vendasAtuais = _vendasTotais;
+        }
+
+        private void ExibirVendas_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                var vendedorId = (int)button.Tag;
+                var vendedorSelecionado = _vendedores.FirstOrDefault(v => v.VendedorId == vendedorId);
+                if (vendedorSelecionado != null)
+                {
+                    _vendasAtuais = vendedorSelecionado.Vendas;
+                    FiltrarEExibirVendas(_vendasAtuais);
+                }
+            }
+        }
+
+        private void AtualizarGraficoVendasTotais()
+        {
+            FiltrarEExibirVendas(_vendasTotais);
+        }
+
+        private void FiltrarPorData(List<Venda> vendas, DateTime dataInicio, DateTime dataFim)
+        {
+            var vendasFiltradas = vendas
+                .Where(v => v.Data.Date >= dataInicio.Date && v.Data.Date <= dataFim.Date)
+                .ToList();
+
+            if (vendasFiltradas.Any())
+            {
+                ExibirGraficoVendas(vendasFiltradas);
+            }
+            else
+            {
+                MessageBox.Show("Não há vendas no intervalo de datas selecionado.");
+            }
+        }
+
+        private void DataInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _dataInicio = DataInicio.SelectedDate;
+            AtualizarFiltroDeData();
+        }
+
+        private void DataFim_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _dataFim = DataFim.SelectedDate;
+            AtualizarFiltroDeData();
+        }
+
+        private void AtualizarFiltroDeData()
+        {
+            if (_dataInicio.HasValue && _dataFim.HasValue)
+            {
+                FiltrarEExibirVendas(_vendasAtuais);
+            }
+        }
+
+        private void FiltrarEExibirVendas(List<Venda> vendas)
+        {
+            if (_dataInicio.HasValue && _dataFim.HasValue)
+            {
+                if (_dataInicio.Value <= _dataFim.Value)
+                {
+                    FiltrarPorData(vendas, _dataInicio.Value, _dataFim.Value);   
+                }
+                else
+                {
+                    MessageBox.Show("A data final não pode ser menor que a data inicial!");
+                }
+            }
+            else
+            {
+                ExibirGraficoVendas(vendas);
+            }
+        }
+
+        private void MostrarTodasVendas_Click(object sender, RoutedEventArgs e)
+        {
+            FiltrarEExibirVendas(_vendasTotais);
+        }
     }
-}
 
-internal record Venda
-{
-    public int Id { get; init; }
-    public DateTime Data { get; init; }
-    public double Valor { get; init; }
-    public int FormaDePagamento { get; init; }
-    public int VendedorId { get; init; }
-    public int? HistoricoCompraId { get; init; }
-    public List<Produto> Produtos { get; init; }
-}
+    public class Vendedor
+    {
+        public int VendedorId { get; set; }
+        public string NomeVendedor { get; set; }
+        public List<Venda> Vendas { get; set; }
+    }
 
-internal record Produto
-{
-    public int Id { get; init; }
-    public string Nome { get; init; }
-    public double Preco { get; init; }
-    public int Estoque { get; init; }
-    public string Descricao { get; init; }
-    public List<object> Fornecedores { get; init; }
-    public List<object> AbastecimentosEstoque { get; init; }
+    public class Venda
+    {
+        public DateTime Data { get; set; }
+        public double Valor { get; set; }
+    }
 }

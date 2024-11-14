@@ -1,0 +1,29 @@
+﻿@startuml
+skinparam pageWidth 170mm
+skinparam pageHeight 257mm
+
+actor Vendedor
+actor Cliente
+
+participant "Sistema de Vendas" as Sistema
+participant "Produto" as Produto
+participant "Venda" as Venda
+participant "Comissão" as Comissao
+participant "Meta" as Meta
+
+Vendedor -> Sistema : Inicia Venda()
+Sistema -> Produto : Verifica Disponibilidade()
+Produto -> Sistema : Produto Disponível
+Sistema -> Cliente : Solicita Dados do Cliente()
+Cliente -> Sistema : Envia Dados do Cliente
+Sistema -> Venda : Cria Venda()
+Produto -> Venda : Adiciona Produto à Venda
+Sistema -> Vendedor : Exibe Total a Pagar
+Vendedor -> Cliente : Solicita Pagamento()
+Cliente -> Vendedor : Efetua Pagamento
+Sistema -> Venda : Registra Venda()
+Venda -> Comissao : Calcula Comissão()
+Comissao -> Sistema : Comissão Calculada
+Venda -> Meta : Atualiza Meta do Vendedor()
+Meta -> Sistema : Meta Atualizada
+@enduml

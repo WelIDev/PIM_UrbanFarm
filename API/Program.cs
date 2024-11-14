@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Aplicacao.Interfaces;
 using Aplicacao.Servicos;
 using Dominio.Entidades;
@@ -80,6 +81,12 @@ builder.Services.AddScoped<IVendaServico, VendaServico>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration
     .GetConnectionString("Default")));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 
 // Configuração do JWT
 builder.Services.AddAuthentication(options =>

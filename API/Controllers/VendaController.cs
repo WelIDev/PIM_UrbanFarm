@@ -53,7 +53,7 @@ public class VendaController : Controller
         }
         catch (Exception e)
         {
-            return StatusCode(500, "Ocorreu um erro ao tentar obter as vendas.");
+            return StatusCode(500, $"Ocorreu um erro ao tentar obter as vendas. {e.Message}");
         }
     }
 

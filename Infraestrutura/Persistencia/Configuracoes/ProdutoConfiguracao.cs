@@ -18,5 +18,10 @@ public class ProdutoConfiguracao : IEntityTypeConfiguration<Produto>
             .UsingEntity<Dictionary<string, object>>("FornecedorProduto", j => j
                 .HasOne<Fornecedor>().WithMany().HasForeignKey("FornecedorId"), j => j
                 .HasOne<Produto>().WithMany().HasForeignKey("ProdutoId"));
+        
+        builder.HasMany(p => p.VendaProdutos)
+            .WithOne(vp => vp.Produto)
+            .HasForeignKey(vp => vp.IdProduto) 
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

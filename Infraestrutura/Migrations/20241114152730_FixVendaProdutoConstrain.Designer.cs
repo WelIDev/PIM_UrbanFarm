@@ -4,6 +4,7 @@ using Infraestrutura.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestrutura.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241114152730_FixVendaProdutoConstrain")]
+    partial class FixVendaProdutoConstrain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -372,15 +375,25 @@ namespace Infraestrutura.Migrations
                     b.Property<int>("IdProduto")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
                     b.Property<double>("ValorTotal")
                         .HasColumnType("float");
 
+                    b.Property<int>("VendaId")
+                        .HasColumnType("int");
+
                     b.HasKey("IdVenda", "IdProduto");
 
                     b.HasIndex("IdProduto");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.HasIndex("VendaId");
 
                     b.ToTable("VendaProduto");
                 });
@@ -543,16 +556,30 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio.Entidades.VendaProduto", b =>
                 {
-                    b.HasOne("Dominio.Entidades.Produto", "Produto")
-                        .WithMany("VendaProdutos")
+                    b.HasOne("Dominio.Entidades.Produto", null)
+                        .WithMany()
                         .HasForeignKey("IdProduto")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_VendaProduto_ProdutoId");
+
+                    b.HasOne("Dominio.Entidades.Venda", null)
+                        .WithMany()
+                        .HasForeignKey("IdVenda")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_VendaProduto_VendaId");
+
+                    b.HasOne("Dominio.Entidades.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Dominio.Entidades.Venda", "Venda")
-                        .WithMany("VendaProdutos")
-                        .HasForeignKey("IdVenda")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .WithMany()
+                        .HasForeignKey("VendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Produto");
@@ -610,18 +637,11 @@ namespace Infraestrutura.Migrations
             modelBuilder.Entity("Dominio.Entidades.Produto", b =>
                 {
                     b.Navigation("AbastecimentosEstoque");
-
-                    b.Navigation("VendaProdutos");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Usuario", b =>
                 {
                     b.Navigation("AbastecimentosEstoque");
-                });
-
-            modelBuilder.Entity("Dominio.Entidades.Venda", b =>
-                {
-                    b.Navigation("VendaProdutos");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Vendedor", b =>

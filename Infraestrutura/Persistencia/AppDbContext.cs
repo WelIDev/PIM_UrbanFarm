@@ -35,5 +35,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new VendedorConfiguracao());
         modelBuilder.ApplyConfiguration(new VendaConfiguracao());
         modelBuilder.ApplyConfiguration(new AbastecimentoEstoqueConfiguracao());
+        modelBuilder.ApplyConfiguration(new VendaProdutoConfiguracao());
     }
 }

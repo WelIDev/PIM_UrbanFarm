@@ -21,12 +21,14 @@ public class VendaRepositorio : IVendaRepositorio
 
     public Venda? ObterPorId(int id)
     {
-        return _context.Vendas.Find(id);
+        return _context.Vendas.Include(v => v.VendaProdutos).ThenInclude(vp => vp.Produto)
+            .FirstOrDefault(v => v.Id == id);
     }
 
     public List<Venda> ObterVendas()
     {
-        return new List<Venda>(_context.Vendas.Include(v => v.Produtos)).ToList();
+        return new List<Venda>(_context.Vendas.Include(v => v.VendaProdutos).ThenInclude(vp => vp.Produto))
+            .ToList();
     }
 
     public void AlterarVenda(Venda venda)

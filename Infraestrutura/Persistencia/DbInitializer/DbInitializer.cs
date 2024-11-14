@@ -20,7 +20,7 @@ public class DbInitializer
         SeedHistoricoCompra(context);
 
         SeedMetas(context);
-        
+
         SeedUsuarios(context);
 
         SeedAbastecimentosEstoque(context);
@@ -349,6 +349,14 @@ public class DbInitializer
                 var historicoCompra =
                     historicosCompra.FirstOrDefault(h => h.ClienteId == cliente.Id);
 
+                // Garantir que o histórico de compra existe
+                if (historicoCompra == null)
+                {
+                    historicoCompra = new HistoricoCompra { ClienteId = cliente.Id };
+                    context.HistoricoCompras.Add(historicoCompra);
+                    context.SaveChanges(); // Salvar o histórico de compra recém-criado
+                }
+
                 var vendedor = vendedores[random.Next(vendedores.Count)];
 
                 var produtosVenda = new List<Produto>();
@@ -368,7 +376,6 @@ public class DbInitializer
                 var dataInicial = new DateTime(2020, 1, 1);
                 var dataFinal = new DateTime(2024, 11, 29);
                 var faixa = dataFinal - dataInicial;
-
                 var randomDays = random.Next((int)faixa.TotalDays);
                 var randomDate = dataInicial.AddDays(randomDays);
 
@@ -382,32 +389,44 @@ public class DbInitializer
 
                 vendas.Add(venda);
 
+                // Salvar a venda no banco para gerar o IdVenda
+                context.Vendas.Add(venda);
+                context.SaveChanges(); // Aqui, a venda é salva e o IdVenda é gerado
+
+                var valorTotalVenda = 0.0;
+                var vendaProdutoIds = new HashSet<(int vendaId, int produtoId)>();
+
                 foreach (var produto in produtosVenda)
                 {
-                    var quantidade = random.Next(1, 20);
-                    var valorTotal = produto.Preco * quantidade;
-                    var vendaProduto = new VendaProduto
+                    if (!vendaProdutoIds.Contains((venda.Id, produto.Id)))
                     {
-                        ProdutoId = produto.Id,
-                        Quantidade = quantidade,
-                        ValorTotal = valorTotal,
-                    };
+                        var quantidade = random.Next(1, 20);
+                        var valorTotal = produto.Preco * quantidade;
+                        var vendaProduto = new VendaProduto
+                        {
+                            IdProduto = produto.Id,
+                            Quantidade = quantidade,
+                            ValorTotal = valorTotal,
+                            IdVenda = venda
+                                .Id // Agora, IdVenda é conhecido porque a venda foi salva
+                        };
 
-                    if (!context.VendaProduto.Any(vp => vp.VendaId == venda.Id && vp.ProdutoId == produto.Id))
-                    {
-                        vendaProduto.VendaId = venda.Id;
                         vendaProdutos.Add(vendaProduto);
+                        vendaProdutoIds.Add((venda.Id, produto.Id));
+
+                        valorTotalVenda += valorTotal;
                     }
                 }
+
+                venda.Valor = valorTotalVenda;
             }
 
-            context.Vendas.AddRange(vendas);
-            context.SaveChanges();
-            
+            // Adiciona os produtos de venda de uma vez após salvar as vendas
             context.VendaProduto.AddRange(vendaProdutos);
-            context.SaveChanges();
+            context.SaveChanges(); // Salvar os produtos de venda
         }
     }
+
 
     private static void SeedComissoes(AppDbContext context)
     {

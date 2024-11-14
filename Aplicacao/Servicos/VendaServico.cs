@@ -22,12 +22,21 @@ public class VendaServico : IVendaServico
         try
         {
             var produtos = _produtoRepositorio.ObterProdutosPorId(vendaDto.ProdutoIds);
+            
+            var vendaProdutos = produtos.Select(p => new VendaProduto
+            {
+                IdProduto = p.Id,
+                Produto = p,
+                Quantidade = vendaDto.Quantidade,
+                ValorTotal = p.Preco * vendaDto.Quantidade
+            }).ToList();
+            
             var venda = new Venda
             {
                 VendedorId = vendaDto.VendedorId,
                 HistoricoCompraId = vendaDto.HistoricoCompraId,
                 FormaDePagamento = vendaDto.FormaDePagamento,
-                Produtos = produtos
+                VendaProdutos = vendaProdutos
             };
             
             _vendaRepositorio.InserirVenda(venda);
@@ -83,7 +92,16 @@ public class VendaServico : IVendaServico
             venda.VendedorId = vendaDto.VendedorId;
             venda.HistoricoCompraId = vendaDto.HistoricoCompraId;
             venda.FormaDePagamento = vendaDto.FormaDePagamento;
-            venda.Produtos = produtos;
+
+            var vendaProdutos = produtos.Select(p => new VendaProduto
+            {
+                IdProduto = p.Id,
+                Produto = p,
+                Quantidade = vendaDto.Quantidade,
+                ValorTotal = p.Preco * vendaDto.Quantidade
+            }).ToList();
+
+            venda.VendaProdutos = vendaProdutos;
             
             _vendaRepositorio.AlterarVenda(venda);
             return true;
