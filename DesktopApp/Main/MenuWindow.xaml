@@ -4,21 +4,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="450" Width="800">
+        Icon="/imagens/logonovaurbanfarmpng.png" 
+        Title="MenuWindow">
         
     <Grid>
+        
         <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="#172031" 
-        Width="250">
+                   Width="250">
             <StackPanel>
-                <TextBlock Text="Dashboard" FontSize="24" Foreground="White" Margin="10"/>
+                <TextBlock Text="Dashboard" HorizontalAlignment="Center" FontSize="24" Foreground="White" Margin="10,65, 10,
+                 10"/>
                 <Button Content="Vendas" Click="Vendas_OnClick" Style="{StaticResource 
                 NavButtonStyle}"/>
                 <Button Content="Produtos" Click="Produtos_OnClick" Style="{StaticResource NavButtonStyle}"/>
                 <Button Content="Fornecimento" Click="Fornecimento_OnClick" Style="{StaticResource NavButtonStyle}"/>
             </StackPanel>
         </DockPanel>
+        <DockPanel LastChildFill="True" Height="60" VerticalAlignment="Top" Background="#172031"
+                   Panel.ZIndex="1">
+            <Image Source="/imagens/logonovaurbanfarmpng.png" Width="80" Height="80"
+                   VerticalAlignment="Center" />
+        </DockPanel>
         
-        <Grid Margin="250,0,0,0">
+        <Grid Margin="250,60,0,0">
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>

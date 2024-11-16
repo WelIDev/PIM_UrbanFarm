@@ -1,35 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Wpf;
-using DateTimeAxis = OxyPlot.Axes.DateTimeAxis;
+using CategoryAxis = OxyPlot.Axes.CategoryAxis;
+using ColumnSeries = OxyPlot.Series.ColumnSeries;
 using LinearAxis = OxyPlot.Axes.LinearAxis;
-using LineSeries = OxyPlot.Series.LineSeries;
 
 namespace DesktopApp.Dashboards
 {
-    public partial class VendasPage : Page
+    public partial class VendasPage
     {
-        private List<Vendedor> _vendedores;
-        private List<Venda> _vendasTotais;
-        private List<Venda> _vendasAtuais;
+        private List<Vendedor> _vendedores = [];
+        private List<Venda> _vendasTotais = [];
+        private List<Venda> _vendasAtuais = [];
         private DateTime? _dataInicio;
-        private DateTime? _dataFim;
+        private DateTime? _dataFim = DateTime.Today;
 
         public VendasPage()
         {
             InitializeComponent();
             CarregarVendedores();
             CarregarVendasTotais();
-            AtualizarGraficoVendasTotais();
+            FiltrarEExibirVendas(_vendasTotais);
         }
 
-        private async void CarregarVendedores()
+        private void CarregarVendedores()
         {
             // Substitua por sua chamada à API para carregar os dados dos vendedores
             _vendedores = new List<Vendedor>
@@ -39,7 +36,7 @@ namespace DesktopApp.Dashboards
                     VendedorId = 1, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
                     {
                         new Venda { Data = DateTime.Now, Valor = 500 },
-                        new Venda { Data = DateTime.Now.AddDays(-1), Valor = 300 }
+                        new Venda { Data = DateTime.Now.AddDays(-4), Valor = 300 }
                     }
                 },
                 new Vendedor
@@ -49,66 +46,163 @@ namespace DesktopApp.Dashboards
                         new Venda { Data = DateTime.Now, Valor = 700 },
                         new Venda { Data = DateTime.Now.AddDays(-1), Valor = 400 }
                     }
+                },
+                new Vendedor
+                {
+                    VendedorId = 3, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 500 },
+                        new Venda { Data = DateTime.Now.AddDays(-4), Valor = 300 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 4, NomeVendedor = "Vendedor 2", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 700 },
+                        new Venda { Data = DateTime.Now.AddDays(-2), Valor = 400 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 5, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 500 },
+                        new Venda { Data = DateTime.Now.AddDays(-5), Valor = 300 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 6, NomeVendedor = "Vendedor 2", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 700 },
+                        new Venda { Data = DateTime.Now.AddDays(-3), Valor = 400 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 7, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 500 },
+                        new Venda { Data = DateTime.Now.AddDays(-4), Valor = 300 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 8, NomeVendedor = "Vendedor 2", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 7000 },
+                        new Venda { Data = DateTime.Now.AddDays(-12), Valor = 400 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 7, NomeVendedor = "Vendedor 1", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 500 },
+                        new Venda { Data = DateTime.Now.AddDays(-4), Valor = 300 }
+                    }
+                },
+                new Vendedor
+                {
+                    VendedorId = 8, NomeVendedor = "Vendedor 2", Vendas = new List<Venda>
+                    {
+                        new Venda { Data = DateTime.Now, Valor = 7000 },
+                        new Venda { Data = DateTime.Now.AddDays(-12), Valor = 400 }
+                    }
                 }
             };
 
             VendedoresCardsControl.ItemsSource = _vendedores;
         }
 
-        private void ExibirGraficoVendas(List<Venda> vendas)
+        private void ExibirGraficoVendas(List<Venda> vendas, string nomeVendedor = "")
         {
-            var model = new PlotModel { Title = "Gráfico de Vendas" };
-            var series = new LineSeries { Title = "Valor das Vendas", MarkerType = MarkerType.Circle };
+            var tituloGrafico = string.IsNullOrEmpty(nomeVendedor)
+                ? "Gráfico de Vendas"
+                : $"Gráfico de Vendas do {nomeVendedor}";
 
-            foreach (var venda in vendas)
+            var model = new PlotModel { Title = tituloGrafico };
+            var series = new ColumnSeries
             {
-                series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(venda.Data), venda.Valor));
+                Title = "Valor das Vendas",
+                FillColor = OxyColor.Parse("#172031"),
+                TrackerFormatString = "Valor {2:C2}\nData: {1}"
+            };
+            // Obter a data mínima e máxima das vendas
+            var dataInicio = vendas.Min(v => v.Data).Date;
+            var dataFim = vendas.Max(v => v.Data).Date;
+
+            // Cria uma lista de datas para preencher todos os dias no intervalo
+            var datas = Enumerable.Range(0, (dataFim - dataInicio).Days + 1)
+                .Select(offset => dataInicio.AddDays(offset))
+                .ToList();
+
+            // Adicionar itens ao gráfico, preenchendo os dias sem vendas com valores zero
+            foreach (var data in datas)
+            {
+                var vendasDoDia = vendas.Where(v => v.Data.Date == data).Sum(v => v.Valor);
+                series.Items.Add(new ColumnItem { Value = vendasDoDia });
             }
 
-            model.Series.Add(series);
-            
-            model.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, StringFormat = "dd/MM/yyyy" });
-            model.Axes.Add(new LinearAxis { Position = AxisPosition.Left, MaximumPadding = 0.2, Title = "Valor (R$)"
-            });
-
-            var plotView = (PlotView)FindName("GraficoVendas");
-            if (plotView != null)
+            var eixoX = new CategoryAxis
             {
-                plotView.Model = model;
-            }
-        }
-
-        private async void CarregarVendasTotais()
-        {
-            // Substitua por sua chamada à API para carregar os dados de vendas totais
-            _vendasTotais = new List<Venda>
-            {
-                new Venda { Data = DateTime.Now, Valor = 1200 },
-                new Venda { Data = DateTime.Now.AddDays(-1), Valor = 700 },
-                new Venda { Data = DateTime.Now.AddDays(-2), Valor = 450 }
+                Position = AxisPosition.Bottom,
+                Title = "Data",
+                IsZoomEnabled = false
             };
 
-            // Definindo vendas atuais como vendas totais inicialmente
+            eixoX.Labels.Clear();
+            foreach (var data in datas)
+            {
+                eixoX.Labels.Add(data.ToString("dd/MM"));
+            }
+
+            var eixoY = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Valor (R$)",
+                Minimum = 0,
+                MaximumPadding = 0.2,
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.Dot,
+                IsZoomEnabled = false
+            };
+
+            model.Series.Add(series);
+            model.Axes.Add(eixoX);
+            model.Axes.Add(eixoY);
+
+            var plotView = (PlotView)FindName("GraficoVendas");
+            plotView.Model = model;
+        }
+
+
+        private void CarregarVendasTotais()
+        {
+            if (_vendedores.Count != 0)
+            {
+                _vendasTotais = _vendedores.SelectMany(v => v.Vendas).ToList();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum Vendedor cadastrado com vendas.");
+                _vendasTotais = [];
+            }
+
             _vendasAtuais = _vendasTotais;
         }
 
         private void ExibirVendas_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button)
-            {
-                var vendedorId = (int)button.Tag;
-                var vendedorSelecionado = _vendedores.FirstOrDefault(v => v.VendedorId == vendedorId);
-                if (vendedorSelecionado != null)
-                {
-                    _vendasAtuais = vendedorSelecionado.Vendas;
-                    FiltrarEExibirVendas(_vendasAtuais);
-                }
-            }
-        }
+            if (sender is not Button button) return;
+            var vendedorId = (int)button.Tag;
+            var vendedorSelecionado =
+                _vendedores.FirstOrDefault(v => v.VendedorId == vendedorId);
+            if (vendedorSelecionado == null) return;
+            _vendasAtuais = vendedorSelecionado.Vendas;
 
-        private void AtualizarGraficoVendasTotais()
-        {
-            FiltrarEExibirVendas(_vendasTotais);
+            ExibirGraficoVendas(_vendasAtuais, vendedorSelecionado.NomeVendedor);
         }
 
         private void FiltrarPorData(List<Venda> vendas, DateTime dataInicio, DateTime dataFim)
@@ -117,7 +211,7 @@ namespace DesktopApp.Dashboards
                 .Where(v => v.Data.Date >= dataInicio.Date && v.Data.Date <= dataFim.Date)
                 .ToList();
 
-            if (vendasFiltradas.Any())
+            if (vendasFiltradas.Count != 0)
             {
                 ExibirGraficoVendas(vendasFiltradas);
             }
@@ -130,21 +224,13 @@ namespace DesktopApp.Dashboards
         private void DataInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             _dataInicio = DataInicio.SelectedDate;
-            AtualizarFiltroDeData();
+            FiltrarEExibirVendas(_vendasAtuais);
         }
 
         private void DataFim_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             _dataFim = DataFim.SelectedDate;
-            AtualizarFiltroDeData();
-        }
-
-        private void AtualizarFiltroDeData()
-        {
-            if (_dataInicio.HasValue && _dataFim.HasValue)
-            {
-                FiltrarEExibirVendas(_vendasAtuais);
-            }
+            FiltrarEExibirVendas(_vendasAtuais);
         }
 
         private void FiltrarEExibirVendas(List<Venda> vendas)
@@ -153,7 +239,7 @@ namespace DesktopApp.Dashboards
             {
                 if (_dataInicio.Value <= _dataFim.Value)
                 {
-                    FiltrarPorData(vendas, _dataInicio.Value, _dataFim.Value);   
+                    FiltrarPorData(vendas, _dataInicio.Value, _dataFim.Value);
                 }
                 else
                 {
@@ -168,7 +254,13 @@ namespace DesktopApp.Dashboards
 
         private void MostrarTodasVendas_Click(object sender, RoutedEventArgs e)
         {
-            FiltrarEExibirVendas(_vendasTotais);
+            var vendasTotais = new List<Venda>();
+            foreach (var vendedor in _vendedores)
+            {
+                vendasTotais.AddRange(vendedor.Vendas);
+            }
+            
+            ExibirGraficoVendas(vendasTotais);
         }
     }
 
