@@ -1,4 +1,4 @@
-body {
+﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -39,7 +39,7 @@ body {
 /* Sidebar */
 .sidebar {
     position: fixed;
-    top: 60px; /* Abaixo da barra superior */
+    top: 115px; /* Abaixo da barra superior */
     left: -250px; /* Inicialmente escondido */
     height: calc(100% - 30px); /* Altura da página menos a barra superior */
     background-color: #000000cc;
@@ -87,7 +87,7 @@ body {
     position: absolute;
     top: 60px; /* Abaixo da barra superior */
     right: 20px; /* Alinhado à direita */
-    background-color: #000000cc;
+    background-color: #000000;
     display: none; /* Inicialmente escondido */
     padding: 10px;
     border-radius: 5px;
@@ -112,76 +112,78 @@ body {
         transition: background-color 0.3s;
     }
 
-/*----------------------------------------CAIXAS-----------------------------------------------*/
-.main-content {
+/* Estilo das abas */
+.tab {
+    display: none;
+    padding: 20px;
+}
+
+.tab-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px; /* Ajuste o valor para controlar o espaço entre a sub-header e o título */
-    transition: margin-left 0.3s; /* Transição suave */
-}
-
-.section-title {
-    font-size: 52px;
-    color: white;
-    margin-bottom: 10px; /* Ajuste o valor para controlar o espaço entre o título e as caixas */
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Cria duas colunas de largura igual */
-    gap: 20px; /* Espaço entre as caixas */
-    padding: 10px; /* Espaço interno do contêiner */
-    max-width: 1000px; /* Define a largura máxima do contêiner */
-    width: 80%; /* Garante que o contêiner ocupe toda a largura disponível */
-    padding-top: 50px;
-}
-
-.box {
-    background-color: #00000080; /* Fundo azul da caixa */
-    border-radius: 15px; /* Bordas arredondadas da caixa */
+    justify-content: space-between; /* Distribui os botões ao longo do contêiner */
     padding: 10px;
-    transition: background-color 0.2s ease-in-out;
+    background-color: #00000049;
+    margin-top: 60px;
 }
 
-    .box:hover {
-        background-color: #000000cc;
+    .tab-buttons .tab-buttons-left {
+        display: flex;
+        align-items: center;
     }
 
-.box-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .tab-buttons .tab-button {
+        background-color: #00000049;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
 
-.image img {
-    border-radius: 10px; /* Bordas arredondadas da imagem */
-    background-color: #172031; /* Fundo da imagem */
-    padding: 5px;
-    width: 80px; /* Ajustar conforme necessário */
-    height: 80px; /* Ajustar conforme necessário */
+        .tab-buttons .tab-button:hover {
+            background-color: #000000cc;
+        }
+
+        .tab-buttons .tab-button.active {
+            background-color: #000000cc;
+        }
+
+    .tab-buttons .back-button {
+        background-color: #00000049;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: auto; /* Move o botão para o lado esquerdo */
+    }
+
+.content-container {
+    display: flex; /* Utiliza flexbox para organizar os elementos lado a lado */
+    justify-content: space-between; /* Espaçamento entre os elementos */
 }
 
 .text-content {
-    text-align: center;
-    margin-top: 10px;
+    flex: 1; /* Permite que o texto ocupe a largura necessária */
+    padding-right: 20px; /* Espaçamento entre o texto e a imagem */
+    padding-left: 150px;
+    padding-top: 150px;
 }
 
-.title {
-    font-size: 20px;
-    font-weight: bold;
+.image-content {
+    flex: 1; /* Permite que a imagem ocupe a largura necessária */
+    display: flex;
+    justify-content: center; /* Centraliza a imagem horizontalmente */
+    align-items: center; /* Centraliza a imagem verticalmente */
+}
+
+.celeiro-image {
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+p {
+    font-size: 21px;
     color: white;
-}
-
-.description {
-    background-color: #172031; /* Fundo branco para a descrição */
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 10px;
-    color: white;
-    margin-top: 10px;
-    text-align: left;
-}
-
-a {
-    text-decoration: none;
 }

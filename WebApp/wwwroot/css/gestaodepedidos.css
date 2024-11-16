@@ -48,23 +48,23 @@
     z-index: 999; /* Um nível abaixo da barra superior */
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-.sidebar li {
-    margin-bottom: 15px;
-}
+    .sidebar li {
+        margin-bottom: 15px;
+    }
 
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    display: block;
-    padding: 10px;
-}
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        display: block;
+        padding: 10px;
+    }
 
 /* Ícone de perfil */
 .profile-icon {
@@ -80,7 +80,6 @@
     width: 30px; /* Ajustar conforme necessário */
     height: 30px; /* Ajustar conforme necessário */
     padding-top: 10px;
-
 }
 
 /* Menu de perfil */
@@ -95,23 +94,23 @@
     z-index: 999;
 }
 
-.profile-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    .profile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-.profile-menu li {
-    margin: 15px;
-}
+    .profile-menu li {
+        margin: 15px;
+    }
 
-.profile-menu a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    display: block;
-    transition: background-color 0.3s;
-}
+    .profile-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+        display: block;
+        transition: background-color 0.3s;
+    }
 
 /* Estilo das abas */
 .tab {
@@ -121,48 +120,47 @@
 
 .tab-buttons {
     display: flex;
-    justify-content: space-between; /* Distribui os botões ao longo do contêiner */
+    justify-content: flex-start; /* Garante que os botões fiquem à esquerda */
     padding: 10px;
     background-color: #00000049;
     margin-top: 60px;
 }
 
-.tab-buttons .tab-buttons-left {
-    display: flex;
-    align-items: center;
-}
+    .tab-buttons .tab-buttons-left {
+        display: flex;
+        align-items: center;
+    }
 
-.tab-buttons .tab-button {
-    background-color: #00000049;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 10px;
-}
+    .tab-buttons .tab-button {
+        background-color: #00000049;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
 
-.tab-buttons .tab-button:hover {
-    background-color: #000000cc;
-}
+        .tab-buttons .tab-button:hover {
+            background-color: #000000cc;
+        }
 
-.tab-buttons .tab-button.active {
-    background-color: #000000cc;
-}
+        .tab-buttons .tab-button.active {
+            background-color: #000000cc;
+        }
 
-.tab-buttons .back-button {
-    background-color: #00000049;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: auto; /* Move o botão para o lado esquerdo */
-}
+    .tab-buttons .back-button {
+        background-color: #00000049;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: auto; /* Move o botão para o lado esquerdo */
+    }
 
-.tab-buttons .back-button:hover {
-    background-color: #000000cc;
-}
+        .tab-buttons .back-button:hover {
+            background-color: #000000cc;
+        }
 
 .main-content {
     transition: margin-left 0.3s; /* Transição suave para a margem */
@@ -173,23 +171,38 @@
     max-width: 1000px;
     width: 800px;
     background: white;
-    padding: 20px;
+    padding: 12px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 35px; /* Adiciona espaço para evitar sobreposição com a top-bar */
-    margin-left: 350px;
+    margin-top: 8px; /* Adiciona espaço para evitar sobreposição com a top-bar */
+    margin-left: 255px;
 }
 
-h3{
-    margin: 12px;
+p {
     margin-top: 0px;
-    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cliente-container {
+    display: flex; /* Flexbox para alinhar horizontalmente */
+    align-items: center; /* Alinhar verticalmente ao centro */
+    margin-bottom: 5px;
+    gap: 10px; /* Espaçamento entre o texto e o select */
+}
+
+.cliente {
+    width: 260px; /* Largura do select */
+    padding: 5px; /* Padding para dar mais espaçamento interno */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
 }
 
 .total {
     position: fixed;
-    bottom: 20px; /* Ajuste conforme necessário */
-    right: 10px; /* Ajuste conforme necessário */
+    bottom: -12px; /* Ajuste conforme necessário */
+    right: 6px; /* Ajuste conforme necessário */
     background-color: #f1f1f1;
     padding: 10px;
     border-radius: 5px;
@@ -210,29 +223,30 @@ h3{
 .tab-button {
     flex: 1;
     padding: 10px;
-    background:#233049;
+    background: #233049;
     color: white;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 180px;
 }
 
-.tab-button.active {
-    background: rgb(1, 1, 32);
-}
+    .tab-button.active {
+        background: rgb(1, 1, 32);
+    }
 
-.tab-button:hover {
-    background: rgb(1, 1, 32);
-}
+    .tab-button:hover {
+        background: rgb(1, 1, 32);
+    }
 
 .tab-content {
     display: none;
 }
 
-.tab-content.active {
-    display: block;
-}
+    .tab-content.active {
+        display: block;
+    }
 
 .carrinho-container {
     display: flex; /* Flexbox para as duas seções lado a lado */
@@ -249,7 +263,6 @@ h3{
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-
 ul {
     list-style: none;
     padding: 0;
@@ -259,57 +272,55 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 2px;
     transition: background 0.2s;
 }
 
-li div {
-    display: flex;
-    align-items: center;
-}
+    li div {
+        display: flex;
+        align-items: center;
+    }
 
-li button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    min-width: 30px;
-}
+    li button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        min-width: 30px;
+    }
 
-li .quantidade {
-    min-width: 30px;
-    text-align: center;
-    line-height: 1;
-}
+    li .quantidade {
+        min-width: 30px;
+        text-align: center;
+        line-height: 1;
+    }
 
 button {
     background: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
-button:hover {
-    background: #218838;
-}
+    button:hover {
+        background: #218838;
+    }
 
-button#finalizar {
+    button#finalizar {
+        background: #28a745; /* Cor verde */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 4px 12px; /* Aumentar o tamanho do botão */
+        font-size: 16px; /* Aumentar o tamanho da fonte */
+        cursor: pointer;
+        transition: background 0.3s;
+    }
 
-    background: #28a745; /* Cor verde */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 4px 12px; /* Aumentar o tamanho do botão */
-    font-size: 16px; /* Aumentar o tamanho da fonte */
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-/* Estilo ao passar o mouse sobre o botão */
-button#finalizar:hover {
-    background: #218838; /* Tom de verde mais escuro */
-}
+        /* Estilo ao passar o mouse sobre o botão */
+        button#finalizar:hover {
+            background: #218838; /* Tom de verde mais escuro */
+        }
 
 .filtro {
     display: flex;
@@ -317,22 +328,29 @@ button#finalizar:hover {
     margin-bottom: 20px;
 }
 
-.filtro label {
-    margin-right: 10px;
-    color: #333;
-}
+    .filtro label {
+        margin-right: 10px;
+        color: #333;
+    }
 
-.filtro input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-}
+    .filtro input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
 
-.filtro select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    .filtro select {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.tabela-container {
+    max-height: 420px; /* Defina a altura máxima desejada */
+    overflow-y: auto; /* Permite rolagem vertical */
+    border: 1px solid #ddd; /* Opcional: borda para o contêiner */
+    border-radius: 5px; /* Opcional: borda arredondada */
 }
 
 table {
@@ -368,13 +386,13 @@ tr:hover {
     color: white;
 }
 
-.acao-button.editar {
-    background-color: #ffc107;
-}
+    .acao-button.editar {
+        background-color: #ffc107;
+    }
 
-.acao-button.excluir {
-    background-color: #dc3545;
-}
+    .acao-button.excluir {
+        background-color: #dc3545;
+    }
 
 /* Estilo das notificações */
 .notification {
@@ -389,15 +407,15 @@ tr:hover {
     transition: opacity 0.5s ease;
 }
 
-.notification.visible {
-    display: block;
-    opacity: 1;
-}
+    .notification.visible {
+        display: block;
+        opacity: 1;
+    }
 
-.notification.hidden {
-    display: none;
-    opacity: 0;
-}
+    .notification.hidden {
+        display: none;
+        opacity: 0;
+    }
 
 #successNotification {
     background-color: #4CAF50;
