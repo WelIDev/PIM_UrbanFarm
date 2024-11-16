@@ -1,0 +1,779 @@
+[
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AbastecimentoEstoqueController",
+    "Method": "AlterarAbastecimentoEstoque",
+    "RelativePath": "api/AbastecimentoEstoque/AlterarAbastecimentoEstoque",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "abastecimentoEstoque",
+        "Type": "Dominio.Entidades.AbastecimentoEstoque",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AbastecimentoEstoqueController",
+    "Method": "ExcluirAbastecimentoEstoque",
+    "RelativePath": "api/AbastecimentoEstoque/ExcluirAbastecimentoEstoque",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AbastecimentoEstoqueController",
+    "Method": "InserirAbastecimentoEstoque",
+    "RelativePath": "api/AbastecimentoEstoque/InserirAbastecimentoEstoque",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "abastecimentoEstoque",
+        "Type": "Dominio.Entidades.AbastecimentoEstoque",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AbastecimentoEstoqueController",
+    "Method": "ObterAbastecimentoEstoque",
+    "RelativePath": "api/AbastecimentoEstoque/ObterAbastecimentoEstoque",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AbastecimentoEstoqueController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/AbastecimentoEstoque/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.AutenticacaoController",
+    "Method": "Login",
+    "RelativePath": "api/Autenticacao/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "Aplicacao.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.CepController",
+    "Method": "ConsultarCep",
+    "RelativePath": "api/Cep/ConsultarCep",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cep",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ClienteController",
+    "Method": "AtualizarCliente",
+    "RelativePath": "api/Cliente/AtualizarCliente",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cliente",
+        "Type": "Dominio.Entidades.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ClienteController",
+    "Method": "ExcluirCliente",
+    "RelativePath": "api/Cliente/ExcluirCliente",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ClienteController",
+    "Method": "InserirCliente",
+    "RelativePath": "api/Cliente/InserirCliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteDto",
+        "Type": "Aplicacao.DTOs.ClienteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ClienteController",
+    "Method": "ObterClientePorId",
+    "RelativePath": "api/Cliente/ObterClientePorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ClienteController",
+    "Method": "ObterClientes",
+    "RelativePath": "api/Cliente/ObterClientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ComissaoController",
+    "Method": "AlterarComissao",
+    "RelativePath": "api/Comissao/AlterarComissao",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "comissao",
+        "Type": "Dominio.Entidades.Comissao",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ComissaoController",
+    "Method": "ExcluirComissao",
+    "RelativePath": "api/Comissao/ExcluirComissao",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ComissaoController",
+    "Method": "Inserir",
+    "RelativePath": "api/Comissao/Inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "comissao",
+        "Type": "Dominio.Entidades.Comissao",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ComissaoController",
+    "Method": "ObterComissoes",
+    "RelativePath": "api/Comissao/ObterComissoes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ComissaoController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Comissao/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.FornecedorController",
+    "Method": "AlterarFornecedor",
+    "RelativePath": "api/Fornecedor/AlterarFornecedor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fornecedor",
+        "Type": "Dominio.Entidades.Fornecedor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.FornecedorController",
+    "Method": "ExcluirFornecedor",
+    "RelativePath": "api/Fornecedor/ExcluirFornecedor",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.FornecedorController",
+    "Method": "Inserir",
+    "RelativePath": "api/Fornecedor/Inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fornecedor",
+        "Type": "Dominio.Entidades.Fornecedor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.FornecedorController",
+    "Method": "ObterFornecedores",
+    "RelativePath": "api/Fornecedor/ObterFornecedores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.FornecedorController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Fornecedor/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.HistoricoCompraController",
+    "Method": "AlterarHistorico",
+    "RelativePath": "api/HistoricoCompra/AlterarHistorico",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historicoCompra",
+        "Type": "Dominio.Entidades.HistoricoCompra",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.HistoricoCompraController",
+    "Method": "ExcluirHistorico",
+    "RelativePath": "api/HistoricoCompra/ExcluirHistorico",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.HistoricoCompraController",
+    "Method": "InserirHistorico",
+    "RelativePath": "api/HistoricoCompra/InserirHistorico",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historicoCompra",
+        "Type": "Dominio.Entidades.HistoricoCompra",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.HistoricoCompraController",
+    "Method": "ObterHistoricos",
+    "RelativePath": "api/HistoricoCompra/ObterHistoricos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.HistoricoCompraController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/HistoricoCompra/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.MetaController",
+    "Method": "AlterarMeta",
+    "RelativePath": "api/Meta/AlterarMeta",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "meta",
+        "Type": "Dominio.Entidades.Meta",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.MetaController",
+    "Method": "ExcluirProduto",
+    "RelativePath": "api/Meta/ExcluirProduto",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.MetaController",
+    "Method": "InserirMeta",
+    "RelativePath": "api/Meta/InserirMeta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "meta",
+        "Type": "Dominio.Entidades.Meta",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.MetaController",
+    "Method": "ObterMetas",
+    "RelativePath": "api/Meta/ObterMetas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.MetaController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Meta/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ProdutoController",
+    "Method": "AlterarProduto",
+    "RelativePath": "api/Produto/AlterarProduto",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "produto",
+        "Type": "Dominio.Entidades.Produto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ProdutoController",
+    "Method": "ExcluirProduto",
+    "RelativePath": "api/Produto/ExcluirProduto",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ProdutoController",
+    "Method": "Inserir",
+    "RelativePath": "api/Produto/Inserir",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "produto",
+        "Type": "Dominio.Entidades.Produto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ProdutoController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Produto/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.ProdutoController",
+    "Method": "ObterProdutos",
+    "RelativePath": "api/Produto/ObterProdutos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.UsuarioController",
+    "Method": "ExcluirUsuario",
+    "RelativePath": "api/Usuario/ExcluirUsuario",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.UsuarioController",
+    "Method": "InserirUsuario",
+    "RelativePath": "api/Usuario/InserirUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioDto",
+        "Type": "Aplicacao.DTOs.UsuarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.UsuarioController",
+    "Method": "ObterPorEmail",
+    "RelativePath": "api/Usuario/ObterPorEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.UsuarioController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Usuario/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.UsuarioController",
+    "Method": "ObterUsuarios",
+    "RelativePath": "api/Usuario/ObterUsuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendaController",
+    "Method": "AlterarVenda",
+    "RelativePath": "api/Venda/AlterarVenda",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "vendaDto",
+        "Type": "Aplicacao.DTOs.VendaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendaController",
+    "Method": "ExcluirVenda",
+    "RelativePath": "api/Venda/ExcluirVenda",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendaController",
+    "Method": "InserirVenda",
+    "RelativePath": "api/Venda/InserirVenda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaDto",
+        "Type": "Aplicacao.DTOs.VendaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendaController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Venda/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendaController",
+    "Method": "ObterVendas",
+    "RelativePath": "api/Venda/ObterVendas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendedorController",
+    "Method": "AlterarVendedor",
+    "RelativePath": "api/Vendedor/AlterarVendedor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendedor",
+        "Type": "Dominio.Entidades.Vendedor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendedorController",
+    "Method": "ExcluirVendedor",
+    "RelativePath": "api/Vendedor/ExcluirVendedor",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendedorController",
+    "Method": "InserirVendedor",
+    "RelativePath": "api/Vendedor/InserirVendedor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendedorDto",
+        "Type": "Aplicacao.DTOs.VendedorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendedorController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Vendedor/ObterPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PIM_UrbanFarm.Controllers.VendedorController",
+    "Method": "ObterVendedores",
+    "RelativePath": "api/Vendedor/ObterVendedores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
