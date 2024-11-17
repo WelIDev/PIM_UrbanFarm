@@ -18,7 +18,7 @@ public partial class MenuWindow : Window
 
     private void Produtos_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        MainFrame.Navigate(new ProdutosPage());
     }
 
     private void Fornecimento_OnClick(object sender, RoutedEventArgs e)
