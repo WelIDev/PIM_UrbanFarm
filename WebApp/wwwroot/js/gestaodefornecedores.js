@@ -1,21 +1,14 @@
-﻿const clienteForm = document.getElementById('clienteForm');
-const clienteTableBody = document.querySelector('#clienteTable tbody');
+﻿const fornecedorForm = document.getElementById('fornecedorForm');
+const fornecedorTableBody = document.querySelector('#fornecedorTable tbody');
 const searchInput = document.getElementById('searchInput');
 const filterColumn = document.getElementById('filterColumn');
 const successNotification = document.getElementById('successNotification');
 const editNotification = document.getElementById('editNotification');
 const deleteNotification = document.getElementById('deleteNotification');
-const dataNascimentoInput = document.getElementById('dataNascimento');
 const submitButton = document.getElementById('submitButton');
 let editingRow = null;
 
-// Define a data atual no campo de data de nascimento
-document.addEventListener('DOMContentLoaded', function () {
-    const hoje = new Date().toISOString().split('T')[0];
-    dataNascimentoInput.value = hoje;
-
-    showTab('adicionar');
-});
+showTab('adicionar');
 
 // Função para mostrar a notificação de sucesso
 function showNotification(type) {
@@ -42,137 +35,131 @@ function showNotification(type) {
     }, 3000);
 }
 
-// Função para adicionar um novo cliente na tabela
-clienteForm.addEventListener('submit', function (event) {
+// Função para adicionar um novo fornecedor na tabela
+fornecedorForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nomeCompleto = document.getElementById('nomeCompleto').value;
+    const nomeEmpresa = document.getElementById('nomeEmpresa').value;
     const email = document.getElementById('email').value;
-    const cpf = document.getElementById('cpf').value;
+    const cnpj = document.getElementById('cnpj').value;
+    const inscricao = document.getElementById('inscricao').value;
     const telefone = document.getElementById('telefone').value;
-    const dataNascimento = dataNascimentoInput.value;
     const rua = document.getElementById('rua').value;
     const cep = document.getElementById('cep').value;
     const numero = document.getElementById('numero').value;
     const bairro = document.getElementById('bairro').value;
     const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value; // Agora é um select
+    const estado = document.getElementById('estado').value;
 
-    if (!nomeCompleto || !email || !cpf || !telefone || !dataNascimento || !rua || !cep || !numero || !cidade || !estado) {
+    if (!nomeEmpresa || !email || !cnpj || !inscricao || !telefone || !rua || !cep || !numero || !cidade || !estado) {
         alert('Todos os campos obrigatórios devem ser preenchidos.');
         return;
     }
 
     if (editingRow) {
         editingRow.innerHTML =
-            `<td data-label="Nome Completo">${nomeCompleto}</td>
+            `<td data-label="Nome Empresa">${nomeEmpresa}</td>
             <td data-label="E-mail">${email}</td>
-            <td data-label="CPF">${cpf}</td>
+            <td data-label="CNPJ">${cnpj}</td>
+            <td data-label="Inscrição Estadual">${inscricao}</td>
             <td data-label="Telefone">${telefone}</td>
-            <td data-label="Data de Nascimento">${dataNascimento}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
             <td data-label="Número">${numero}</td>
             <td data-label="Bairro">${bairro}</td>
             <td data-label="Cidade">${cidade}</td>
-            <td data-label="Estado">${estado}</td> <!-- Exibindo o estado selecionado -->
+            <td data-label="Estado">${estado}</td>
             <td data-label="Ações">
-                <button class="editar" onclick="editarCliente(this)">Editar</button>
-                <button class="excluir" onclick="excluirCliente(this)">Excluir</button>
+                <button class="editar" onclick="editarfornecedor(this)">Editar</button>
+                <button class="excluir" onclick="excluirfornecedor(this)">Excluir</button>
             </td>`;
 
         editingRow = null;
-        submitButton.textContent = 'Adicionar Cliente';
+        submitButton.textContent = 'Adicionar fornecedor';
         submitButton.classList.remove('edit-button');
         showNotification('edit');
         showTab('visualizacao');
-        clienteForm.reset();
     } else {
         const newRow = document.createElement('tr');
         newRow.innerHTML =
-            `<td data-label="Nome Completo">${nomeCompleto}</td>
+            `<td data-label="Nome Empresa">${nomeEmpresa}</td>
             <td data-label="E-mail">${email}</td>
-            <td data-label="CPF">${cpf}</td>
+            <td data-label="CNPJ">${cnpj}</td>
+            <td data-label="Inscrição Estadual">${inscricao}</td>
             <td data-label="Telefone">${telefone}</td>
-            <td data-label="Data de Nascimento">${dataNascimento}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
             <td data-label="Número">${numero}</td>
             <td data-label="Bairro">${bairro}</td>
             <td data-label="Cidade">${cidade}</td>
-            <td data-label="Estado">${estado}</td> <!-- Exibindo o estado selecionado -->
+            <td data-label="Estado">${estado}</td>
             <td data-label="Ações">
-                <button class="editar" onclick="editarCliente(this)">Editar</button>
-                <button class="excluir" onclick="excluirCliente(this)">Excluir</button>
+                <button class="editar" onclick="editarfornecedor(this)">Editar</button>
+                <button class="excluir" onclick="excluirfornecedor(this)">Excluir</button>
             </td>`;
 
-        clienteTableBody.appendChild(newRow);
-        clienteForm.reset();
+        fornecedorTableBody.appendChild(newRow);
+        fornecedorForm.reset();
         showNotification('success');
     }
 });
 
-// Função para editar um cliente
-function editarCliente(button) {
+// Função para editar um fornecedor
+function editarfornecedor(button) {
     const row = button.parentElement.parentElement;
     const cells = row.querySelectorAll('td');
 
-    document.getElementById('nomeCompleto').value = cells[0].textContent;
+    document.getElementById('nomeEmpresa').value = cells[0].textContent;
     document.getElementById('email').value = cells[1].textContent;
-    document.getElementById('cpf').value = cells[2].textContent;
-    document.getElementById('telefone').value = cells[3].textContent;
-    document.getElementById('dataNascimento').value = cells[4].textContent;
+    document.getElementById('cnpj').value = cells[2].textContent;
+    document.getElementById('inscricao').value = cells[3].textContent;
+    document.getElementById('telefone').value = cells[4].textContent;
     document.getElementById('rua').value = cells[5].textContent;
     document.getElementById('cep').value = cells[6].textContent;
     document.getElementById('numero').value = cells[7].textContent;
     document.getElementById('bairro').value = cells[8].textContent;
     document.getElementById('cidade').value = cells[9].textContent;
-    document.getElementById('estado').value = cells[10].textContent; // Ajuste para preencher o estado
+    document.getElementById('estado').value = cells[10].textContent;
 
     editingRow = row;
 
-    submitButton.textContent = 'Editar Cliente';
+    submitButton.textContent = 'Editar fornecedor';
     submitButton.classList.add('edit-button');
 
     showTab('adicionar');
 }
 
-// Função para excluir um cliente sem confirmação
-function excluirCliente(button) {
-    // Exibe uma janela de confirmação
-    const confirmarExclusao = confirm("Você realmente deseja excluir esse cliente?");
-
-    if (confirmarExclusao) {
-        const row = button.parentElement.parentElement;
-        clienteTableBody.removeChild(row);
-        showNotification('delete');
-    }
+// Função para excluir um fornecedor sem confirmação
+function excluirfornecedor(button) {
+    const row = button.parentElement.parentElement;
+    fornecedorTableBody.removeChild(row);
+    showNotification('delete');
 }
 
-// Função para pesquisar clientes
-function pesquisarCliente() {
+// Função para pesquisar fornecedors
+function pesquisarfornecedor() {
     const filter = searchInput.value.toUpperCase();
     const selectedColumn = filterColumn.value;
-    const rows = clienteTableBody.getElementsByTagName('tr');
+    const rows = fornecedorTableBody.getElementsByTagName('tr');
 
     for (let i = 0; i < rows.length; i++) {
         const cells = rows[i].getElementsByTagName('td');
         let match = false;
 
         switch (selectedColumn) {
-            case 'nomeCompleto':
+            case 'nomeEmpresa':
                 match = cells[0].textContent.toUpperCase().includes(filter);
                 break;
             case 'email':
                 match = cells[1].textContent.toUpperCase().includes(filter);
                 break;
-            case 'cpf':
+            case 'cnpj':
                 match = cells[2].textContent.toUpperCase().includes(filter);
                 break;
-            case 'telefone':
+            case 'inscricao':
                 match = cells[3].textContent.toUpperCase().includes(filter);
                 break;
-            case 'dataNascimento':
+            case 'telefone':
                 match = cells[4].textContent.toUpperCase().includes(filter);
                 break;
             case 'rua':
@@ -264,12 +251,13 @@ function allowOnlyLetters(event) {
 }
 
 // Adicionar validação aos campos específicos
+document.getElementById('inscricao').addEventListener('input', allowOnlyNumbers);
 document.getElementById('telefone').addEventListener('input', allowOnlyNumbers);
-document.getElementById('cpf').addEventListener('input', allowOnlyNumbers);
+document.getElementById('cnpj').addEventListener('input', allowOnlyNumbers);
 document.getElementById('cep').addEventListener('input', allowOnlyNumbers);
 document.getElementById('numero').addEventListener('input', allowOnlyNumbers);
 
-document.getElementById('nomeCompleto').addEventListener('input', allowOnlyLetters);
+document.getElementById('nomeEmpresa').addEventListener('input', allowOnlyLetters);
 document.getElementById('rua').addEventListener('input', allowOnlyLetters);
 document.getElementById('bairro').addEventListener('input', allowOnlyLetters);
 document.getElementById('cidade').addEventListener('input', allowOnlyLetters);

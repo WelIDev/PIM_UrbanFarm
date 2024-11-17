@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "UF - Menu Principal";
+    Layout = "_Layout";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/menuprincipal.css" asp-append-version="true">
+    <title>@ViewData["UF - Menu Principal"]</title>
+    <link rel="shortcut icon" type="icon" href="imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <a href="menuprincipal.html">
+        <img class="img-top-bar" src="imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    </a>
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div> <!-- Ícone de lista -->
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="imagens/perfil.png" alt="iconePerfil">
+    </div> <!-- Ícone de perfil -->
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="gestaodeclientes.html">Gestão de Clientes</a></li>
+        <li><a href="gestaodepedidos.html">Gestão de Pedidos</a></li>
+        <li><a href="gestaodefornecedores.html">Gestão de Fornecedores</a></li>
+        <li><a href="gerenciamentoperfis.html">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <div class="container">
+        <!-- Primeira Caixa -->
+        <a href="@Url.Action("Index", "Cliente")" class="box">
+            <div class="box-content">
+                <div class="image">
+                    <img src="imagens/gestaodeclientes.png" alt="Imagem de Gestão de Clientes">
+                </div>
+                <div class="text-content">
+                    <h2 class="title">Gestão de Clientes</h2>
+                    <p class="description">• Coleta e centralização das informações dos clientes como dados pessoais, contato, histórico de compras.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Segunda Caixa -->
+        <a href="@Url.Action("Index", "Pedido")" class="box">
+            <div class="box-content">
+                <div class="image">
+                    <img src="imagens/gestaodepedidos.png" alt="Imagem de Gestão de Pedidos">
+                </div>
+                <div class="text-content">
+                    <h2 class="title">Gestão de Pedidos</h2>
+                    <p class="description">• Processo de criação, monitoramento e gestão de pedidos solicitados por clientes e acompanhamento.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Terceira Caixa -->
+        <a href="@Url.Action("Index", "Fornecedor")" class="box">
+            <div class="box-content">
+                <div class="image">
+                    <img src="imagens/fornecedor.png" alt="Imagem de Gestão de Fornecedores">
+                </div>
+                <div class="text-content">
+                    <h2 class="title">Gestão de Fornecedores</h2>
+                    <p class="description">• Funcionalidade para criar, editar e visualizar perfis de fornecedores com informações detalhadas e histórico.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Quarta Caixa -->
+        <a href="@Url.Action("Index", "Perfil")" class="box">
+            <div class="box-content">
+                <div class="image">
+                    <img src="imagens/usuario.png" alt="Imagem de Gerenciamento de Perfis">
+                </div>
+                <div class="text-content">
+                    <h2 class="title">Gerenciamento de Perfis</h2>
+                    <p class="description">• Gerencie, crie e monitore perfis de usuários com eficiência, garantindo controle e organização.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<script src="~/js/menuprincipal.js"></script>
+
