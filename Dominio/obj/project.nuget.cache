@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "m4GS7hqhS+M=",
+  "dgSpecHash": "jfBc6x0cyVs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM_UrbanFarm\\Dominio\\Dominio.csproj",
+  "projectFilePath": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\Dominio\\Dominio.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alenc\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\welli\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

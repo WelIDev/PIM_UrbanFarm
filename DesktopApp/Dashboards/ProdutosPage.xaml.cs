@@ -45,7 +45,7 @@ namespace DesktopApp.Dashboards
         {
             var model = new PlotModel { Title = "Vendas por Produto" };
             var series = new ColumnSeries
-                { Title = "Vendas", FillColor = OxyColor.Parse("#172031") };
+                { Title = "Vendas", FillColor = OxyColor.Parse("#3cb371") };
 
             var produtos = new List<Produto>
             {
@@ -139,7 +139,7 @@ namespace DesktopApp.Dashboards
         {
             var model = new PlotModel { Title = "Margem de Lucro por Produto" };
             var series = new ColumnSeries
-                { Title = "Lucro", FillColor = OxyColor.Parse("#172031") };
+                { Title = "Lucro", FillColor = OxyColor.Parse("#3cb371") };
 
             var produtos = new List<Produto>
             {

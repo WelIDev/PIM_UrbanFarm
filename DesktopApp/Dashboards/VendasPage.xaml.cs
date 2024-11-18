@@ -126,7 +126,7 @@ namespace DesktopApp.Dashboards
             var series = new ColumnSeries
             {
                 Title = "Valor das Vendas",
-                FillColor = OxyColor.Parse("#172031"),
+                FillColor = OxyColor.Parse("#3cb371"),
                 TrackerFormatString = "Valor {2:C2}\nData: {1}"
             };
             // Obter a data mínima e máxima das vendas

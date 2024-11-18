@@ -21,9 +21,9 @@ public partial class MenuWindow : Window
         MainFrame.Navigate(new ProdutosPage());
     }
 
-    private void Fornecimento_OnClick(object sender, RoutedEventArgs e)
+    private void EntradasSaidas_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        MainFrame.Navigate(new EntradasSaidasPage());
     }
 }
 

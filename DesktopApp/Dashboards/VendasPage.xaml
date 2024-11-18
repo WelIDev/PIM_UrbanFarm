@@ -31,7 +31,7 @@
                             <!-- Transformando o card inteiro em um botão -->
                             <Button Click="ExibirVendas_Click" Tag="{Binding VendedorId}"
                                     Style="{StaticResource CardButtonStyle}">
-                                <Border Background="#F9F9F9" Margin="10" Padding="15"
+                                <Border Background="#a9a9a9" Margin="10" Padding="15"
                                         CornerRadius="8" BorderBrush="#DDDDDD"
                                         BorderThickness="1">
                                     <StackPanel>

@@ -17,7 +17,8 @@
                 <Button Content="Vendas" Click="Vendas_OnClick" Style="{StaticResource 
                 NavButtonStyle}"/>
                 <Button Content="Produtos" Click="Produtos_OnClick" Style="{StaticResource NavButtonStyle}"/>
-                <Button Content="Fornecimento" Click="Fornecimento_OnClick" Style="{StaticResource NavButtonStyle}"/>
+                <Button Content="Balanço Geral" Click="EntradasSaidas_OnClick" Style="{StaticResource 
+                NavButtonStyle}"/>
             </StackPanel>
         </DockPanel>
         <DockPanel LastChildFill="True" Height="60" VerticalAlignment="Top" Background="#172031"
