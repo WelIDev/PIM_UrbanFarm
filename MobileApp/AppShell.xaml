@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:MobileApp.Pages"
+       xmlns:vendas="clr-namespace:MobileApp.Pages.Vendas"
+       xmlns:clientes="clr-namespace:MobileApp.Pages.Clientes"
+       xmlns:home="clr-namespace:MobileApp.Pages.Home"
+       BackgroundColor="{DynamicResource PrimaryTextColor}"
+       x:Class="MobileApp.AppShell"
+       FlyoutBehavior="Disabled">
+
+
+    <ShellContent Title="" ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+    <ShellContent Title="Menu" ContentTemplate="{DataTemplate home:HomePage}" Route="HomePage" />
+    <ShellContent Title="Produtos" ContentTemplate="{DataTemplate vendas:ProdutosPage}"
+                  Route="ProdutosPage" />
+    <ShellContent Title="Carrinho" ContentTemplate="{DataTemplate vendas:CartPage}"
+                  Route="CartPage" />
+    <ShellContent Title="Registro de Vendas" ContentTemplate="{DataTemplate clientes:ClientesPage}"
+                  Route="ClientesPage" />
+    <ShellContent Title="Histórico de Vendas"
+                  ContentTemplate="{DataTemplate clientes:HistoricoPage}" Route="HistoricoPage" />
+    <ShellContent Title="Pedidos" ContentTemplate="{DataTemplate clientes:PedidoPage}"
+                  Route="PedidoPage" />
+    <ShellContent Title="Pagamento" ContentTemplate="{DataTemplate vendas:PaymentPage}" />
+    <ShellContent Title="Cadastro Cliente"
+                  ContentTemplate="{DataTemplate clientes:CadastroClientePage}"
+                  Route="CadastroClientePage" />
+
+</Shell>

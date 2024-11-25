@@ -1,0 +1,5 @@
+File=Resources\Images\icon_clientes.png;Link=;BaseSize=;Resize=;TintColor=;Color=#172031;IsAppIcon=;ForegroundScale=;ForegroundFile=
+File=Resources\Images\icon_produtos.png;Link=;BaseSize=;Resize=;TintColor=;Color=#172031;IsAppIcon=;ForegroundScale=;ForegroundFile=
+File=Resources\Images\lixeira.png;Link=;BaseSize=;Resize=;TintColor=;Color=#172031;IsAppIcon=;ForegroundScale=;ForegroundFile=
+File=Resources\Images\lupa.png;Link=;BaseSize=;Resize=;TintColor=;Color=#172031;IsAppIcon=;ForegroundScale=;ForegroundFile=
+File=Resources\AppIcon\appicon.svg;Link=;BaseSize=;Resize=;TintColor=;Color=#172031;IsAppIcon=True;ForegroundScale=;ForegroundFile=Resources\AppIcon\appiconfg.png

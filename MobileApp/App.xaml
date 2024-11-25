@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MobileApp.Converters"
+             x:Class="MobileApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Definir cores -->
+            <Color x:Key="PrimaryBackgroundColor">#FFFFFF</Color> <!-- Fundo claro -->
+            <Color x:Key="PrimaryTextColor">#172031</Color> <!-- Texto escuro -->
+            <Color x:Key="OverlayBackgroundColor">#EFEFEF</Color>
+            <!-- Cor para elementos de sobreposição -->
+            <Color x:Key="SecondaryBackgroundColor">#DCDCDC</Color>
+            <!-- Cor para elementos secundários -->
+            <Color x:Key="ButtonHoverColor">#172031</Color> <!-- Cor do botão ao passar o mouse -->
+            <Color x:Key="ButtonTextColor">#FFFFFF</Color> <!-- Texto do botão -->
+            <Color x:Key="ButtonHoverTextColor">#FFFFFF</Color>
+            <!-- Texto do botão ao passar o mouse -->
+
+            <!-- Definir estilos -->
+            <Style x:Key="BaseLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="BaseButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonHoverColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+
+            <Style x:Key="BorderStyleCart" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryBackgroundColor}" />
+            </Style>
+
+
+            <Style x:Key="BaseBorderStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{DynamicResource OverlayBackgroundColor}" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="10" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="HeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="SubHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="LoginEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+
+            <Style x:Key="LoginButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonHoverColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Padding" Value="12,20" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+            <Style x:Key="LoginButtonStyleHover" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonHoverColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource ButtonHoverTextColor}" />
+            </Style>
+
+            <Style x:Key="TopBarStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Padding" Value="10,0" />
+            </Style>
+
+            <Style x:Key="TopBarLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+
+            <Style x:Key="SubHeaderStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource SecondaryBackgroundColor}" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="Margin" Value="60,0,0,0" />
+            </Style>
+
+            <Style x:Key="SubHeaderLinkStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,0,10,0" />
+                <Setter Property="Padding" Value="0,5" />
+            </Style>
+
+            <Style x:Key="DatePicker" TargetType="DatePicker">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}" />
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/LightTheme.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:DotsAndCurrencyConverter x:Key="DotsAndCurrencyConverter" />
+            <converters:TruncateConverter x:Key="TruncateConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
