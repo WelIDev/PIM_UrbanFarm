@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "UF - Contatos";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/contatos.css" asp-append-version="true">
+    <title>@ViewData["UF - Contatos"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <a href='@Url.Action(" MenuPrincipal","Menu")' ">
+        <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    </a>
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div> <!-- Ícone de lista -->
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div> <!-- Ícone de perfil -->
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+    <!-- Nova div para o conteúdo principal -->
+        <!-- Abas para Navegação -->
+        <div class="tab-buttons">
+            <button class="back-button" onclick="window.location.href='configuracoes.html'">Retornar</button>
+        </div>
+
+    <div class="content-container">
+        <div class="text-content">
+            <p class="email">E-mail: contato@urbanfarm.com.br</p>
+            <p class="numero">Número: (11) 99999-9999</p>
+        </div>
+        <div class="image-content">
+            <img src="imagens/celeirourbanfarm.png" alt="logo" class="celeiro-image">
+        </div>
+    </div>
+
+    <script src="~/js/contatos.js"></script>
+
+
+

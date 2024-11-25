@@ -11,7 +11,7 @@ public class PedidoController : Controller
         _httpClient = httpClient;
     }
 
-    public IActionResult Index()
+    public IActionResult MenuPrincipal()
     {
         return View("GestaoDePedidos");
     }

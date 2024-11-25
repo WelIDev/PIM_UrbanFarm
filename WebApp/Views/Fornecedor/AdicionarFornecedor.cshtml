@@ -1,7 +1,7 @@
-﻿@model WebApp.Models.ClienteModel
+﻿@model WebApp.Models.FornecedorModel
 
 @{
-    ViewData["Title"] = "UF - Gestão de Clientes";
+    ViewData["Title"] = "UF - Gestão de Fornecedores";
 }
 
 <head>
@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="~/css/gestaodeclientes.css">
-    <title>@ViewData["UF - Gestão de Clientes"]</title>
+    <link rel="stylesheet" href="~/css/adicionarfornecedor.css">
+    <title>@ViewData["UF - Gestão de Fornecedores"]</title>
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
@@ -30,23 +30,23 @@
 
 <div class="sidebar">
     <ul>
-        <li><a href="@Url.Action("GestaoDeClientes","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
         <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
-        <li><a href="@Url.Action("GestaoDeFornecedores","Fornecedor")">Gestão de Fornecedores</a></li>
-        <li><a href="@Url.Action("GerenciamentoPerfis","Usuario")">Gerenciamento de Perfis</a></li>
+        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
 </div>
 
 <div class="tab-buttons">
     <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
         <div class="tab-buttons-left">
-            <button class="back-button" onclick="location.href='@Url.Action("AdicionarCliente", "Cliente")'">Adicionar Cliente</button>
-            <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeClientes","Cliente")'">Ver Clientes</button>
+            <button class="back-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Adicionar Fornecedor</button>
+            <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeFornecedores","Fornecedor")'">Ver Fornecedores</button>
         </div>
 </div>
 
 <div id="adicionar" class="tab">
-    <form id="clienteForm" action="@Url.Action("AdicionarCliente", "Cliente")" method="post">
+    <form id="fornecedorForm" action="@Url.Action("AdicionarFornecedor", "Fornecedor")" method="post">
         <div class="esquerda">
             <label for="nomeCompleto">Nome Completo:</label>
             <input type="text" id="nomeCompleto" name="Nome" required>
@@ -77,8 +77,8 @@
                 <input type="text" id="cidade" name="Endereco.Cidade" required>
                 <label for="estado">Estado:</label>
                 <input type="text" id="estado" name="Endereco.Estado" required>
-                <button type="submit" id="submitButton" class="submit-button">Adicionar Cliente</button>
-                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("AdicionarCliente", "Cliente")'">Cancelar</button>
+                <button type="submit" id="submitButton" class="submit-button">Adicionar Fornecedor</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Cancelar</button>
             </div>
     </form>
 </div>
@@ -88,7 +88,7 @@
     const cep = document.getElementById('cep').value.trim();
 
     try {
-    const response = await fetch(`@Url.Action("ObterEndereco", "Cliente")?cep=${cep}`);
+    const response = await fetch(`@Url.Action("ObterEndereco", "Fornecedor")?cep=${cep}`);
     const { rua, bairro, cidade, estado } = await response.json();
 
     document.getElementById('rua').value = rua || '';
@@ -101,4 +101,4 @@
     }
 </script>
 
-<script src="~/js/gestaodeclientes.js"></script>
+<script src="~/js/gestaodefornecedores.js"></script>

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<WebApp.Models.UsuarioModel>
+
+@{
+    ViewData["Title"] = "UF - Gerenciamento de Perfis";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/gerenciamentoperfis.css">
+    <title>@ViewData["UF - Gerenciamento de Perfis"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="tab-buttons">
+    <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
+    <div class="tab-buttons-left">
+        <button class="back-button" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Adicionar Perfil</button>
+        <button class="tab-button" onclick="location.href='@Url.Action("GerenciamentoPerfis","Usuario")'">Ver Perfis</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <div id="visualizacao" class="tab">
+    <div class="search-container">
+        <label for="searchInput" class="search-label">Buscar:</label>
+        <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarPerfil()">
+            
+        <label for="filterColumn" class="filter-label">Filtro:</label>
+        <select id="filterColumn" class="filter-select">
+            <option value="id">ID</option>
+            <option value="nome">Nome Completo</option>
+            <option value="email">E-mail</option>
+            <option value="funcao">Função</option>
+            <option value="data">Data de Criação</option>
+        </select>
+    </div>
+
+    <table id="profileTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>E-mail</th>
+                <th>Função</th>
+                <th>Data da Criação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.NomeCompleto</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.Senha</td>
+                    <td>@usuario.Funcao</td>
+                    <td>@usuario.DataCriacao.ToString("dd/MM/yyyy")</td>
+                    <td>
+                    <button class="editar" onclick="editarUsuario(this)">Editar</button>
+                    <button class="excluir" onclick="excluirUsuario(this)">Excluir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+<script src="~/js/gerenciamentoperfis.js"></script>
+
+
+

@@ -5,45 +5,45 @@ using WebApp.Models;
 
 namespace WebApp.Controllers;
 
-public class ClienteController : Controller
+public class FornecedorController : Controller
 {
     private readonly ILogger<MenuController> _logger;
     private readonly HttpClient _httpClient;
 
-    public ClienteController(ILogger<MenuController> logger, HttpClient httpClient)
+    public FornecedorController(ILogger<MenuController> logger, HttpClient httpClient)
     {
         _logger = logger;
         _httpClient = httpClient;
     }
 
-    public async Task<IActionResult> GestaoDeClientes()
+    public async Task<IActionResult> GestaoDeFornecedores()
     {
         var response = await _httpClient.GetStringAsync
-            ("https://localhost:7124/api/Cliente/ObterClientes");
-        var clientes = JsonConvert.DeserializeObject<List<ClienteModel>>(response);
-        return View("GestaoDeClientes", clientes);
+            ("https://localhost:7124/api/Fornecedor/ObterFornecedores");
+        var fornecedores = JsonConvert.DeserializeObject<List<FornecedorModel>>(response);
+        return View("GestaoDeFornecedores", fornecedores);
     }
 
     [HttpGet]
-    public IActionResult AdicionarCliente()
+    public IActionResult AdicionarFornecedor()
     {
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> AdicionarCliente(ClienteModel clienteModel)
+    public async Task<IActionResult> AdicionarFornecedor(FornecedorModel fornecedorModel)
     {
         if (!ModelState.IsValid)
         {
-            return View("AdicionarCliente", clienteModel);
+            return View("AdicionarFornecedor", fornecedorModel);
         }
 
-        var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Cliente/InserirCliente", clienteModel);
+        var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Fornecedor/Inserir", fornecedorModel);
         if (response.IsSuccessStatusCode)
         {
             return RedirectToAction("MenuPrincipal");
         }
-        return View("AdicionarCliente",clienteModel);
+        return View("AdicionarFornecedor", fornecedorModel);
     }
 
     public async Task<IActionResult> ObterEndereco(string cep)

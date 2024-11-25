@@ -112,6 +112,25 @@
         transition: background-color 0.3s;
     }
 
+/* Estilos para o formulário */
+.perfil-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+    .perfil-container label {
+        margin: 0;
+    }
+
+.tipoPerfil {
+    margin-top: 5px;
+    width: 200px;
+    padding: 5px;
+    padding-right: 100px;
+}
+
 /* Estilo das abas */
 .tab {
     display: none;
@@ -168,48 +187,12 @@
     margin-left: 0; /* Valor inicial */
 }
 
-/* Estilo da tabela de clientes */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: white;
-}
-
-th, td {
-    padding: 6px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-td {
-    vertical-align: middle;
-}
-
-    /* Ajuste das colunas da tabela */
-    th.col-esquerda, td.col-esquerda {
-        text-align: left;
-    }
-
-    th.col-direita, td.col-direita {
-        text-align: right;
-    }
-
-/* Botões de ação */
 button.editar {
-    background-color: #ff9800;
+    background-color: #ff9800; /* Cor laranja para edição */
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s;
 }
 
     button.editar:hover {
@@ -217,35 +200,31 @@ button.editar {
     }
 
 button.excluir {
-    background-color: #f44336;
+    background-color: #f44336; /* Cor vermelha para exclusão */
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s;
 }
 
     button.excluir:hover {
         background-color: #da190b;
     }
 
-/* Botão de submissão */
-form button {
-    padding: 10px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #4CAF50;
+/* Estilo do botão de adicionar pedido */
+button.submit-button {
+    background-color: #4CAF50; /* Cor verde */
     color: white;
+    border: none;
+    padding: 8px 12px; /* Ajusta o tamanho do botão */
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-    width: 478px;
+    border-radius: 5px;
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    width: 100%;
 }
 
-    form button:hover {
-        background-color: #45a049;
+    button.submit-button:hover {
+        background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
     }
 
 /* Estilo do botão de editar pedido */
@@ -254,51 +233,40 @@ button.edit-button {
 }
 
     button.edit-button:hover {
-        background-color: #df8602; /* Cor laranja para edição */
+        background-color: #e68900;
     }
 
-/* Estilo geral do formulário */
+/* Estilo do formulário de pedido */
 form {
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
-    gap: 30px; /* Espaço entre os itens do formulário */
-    max-width: 1000px; /* Ajuste o tamanho conforme necessário */
-    margin: 0px auto;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start; /* Alinha os itens do formulário à esquerda */
+    max-width: 600px; /* Define a largura máxima */
+    margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
 }
 
-/* Seções do formulário */
-.esquerda, .direita {
-    flex: 1;
-    min-width: 300px; /* Ajuste a largura mínima das seções */
-    padding-right: 20px;
-}
+    form label {
+        font-weight: bold;
+        display: flex; /* Utiliza flex para alinhar os rótulos e campos */
+        flex-direction: row; /* Rótulo e campo na mesma linha */
+        align-items: center;
+        gap: 10px; /* Espaço entre o texto e o campo */
+        width: 95%;
+    }
 
-/* Alinhamento dos itens dentro das seções */
-.esquerda, .direita {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Espaço entre os itens dentro da seção */
-}
-
-/* Alinhamento dos labels e inputs */
-form label {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Espaço entre o texto e o campo */
-}
-
-form input {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 100%; /* Faz com que os inputs ocupem a largura disponível da seção */
-}
+    form input, form button {
+        padding: 6px 12px; /* Ajusta o padding para diminuir o tamanho */
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 95%; /* Faz com que os inputs e botões ocupem a largura disponível */
+    }
 
 /* Estilo das notificações */
 .notification {
@@ -333,16 +301,6 @@ form input {
 
 #deleteNotification {
     background-color: #f44336;
-}
-
-/* Estilo do campo select para torná-lo igual aos inputs */
-select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 102.5%;
-    background-color: #fff;
-    font-size: 16px;
 }
 
 /* Estilo do contêiner de busca e filtro */
@@ -383,4 +341,27 @@ select {
     border-radius: 5px;
     background-color: #fff;
     max-width: 200px; /* Limitar a largura máxima */
+}
+
+/* Estilo da tabela de clientes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+td {
+    vertical-align: middle;
 }

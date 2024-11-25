@@ -177,7 +177,7 @@ table {
 }
 
 th, td {
-    padding: 6px;
+    padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
 }
@@ -233,15 +233,17 @@ button.excluir {
 
 /* Botão de submissão */
 form button {
-    padding: 10px 10px;
+    padding: 8px 20px;
     border-radius: 5px;
     border: none;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: background-color 0.3s;
-    width: 478px;
+    width: 200px;
+    margin-top: 32px;
+    margin-right: 280px;
 }
 
     form button:hover {
@@ -261,7 +263,7 @@ button.edit-button {
 form {
     display: flex;
     flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
-    gap: 30px; /* Espaço entre os itens do formulário */
+    gap: 20px; /* Espaço entre os itens do formulário */
     max-width: 1000px; /* Ajuste o tamanho conforme necessário */
     margin: 0px auto;
     padding: 20px;
@@ -269,6 +271,7 @@ form {
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 
 /* Seções do formulário */
@@ -282,7 +285,7 @@ form {
 .esquerda, .direita {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espaço entre os itens dentro da seção */
+    gap: 12px; /* Espaço entre os itens dentro da seção */
 }
 
 /* Alinhamento dos labels e inputs */
@@ -290,14 +293,21 @@ form label {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 5px; /* Espaço entre o texto e o campo */
 }
 
 form input {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    width: 100%; /* Faz com que os inputs ocupem a largura disponível da seção */
+}
+
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 102.5%;
+    background-color: #fff;
+    font-size: 16px;
 }
 
 /* Estilo das notificações */
@@ -333,16 +343,6 @@ form input {
 
 #deleteNotification {
     background-color: #f44336;
-}
-
-/* Estilo do campo select para torná-lo igual aos inputs */
-select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 102.5%;
-    background-color: #fff;
-    font-size: 16px;
 }
 
 /* Estilo do contêiner de busca e filtro */

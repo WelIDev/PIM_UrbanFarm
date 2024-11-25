@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "UF - Login";
+
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
+    <title>@ViewData["UF - Login"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <a href="login.html">
+            <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+        </a>
+    </header>
+
+    <nav class="sub-header">
+        <ul class="sub-header-list">
+            <li><a>"Revolucionando o cultivo urbano: tecnologia que aproxima você da colheita perfeita, onde quer que esteja."</a></li>
+        </ul>
+    </nav>
+
+    <img class="logo" src="~/imagens/celeirourbanfarm.png" alt="logoUrbanFarm">
+
+    <form class="Login">
+        <h2>Login</h2>
+        <div class="box-user">
+            <input type="text" name="email" required>
+            <label>E-mail</label>
+        </div>
+        <div class="box-user">
+            <input type="password" name="senha" required>
+            <label>Senha</label>
+        </div>
+        <div>
+            <a href="#" class="forget">Esqueceu a senha?</a>
+        </div>
+        <a href="#" class="btn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Entrar
+        </a>
+    </form>
+</body>
