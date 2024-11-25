@@ -1,17 +1,42 @@
 ﻿@{
-ViewData["Title"] = "UF - Gestão de Pedidos";
+    ViewData["Title"] = "UF - Gestão de Pedidos";
 }
-<head>
-    <link rel="stylesheet" href="~/css/gestaodepedidos.css" asp-append-version="true">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <title>@ViewData["Title"]</title>
-</head>
-<body>
 
-<!-- Nova div para o conteúdo principal -->
-<!-- Abas para Navegação -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/menuprincipal.css" asp-append-version="true">
+    <title>@ViewData["Gestão de Pedidos"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <a href="menuprincipal.html">
+        <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    </a>
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div> <!-- Ícone de lista -->
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div> <!-- Ícone de perfil -->
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="@Url.Action("GestaoDeClientes","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("GestaoDePedidos","Pedido")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("GestaoDeFornecedores","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("GerenciamentoPerfis","Usuario")">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
 <div class="tab-buttons">
-    <button class="back-button" onclick="location.href='@Url.Action("Index", "Menu")'">Retornar</button>
+    <button class="back-button" onclick="location.href='@Url.Action("MenuPrincipal", "Menu")'">Retornar</button>
 </div>
 
 <div class="main-content">
@@ -74,4 +99,3 @@ ViewData["Title"] = "UF - Gestão de Pedidos";
 <div id="deleteNotification" class="notification hidden">Pedido excluído com sucesso!</div>
 
 <script src="~/js/gestaodepedidos.js" asp-append-version="true"></script>
-</body>

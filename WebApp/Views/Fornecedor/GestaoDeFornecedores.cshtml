@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebApp.Models.FornecedorModel>
+
+@{
+    ViewData["Title"] = "UF - Gestão de Fornecedores";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/gestaodefornecedores.css">
+    <title>@ViewData["UF - Gestão de Fornecedores"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="tab-buttons">
+    <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
+    <div class="tab-buttons-left">
+        <button class="back-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Adicionar Fornecedor</button>
+        <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeFornecedores","Fornecedor")'">Ver Fornecedores</button>
+    </div>
+</div>
+
+<div id="visualizacao" class="tab">
+    <div class="search-container">
+        <label for="searchInput" class="search-label">Buscar:</label>
+        <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarfornecedor()">
+            
+        <label for="filterColumn" class="filter-label">Filtro:</label>
+        <select id="filterColumn" class="filter-select">
+            <option value="nomeCompleto">Nome Empresa</option>
+            <option value="email">E-mail</option>
+            <option value="cnpj">CPNJ</option>
+            <option value="inscricao">Inscrição Estadual</option>
+            <option value="telefone">Número de Telefone</option>
+            <option value="rua">Rua</option>
+            <option value="cep">CEP</option>
+            <option value="numero">Número</option>
+            <option value="bairro">Bairro</option>
+            <option value="cidade">Cidade</option>
+            <option value="estado">Estado</option>
+        </select>
+    </div>
+
+<table id="fornecedorTable">
+    <thead>
+        <tr>
+            <th>Nome Empresa</th>
+            <th>E-mail</th>
+            <th>CNPJ</th>
+            <th>Inscrição Estadual</th>
+            <th>Telefone</th>
+            <th>Rua</th>
+            <th>CEP</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var fornecedor in Model)
+        {
+            <tr>
+                <td>@fornecedor.Nome</td>
+                <td>@fornecedor.Email</td>
+                <td>@fornecedor.Cnpj</td>
+                <td>@fornecedor.InscricaoEstadual</td>
+                <td>@fornecedor.Telefone</td>
+                <td>@fornecedor.Endereco.Rua</td>
+                <td>@fornecedor.Endereco.Cep</td>
+                <td>@fornecedor.Endereco.Numero</td>
+                <td>@fornecedor.Endereco.Bairro</td>
+                <td>@fornecedor.Endereco.Cidade</td>
+                <td>@fornecedor.Endereco.Estado</td>
+                <td>
+                    <button class="editar" onclick="editarFornecedor(this)">Editar</button>
+                    <button class="excluir" onclick="excluirFornecedor(this)">Excluir</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+<script src="~/js/gestaodefornecedores.js"></script>

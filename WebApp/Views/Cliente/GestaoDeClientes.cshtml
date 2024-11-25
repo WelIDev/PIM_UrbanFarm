@@ -1,79 +1,111 @@
 ﻿@model IEnumerable<WebApp.Models.ClienteModel>
 
 @{
-    
+    ViewData["Title"] = "UF - Gestão de Clientes";
 }
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="~/css/gestaodeclientes.css">
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <title>@ViewData["UF - Gestão de Clientes"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
-    <div class="tab-buttons">
-        <button class="back-button" onclick="location.href='@Url.Action("Index", "Menu")'">Retornar</button>
-        <button class="tab-button" onclick="location.href='@Url.Action("AdicionarCliente", "Cliente")'">Adicionar Cliente</button>
+<header class="top-bar">
+    <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="tab-buttons">
+    <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
+     <div class="tab-buttons-left">
+        <button class="back-button" onclick="location.href='@Url.Action("AdicionarCliente", "Cliente")'">Adicionar Cliente</button>
+        <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeClientes","Cliente")'">Ver Clientes</button>
+     </div>
+</div>
+
+<div id="visualizacao" class="tab">
+    <div class="search-container">
+        <label for="searchInput" class="search-label">Buscar:</label>
+        <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarCliente()">
+        <label for="filterColumn" class="filter-label">Filtro:</label>
+        <select id="filterColumn" class="filter-select">
+            <option value="nomeCompleto">Nome Completo</option>
+            <option value="email">E-mail</option>
+            <option value="cpf">CPF/CPNJ</option>
+            <option value="telefone">Telefone</option>
+            <option value="dataNascimento">Data de Nascimento</option>
+            <option value="rua">Rua</option>
+            <option value="cep">CEP</option>
+            <option value="numero">Número</option>
+            <option value="bairro">Bairro</option>
+            <option value="cidade">Cidade</option>
+            <option value="estado">Estado</option>
+        </select>
     </div>
 
-    <div id="visualizacao" class="tab">
-        <div class="search-container">
-            <label for="searchInput" class="search-label">Buscar:</label>
-            <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarCliente()">
-            <label for="filterColumn" class="filter-label">Filtro:</label>
-            <select id="filterColumn" class="filter-select">
-                <option value="nomeCompleto">Nome Completo</option>
-                <option value="email">E-mail</option>
-                <option value="cpf">CPF/CPNJ</option>
-                <option value="telefone">Telefone</option>
-                <option value="dataNascimento">Data de Nascimento</option>
-                <option value="rua">Rua</option>
-                <option value="cep">CEP</option>
-                <option value="numero">Número</option>
-                <option value="bairro">Bairro</option>
-                <option value="cidade">Cidade</option>
-                <option value="estado">Estado</option>
-            </select>
-        </div>
+    <table id="clienteTable">
+        <thead>
+            <tr>
+                <th>Nome Completo</th>
+                <th>E-mail</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Data de Nascimento</th>
+                <th>Rua</th>
+                <th>CEP</th>
+                <th>Número</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
 
-        <table id="clienteTable">
-            <thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
                 <tr>
-                    <th>Nome Completo</th>
-                    <th>E-mail</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>Data de Nascimento</th>
-                    <th>Rua</th>
-                    <th>CEP</th>
-                    <th>Número</th>
-                    <th>Bairro</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
-                    <th>Ações</th>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.CpfCnpj</td>
+                    <td>@cliente.Telefone</td>
+                    <td>@cliente.DataNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@cliente.Endereco.Rua</td>
+                    <td>@cliente.Endereco.Cep</td>
+                    <td>@cliente.Endereco.Numero</td>
+                    <td>@cliente.Endereco.Bairro</td>
+                    <td>@cliente.Endereco.Cidade</td>
+                    <td>@cliente.Endereco.Estado</td>
+                    <td>
+                        <button class="editar" onclick="editarCliente(this)">Editar</button>
+                        <button class="excluir" onclick="excluirCliente(this)">Excluir</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var cliente in Model)
-                {
-                    <tr>
-                        <td>@cliente.Nome</td>
-                        <td>@cliente.Email</td>
-                        <td>@cliente.CpfCnpj</td>
-                        <td>@cliente.Telefone</td>
-                        <td>@cliente.DataNascimento.ToString("dd/MM/yyyy")</td>
-                        <td>@cliente.Endereco.Rua</td>
-                        <td>@cliente.Endereco.Cep</td>
-                        <td>@cliente.Endereco.Numero</td>
-                        <td>@cliente.Endereco.Bairro</td>
-                        <td>@cliente.Endereco.Cidade</td>
-                        <td>@cliente.Endereco.Estado</td>
-                        <td>
-                            <button class="editar" onclick="editarCliente(this)">Editar</button>
-                            <button class="excluir" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 
-    <script src="~/js/gestaodeclientes.js"></script>
+<script src="~/js/gestaodeclientes.js"></script>

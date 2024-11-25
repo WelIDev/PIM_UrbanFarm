@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "UF - Configurações";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/configuracoes.css">
+    <title>@ViewData["UF - Configurações"]</title>
+    <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
+</head>
+
+<header class="top-bar">
+    <img class="img-top-bar" src="~/imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="~/imagens/perfil.png" alt="iconePerfil">
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li><a href="configuracoes.html">Configurações</a></li>
+            <li><a href="login.html">Sair</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
+        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+    </ul>
+</div>
+
+<div class="tab-buttons">
+    <button class="back-button" onclick="window.location.href='menuprincipal.html'">Retornar</button>
+</div>
+
+<div class="main-content">
+    <h3>Configurações</h3>
+
+    <div class="buttons">
+        <button class="contatos" onclick="window.location.href='contatos.html'">Contatos</button>
+        <button class="sobrenos" onclick="window.location.href='sobre.html'">Sobre Nós</button>
+    </div>
+</div>
+
+<script src="~/js/configuracoes.js"></script>
+
+
+
