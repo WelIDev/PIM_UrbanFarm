@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.Clientes.HistoricoPage"
+             Title="Histórico de Vendas">
+    <Grid>
+        <!-- Definição das Linhas da Grade -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!-- Filtro -->
+            <RowDefinition Height="*" /> <!-- Conteúdo da Página -->
+        </Grid.RowDefinitions>
+
+        <!-- Indicador de Carregamento -->
+        <ActivityIndicator x:Name="LoadingIndicator" IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}" HorizontalOptions="Center"
+                           VerticalOptions="Center" Grid.Row="1" />
+
+        <!-- Conteúdo da Página -->
+        <ScrollView Grid.Row="1" IsVisible="{Binding IsDataLoaded}">
+            <StackLayout Padding="10" Spacing="10">
+                <CollectionView x:Name="VendasCollectionView" ItemsSource="{Binding Vendas}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource BaseBorderStyle}" Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnVerPedido_Clicked"
+                                                          CommandParameter="{Binding}" />
+                                </Border.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <StackLayout>
+                                        <Label Text="{Binding Id}" FontSize="16"
+                                               FontAttributes="Bold"
+                                               Style="{StaticResource BaseLabelStyle}" />
+                                        <Label
+                                            Text="{Binding DataVenda, StringFormat='{0:dd/MM/yyyy}'}"
+                                            FontSize="14" Style="{StaticResource BaseLabelStyle}" />
+                                        <Label Text="{Binding Valor, StringFormat='{0:C2}'}"
+                                               FontSize="14"
+                                               Style="{StaticResource BaseLabelStyle}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Text="Carregar Mais" Clicked="CarregarMaisVendas"
+                        Style="{StaticResource 
+                BaseButtonStyle}"
+                        WidthRequest="150"
+                        HorizontalOptions="Center" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -64,7 +64,13 @@ public class ProdutoController : Controller
     {
         try
         {
-            var produtos = _produtoServico.ObterProdutos();
+            var produtos = _produtoServico.ObterProdutos().Select(p => new
+            {
+                p.Id,
+                p.Nome,
+                p.Descricao,
+                p.Preco
+            });
             return Ok(produtos);
         }
         catch (KeyNotFoundException e)

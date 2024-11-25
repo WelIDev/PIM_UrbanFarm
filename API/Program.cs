@@ -10,6 +10,7 @@ using Infraestrutura.Persistencia;
 using Infraestrutura.Persistencia.DbInitializer;
 using Infraestrutura.Persistencia.Repositorios;
 using Infraestrutura.Servicos;
+using Infraestrutura.UnitOfWork;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -51,6 +52,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Configuração da conexão com o banco de dados
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration
+    .GetConnectionString("Default")));
+
 // Configuração de injeção de dependência
 // Repositorios
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
@@ -61,6 +67,7 @@ builder.Services.AddScoped<IMetaRepositorio, MetaRepositorio>();
 builder.Services.AddScoped<IComissaoRepositorio, ComissaoRepositorio>();
 builder.Services.AddScoped<IVendedorRepositorio, VendedorRepositorio>();
 builder.Services.AddScoped<IVendaRepositorio, VendaRepositorio>();
+builder.Services.AddScoped<IHistoricoCompraRepositorio, HistoricoCompraRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -76,11 +83,8 @@ builder.Services.AddScoped<IMetaServico, MetaServico>();
 builder.Services.AddScoped<IComissaoServico, ComissaoServico>();
 builder.Services.AddScoped<IVendedorServico, VendedorServico>();
 builder.Services.AddScoped<IVendaServico, VendaServico>();
-
-// Configuração da conexão com o banco de dados
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration
-    .GetConnectionString("Default")));
+builder.Services.AddScoped<IHistoricoCompraServico, HistoricoCompraServico>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -139,6 +143,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors("AllowAll");
+
+app.Urls.Add("https://*:7124");
+
 // Executa a atualização do banco de dados(migrations)
 using (var scope = app.Services.CreateScope())
 {

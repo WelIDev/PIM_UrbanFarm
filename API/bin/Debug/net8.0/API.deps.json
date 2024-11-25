@@ -1531,6 +1531,7 @@
       "Aplicacao/1.0.0": {
         "dependencies": {
           "Dominio": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.0-rc.1.24431.7",
           "System.IdentityModel.Tokens.Jwt": "8.1.0"
         },

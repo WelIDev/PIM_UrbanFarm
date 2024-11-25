@@ -10,4 +10,5 @@ public interface IProdutoRepositorio
     List<Produto> ObterProdutos();
     void ExcluirProduto(Produto produto);
     void AlterarProduto(Produto produto);
+    Task AtualizarEstoqueAsync(int id, int quantidade);
 }

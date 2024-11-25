@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.Vendas.PaymentPage"
+             Title="Pagamento">
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                     Padding="20">
+            <Label Text="Selecione a Forma de Pagamento:" FontSize="20" Margin="0,10" />
+            <Picker x:Name="FormaDePagamentoPicker" Title="Forma de Pagamento">
+                <Picker.Items>
+                    <x:String>Pix</x:String>
+                    <x:String>Cartão de Crédito</x:String>
+                    <x:String>Cartão de Débito</x:String>
+                    <x:String>Dinheiro</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Selecione o Cliente:" FontSize="20" Margin="0,20,0,10" />
+            <Picker x:Name="ClientePicker" Title="Cliente" ItemDisplayBinding="{Binding Nome}">
+                <!-- Os itens serão preenchidos no código-behind -->
+            </Picker>
+
+            <Button Text="Finalizar Compra"
+                    Clicked="OnFinishClicked"
+                    Style="{StaticResource BaseButtonStyle}"
+                    WidthRequest="350"
+                    HeightRequest="50"
+                    Margin="0,20" />
+        </StackLayout>
+
+
+        <Button Text="Cadastrar Cliente" WidthRequest="350"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.5,1,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Style="{StaticResource BaseButtonStyle}"
+                CornerRadius="30"
+                Clicked="OnCadastrarClienteClicked" />
+    </AbsoluteLayout>
+</ContentPage>

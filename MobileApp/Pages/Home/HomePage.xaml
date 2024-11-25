@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.Home.HomePage"
+             BackgroundColor="{StaticResource PrimaryBackgroundColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20" VerticalOptions="CenterAndExpand">
+                <Label x:Name="BemVindoLabel" 
+                       FontSize="24" 
+                       TextColor="{StaticResource PrimaryTextColor}" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,20"/>
+                
+                <Border Stroke="{StaticResource PrimaryTextColor}"
+                        StrokeThickness="2"
+                        BackgroundColor="{StaticResource PrimaryTextColor}"
+                        HeightRequest="150"
+                        WidthRequest="350"
+                        Padding="10">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnVerProdutosClicked" />
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="icon_produtos.png" 
+                               WidthRequest="80" 
+                               HeightRequest="80" 
+                               VerticalOptions="Center"
+                               Grid.Column="0"/>
+                        <Label Text="Explorar Produtos" 
+                               FontSize="20" 
+                               TextColor="{StaticResource ButtonTextColor}" 
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"
+                               Grid.Column="1"/>
+                    </Grid>
+                </Border>
+                
+                <Border Stroke="{StaticResource PrimaryTextColor}"
+                        StrokeThickness="2"
+                        BackgroundColor="{StaticResource PrimaryTextColor}"
+                        HeightRequest="150"
+                        WidthRequest="350"
+                        Padding="10">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnVerClientesClicked" />
+                    </Border.GestureRecognizers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="icon_clientes.png" 
+                               WidthRequest="80" 
+                               HeightRequest="80" 
+                               VerticalOptions="Center"
+                               Grid.Column="0"/>
+                        <Label Text="Clientes &amp; Compras" 
+                               FontSize="20" 
+                               TextColor="{StaticResource ButtonTextColor}" 
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0"
+                               Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

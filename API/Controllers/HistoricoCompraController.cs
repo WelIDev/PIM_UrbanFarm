@@ -9,7 +9,7 @@ namespace PIM_UrbanFarm.Controllers;
 [Route("api/[controller]/[action]")]
 public class HistoricoCompraController : Controller
 {
-        private readonly IHistoricoCompraServico _historicoCompraServico;
+    private readonly IHistoricoCompraServico _historicoCompraServico;
 
     public HistoricoCompraController(IHistoricoCompraServico historicoCompraServico)
     {
@@ -54,6 +54,21 @@ public class HistoricoCompraController : Controller
         catch (Exception e)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar obter os históricos.");
+        }
+    }
+
+    [HttpGet("{clienteId}")]
+    public async Task<IActionResult> ObterHistoricoPorClienteId(int clienteId)
+    {
+        try
+        {
+            var historicoCompraPaginado =
+                await _historicoCompraServico.ObterHistoricoCompraPorClienteId(clienteId);
+            return Ok(historicoCompraPaginado);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Error = ex.Message });
         }
     }
 

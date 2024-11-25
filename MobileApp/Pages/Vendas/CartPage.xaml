@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MobileApp.Models"
+             xmlns:converters="clr-namespace:MobileApp.Converters"
+             x:Class="MobileApp.Pages.Vendas.CartPage"
+             Title="Carrinho de Compras">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DotsAndCurrencyConverter x:Key="DotsAndCurrencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="10">
+                <CollectionView x:Name="CarrinhoCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource BaseBorderStyle}" Padding="10"
+                                    Margin="0,0,0,10">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="{Binding Icone}" WidthRequest="50"
+                                           HeightRequest="50" x:DataType="models:ProdutoModel" />
+                                    <StackLayout>
+                                        <Label Text="{Binding Nome}" WidthRequest="150"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               x:DataType="models:ProdutoModel" />
+                                        <Label Text="                " FontSize="14"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               HorizontalOptions="FillAndExpand" />
+                                        <Label Text="{Binding Quantidade}" FontSize="14"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               HorizontalOptions="End" VerticalOptions="Center"
+                                               x:DataType="models:ProdutoModel" />
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Button ImageSource="Resources/Images/lixeira.png"
+                                                Clicked="OnRemoveItemClicked"
+                                                Style="{StaticResource BaseButtonStyle}"
+                                                BackgroundColor="{StaticResource OverlayBackgroundColor}"
+                                                CommandParameter="{Binding}" Margin="0,0,0,5"
+                                                WidthRequest="50" HorizontalOptions="End" />
+                                        <Label
+                                            Text="{Binding ., Converter={StaticResource DotsAndCurrencyConverter}, ConverterParameter=18}"
+                                            FontSize="14" Style="{StaticResource BaseLabelStyle}"
+                                            HorizontalOptions="End" VerticalOptions="End"
+                                            Margin="0" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout AbsoluteLayout.LayoutBounds="0.5,1,AutoSize,AutoSize"
+                     AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label Text="{Binding TotalCarrinho, StringFormat='Total: {0:C2}'}"
+                   TextColor="Black"
+                   FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"
+                   VerticalOptions="End" Margin="10,0,10,10" x:Name="TotalCarrinhoLabel" />
+            <Button Text="Finalizar Compra" Style="{StaticResource BaseButtonStyle}"
+                    WidthRequest="350" HeightRequest="50" Margin="10" Clicked="OnFinishClicked" />
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

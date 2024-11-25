@@ -1,6 +1,5 @@
 ﻿using Aplicacao.DTOs;
 using Aplicacao.Interfaces;
-using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PIM_UrbanFarm.Controllers;
@@ -17,16 +16,15 @@ public class VendaController : Controller
     }
 
     [HttpPost]
-    public ActionResult InserirVenda(VendaDto vendaDto)
+    public async Task<ActionResult> InserirVenda([FromBody] VendaDto vendaDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        return _vendaServico.InserirVenda(vendaDto)
-            ? Ok("Venda inserida com sucesso.")
-            : StatusCode(500, "Ocorreu um erro ao tentar inserir.");
+        var sucesso = await _vendaServico.InserirVenda(vendaDto);
+        return sucesso ? Ok("Venda inserida com sucesso.") : StatusCode(500, "Ocorreu um erro ao tentar inserir.");
     }
 
     [HttpGet]
@@ -37,7 +35,7 @@ public class VendaController : Controller
             var venda = _vendaServico.ObterPorId(id);
             return Ok(venda);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar obter as vendas.");
         }
@@ -54,29 +52,6 @@ public class VendaController : Controller
         catch (Exception e)
         {
             return StatusCode(500, $"Ocorreu um erro ao tentar obter as vendas. {e.Message}");
-        }
-    }
-
-    [HttpPut]
-    public ActionResult AlterarVenda(int id, VendaDto vendaDto)
-    {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (_vendaServico.AlterarVenda(id, vendaDto))
-            {
-                return Ok("Venda alterada com sucesso.");
-            }
-
-            return NotFound("Venda não encontrada.");
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar alterar.");
         }
     }
 

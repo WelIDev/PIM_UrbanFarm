@@ -352,6 +352,9 @@ namespace Infraestrutura.Migrations
                     b.Property<int>("HistoricoCompraId")
                         .HasColumnType("int");
 
+                    b.Property<double>("Valor")
+                        .HasColumnType("float");
+
                     b.Property<int>("VendedorId")
                         .HasColumnType("int");
 
@@ -552,7 +555,7 @@ namespace Infraestrutura.Migrations
                     b.HasOne("Dominio.Entidades.Venda", "Venda")
                         .WithMany("VendaProdutos")
                         .HasForeignKey("IdVenda")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Produto");

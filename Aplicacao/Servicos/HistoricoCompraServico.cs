@@ -56,10 +56,15 @@ public class HistoricoCompraServico : IHistoricoCompraServico
         return historicosCompras;
     }
 
+    public async Task<HistoricoCompra> ObterHistoricoCompraPorClienteId(int clienteId)
+    {
+        return await _historicoCompraRepositorio.ObterHistoricoCompraPorClienteId(clienteId);
+    }
+
     public bool AlterarHistoricoCompra(HistoricoCompra historicoCompra)
     {
         ArgumentNullException.ThrowIfNull(historicoCompra);
-        
+
         try
         {
             _historicoCompraRepositorio.AlterarHistorico(historicoCompra);

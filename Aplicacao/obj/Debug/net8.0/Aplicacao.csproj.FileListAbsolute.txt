@@ -14,3 +14,19 @@ C:\Users\alenc\OneDrive\Área de Trabalho\PIM_UrbanFarm\Aplicacao\obj\Debug\net8
 C:\Users\alenc\OneDrive\Área de Trabalho\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\refint\Aplicacao.dll
 C:\Users\alenc\OneDrive\Área de Trabalho\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.pdb
 C:\Users\alenc\OneDrive\Área de Trabalho\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\ref\Aplicacao.dll
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\bin\Debug\net8.0\Aplicacao.deps.json
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\bin\Debug\net8.0\Aplicacao.dll
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\bin\Debug\net8.0\Aplicacao.pdb
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\bin\Debug\net8.0\Dominio.dll
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\bin\Debug\net8.0\Dominio.pdb
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.csproj.AssemblyReference.cache
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.AssemblyInfoInputs.cache
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.AssemblyInfo.cs
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.csproj.CoreCompileInputs.cache
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.sourcelink.json
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.csproj.Up2Date
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.dll
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\refint\Aplicacao.dll
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\Aplicacao.pdb
+C:\Users\welli\RiderProjects\PIM_UrbanFarm\Aplicacao\obj\Debug\net8.0\ref\Aplicacao.dll

@@ -9,60 +9,132 @@ public class VendaServico : IVendaServico
 {
     private readonly IVendaRepositorio _vendaRepositorio;
     private readonly IProdutoRepositorio _produtoRepositorio;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public VendaServico(IVendaRepositorio vendaRepositorio, IProdutoRepositorio produtoRepositorio)
+    public VendaServico(IVendaRepositorio vendaRepositorio, IProdutoRepositorio produtoRepositorio, IUnitOfWork unitOfWork)
     {
         _vendaRepositorio = vendaRepositorio;
         _produtoRepositorio = produtoRepositorio;
+        _unitOfWork = unitOfWork;
     }
 
-    public bool InserirVenda(VendaDto vendaDto)
+    public async Task<bool> InserirVenda(VendaDto vendaDto)
     {
-        ArgumentNullException.ThrowIfNull(vendaDto);
+        using var transaction = await _unitOfWork.BeginTransactionAsync();
+
         try
         {
-            var produtos = _produtoRepositorio.ObterProdutosPorId(vendaDto.ProdutoIds);
-            
-            var vendaProdutos = produtos.Select(p => new VendaProduto
-            {
-                IdProduto = p.Id,
-                Produto = p,
-                Quantidade = vendaDto.Quantidade,
-                ValorTotal = p.Preco * vendaDto.Quantidade
-            }).ToList();
-            
             var venda = new Venda
             {
                 VendedorId = vendaDto.VendedorId,
                 HistoricoCompraId = vendaDto.HistoricoCompraId,
                 FormaDePagamento = vendaDto.FormaDePagamento,
-                VendaProdutos = vendaProdutos
+                Valor = vendaDto.VendaProdutos.Sum(vp => vp.ValorTotal)
             };
-            
-            _vendaRepositorio.InserirVenda(venda);
+
+            foreach (var produtoDto in vendaDto.VendaProdutos)
+            {
+                Produto produto = _produtoRepositorio.ObterPorId(produtoDto.IdProduto);
+                if (produto == null)
+                {
+                    return false;
+                }
+
+                var vendaProduto = new VendaProduto
+                {
+                    IdProduto = produtoDto.IdProduto,
+                    Quantidade = produtoDto.Quantidade,
+                    ValorTotal = produto.Preco * produtoDto.Quantidade
+                };
+
+                venda.VendaProdutos.Add(vendaProduto);
+
+                await _produtoRepositorio.AtualizarEstoqueAsync(produtoDto.IdProduto,
+                    -produtoDto.Quantidade);
+            }
+
+            _unitOfWork.VendaRepositorio.InserirVenda(venda);
+            await _unitOfWork.SaveChangesAsync();
+
+            await transaction.CommitAsync();
             return true;
         }
         catch (Exception e)
         {
-            Console.WriteLine("Ocorreu um erro ao tentar inserir: " + e.Message);
+            await transaction.RollbackAsync();
             return false;
         }
     }
 
-    public Venda ObterPorId(int id)
+
+/*public bool InserirVenda(VendaDto vendaDto)
+{
+    ArgumentNullException.ThrowIfNull(vendaDto);
+    try
     {
-        if (id <= 0)
-        {
-            throw new ArgumentException("ID inválido");
-        }
+        var idsProdutos = vendaDto.VendaProdutos.Select(vp => vp.IdProduto).ToList();
+        var produtos = _produtoRepositorio.ObterProdutosPorId(idsProdutos);
 
+        var produtosDictionary = produtos.ToDictionary(p => p.Id);
+
+        var vendaProdutos = vendaDto.VendaProdutos.Select(vp =>
+        {
+            var produto = produtosDictionary.ContainsKey(vp.IdProduto) ? produtosDictionary[vp.IdProduto] : null;
+
+            if (produto == null)
+            {
+                throw new Exception($"Produto com ID {vp.IdProduto} não encontrado.");
+            }
+
+            return new VendaProduto
+            {
+                IdProduto = vp.IdProduto,
+                Produto = produto,
+                Quantidade = vp.Quantidade,
+                ValorTotal = produto.Preco * vp.Quantidade
+            };
+        }).ToList();
+
+        var venda = new Venda
+        {
+            VendedorId = vendaDto.VendedorId,
+            HistoricoCompraId = vendaDto.HistoricoCompraId,
+            FormaDePagamento = vendaDto.FormaDePagamento,
+            VendaProdutos = vendaProdutos
+        };
+
+        _vendaRepositorio.InserirVenda(venda);
+        return true;
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine("Ocorreu um erro ao tentar inserir: " + e.Message);
+        return false;
+    }
+}
+*/
+
+    public VendaDto ObterPorId(int id)
+    {
         var venda = _vendaRepositorio.ObterPorId(id);
-        if (venda == null)
-        {
-            throw new KeyNotFoundException("Venda não encontrada.");
-        }
 
-        return venda;
+        var vendaDTO = new VendaDto
+        {
+            Id = venda.Id,
+            Data = venda.Data,
+            Valor = venda.Valor,
+            FormaDePagamento = venda.FormaDePagamento,
+            VendedorId = venda.VendedorId,
+            VendaProdutos = venda.VendaProdutos.Select(vp => new VendaProdutoDto
+            {
+                IdProduto = vp.Produto.Id,
+                NomeProduto = vp.Produto.Nome,
+                Quantidade = vp.Quantidade,
+                ValorTotal = vp.ValorTotal
+            }).ToList()
+        };
+
+        return vendaDTO;
     }
 
     public List<Venda> ObterVendas()
@@ -74,43 +146,6 @@ public class VendaServico : IVendaServico
         }
 
         return vendas;
-    }
-
-    public bool AlterarVenda(int id, VendaDto vendaDto)
-    {
-        ArgumentNullException.ThrowIfNull(vendaDto);
-        try
-        {
-            var venda = _vendaRepositorio.ObterPorId(id);
-            if (venda == null)
-            {
-                throw new KeyNotFoundException("Venda não encontrada");
-            }
-
-            var produtos = _produtoRepositorio.ObterProdutosPorId(vendaDto.ProdutoIds);
-            
-            venda.VendedorId = vendaDto.VendedorId;
-            venda.HistoricoCompraId = vendaDto.HistoricoCompraId;
-            venda.FormaDePagamento = vendaDto.FormaDePagamento;
-
-            var vendaProdutos = produtos.Select(p => new VendaProduto
-            {
-                IdProduto = p.Id,
-                Produto = p,
-                Quantidade = vendaDto.Quantidade,
-                ValorTotal = p.Preco * vendaDto.Quantidade
-            }).ToList();
-
-            venda.VendaProdutos = vendaProdutos;
-            
-            _vendaRepositorio.AlterarVenda(venda);
-            return true;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Ocorreu um erro ao tentar alterar: " + e.Message);
-            return false;
-        }
     }
 
     public bool ExcluirVenda(int id)

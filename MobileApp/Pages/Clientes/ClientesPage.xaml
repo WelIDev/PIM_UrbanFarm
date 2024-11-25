@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MobileApp.Models"
+             x:Class="MobileApp.Pages.Clientes.ClientesPage"
+             Title="Clientes">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10" Spacing="10">
+                <CollectionView x:Name="ClientesCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource BaseBorderStyle}" Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnVerHistoricoCliente_Clicked" 
+                                    CommandParameter="{Binding}"/>
+                                </Border.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="{Binding Icone}" WidthRequest="50"
+                                           HeightRequest="50" x:DataType="models:ClienteModel" />
+                                    <StackLayout>
+                                        <Label Text="{Binding Nome}" FontSize="16"
+                                               FontAttributes="Bold"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               x:DataType="models:ClienteModel" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        
+        <Button Text="Cadastrar Cliente" WidthRequest="350"
+                HeightRequest="50"
+                AbsoluteLayout.LayoutBounds="0.5,1,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Style="{StaticResource BaseButtonStyle}"
+                CornerRadius="30"
+                Clicked="OnCadastrarClienteClicked"/>
+    </AbsoluteLayout>
+</ContentPage>

@@ -5,9 +5,8 @@ namespace Aplicacao.Interfaces;
 
 public interface IVendaServico
 {
-    bool InserirVenda(VendaDto vendaDto);
-    Venda ObterPorId(int id);
+    Task<bool> InserirVenda(VendaDto vendaDto);
+    VendaDto ObterPorId(int id);
     List<Venda> ObterVendas();
-    bool AlterarVenda(int id, VendaDto vendaDto);
     bool ExcluirVenda(int id);
 }

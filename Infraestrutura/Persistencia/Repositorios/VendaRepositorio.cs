@@ -27,10 +27,11 @@ public class VendaRepositorio : IVendaRepositorio
 
     public List<Venda> ObterVendas()
     {
-        return new List<Venda>(_context.Vendas.Include(v => v.VendaProdutos).ThenInclude(vp => vp.Produto))
+        return new List<Venda>(_context.Vendas.Include(v => v.VendaProdutos)
+                .ThenInclude(vp => vp.Produto))
             .ToList();
     }
-
+    
     public void AlterarVenda(Venda venda)
     {
         _context.Vendas.Update(venda);

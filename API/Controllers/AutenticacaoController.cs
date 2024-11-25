@@ -29,6 +29,6 @@ public class AutenticacaoController
         }
     
         var token = _tokenServico.GerarToken(usuario);
-        return new OkObjectResult(token);
+        return new OkObjectResult(new { usuario.Id, usuario.Nome, usuario.Funcao, token });
     }
 }

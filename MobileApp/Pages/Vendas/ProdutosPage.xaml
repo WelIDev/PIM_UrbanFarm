@@ -1,0 +1,72 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MobileApp.Models"
+             x:Class="MobileApp.Pages.Vendas.ProdutosPage"
+             Title="Lista de Produtos">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10" Spacing="10">
+                <CollectionView x:Name="ProdutosCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource BaseBorderStyle}"
+                                    Padding="10" Margin="0,0,0,10">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="{Binding Icone}" WidthRequest="50"
+                                           HeightRequest="50" x:DataType="models:ProdutoModel" />
+                                    <StackLayout>
+                                        <Label Text="{Binding Nome}" FontSize="16"
+                                               FontAttributes="Bold"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               x:DataType="models:ProdutoModel" />
+                                        <Label FontSize="14"
+                                               Style="{StaticResource BaseLabelStyle}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span
+                                                            Text="{Binding Descricao, Converter={StaticResource TruncateConverter}, ConverterParameter=20}"
+                                                            x:DataType="models:ProdutoModel" />
+                                                        <Span Text="... " />
+                                                        <Span Text="Mais" TextColor="#172031" />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnDescricaoTapped"
+                                                    CommandParameter="{Binding Descricao}"
+                                                    x:DataType="models:ProdutoModel" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Text="{Binding Preco, StringFormat='{0:C2}'}"
+                                               FontSize="14"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               x:DataType="models:ProdutoModel" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="10"
+                                                 HorizontalOptions="EndAndExpand">
+                                        <Button Text="-" Clicked="OnRemoveItemClicked"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource BaseButtonStyle}" />
+                                        <Label Text="{Binding Quantidade}" FontSize="16"
+                                               Style="{StaticResource BaseLabelStyle}"
+                                               VerticalOptions="Center" HorizontalOptions="Center"
+                                               x:DataType="models:ProdutoModel" />
+                                        <Button Text="+" Clicked="OnAddItemClicked"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource BaseButtonStyle}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+        <Button x:Name="CartButton" Text="Carrinho  -  Total: R$0,00"
+                Style="{StaticResource BaseButtonStyle}"
+                AbsoluteLayout.LayoutBounds="0.5,1,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional" WidthRequest="350"
+                HeightRequest="50" Margin="10" Clicked="OnCartClicked" />
+    </AbsoluteLayout>
+</ContentPage>

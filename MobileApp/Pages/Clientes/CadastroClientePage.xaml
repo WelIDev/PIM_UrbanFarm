@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Pages.Clientes.CadastroClientePage"
+             BackgroundColor="{StaticResource PrimaryBackgroundColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20" VerticalOptions="CenterAndExpand">
+                <Label Text="Cadastro de Cliente"
+                       FontSize="24"
+                       TextColor="{StaticResource PrimaryTextColor}"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       Margin="0,0,0,20" />
+
+                <Entry x:Name="NomeEntry" Placeholder="Nome" />
+                <Entry x:Name="EmailEntry" Placeholder="Email" />
+                <Entry x:Name="CpfCnpjEntry" Placeholder="CPF/CNPJ" />
+                <Entry x:Name="TelefoneEntry" Placeholder="Telefone" />
+
+                <DatePicker x:Name="DataNascimentoPicker"
+                            TextColor="{StaticResource PrimaryTextColor}"
+                            BackgroundColor="{StaticResource PrimaryBackgroundColor}" />
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Entry x:Name="CepEntry" Placeholder="CEP" Grid.Column="0" />
+                    <ImageButton Source="lupa.png" 
+                                 Grid.Column="1"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnCepSearchClicked"/>
+                </Grid>
+                
+                <Entry x:Name="RuaEntry" Placeholder="Rua" />
+                <Entry x:Name="NumeroEntry" Placeholder="Número" />
+                <Entry x:Name="BairroEntry" Placeholder="Bairro" />
+                <Entry x:Name="CidadeEntry" Placeholder="Cidade" />
+                <Entry x:Name="EstadoEntry" Placeholder="Estado" />
+
+
+                <Button Text="Cadastrar"
+                        Clicked="OnCadastrarClicked"
+                        WidthRequest="350"
+                        HeightRequest="50"
+                        Style="{StaticResource BaseButtonStyle}"
+                        CornerRadius="8" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

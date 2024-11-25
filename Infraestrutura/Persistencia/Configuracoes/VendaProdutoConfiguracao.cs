@@ -13,7 +13,7 @@ namespace Infraestrutura.Persistencia.Configuracoes
             builder.HasOne(vp => vp.Venda)
                 .WithMany(v => v.VendaProdutos)
                 .HasForeignKey(vp => vp.IdVenda)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
             
             builder.HasOne(vp => vp.Produto)
                 .WithMany(p => p.VendaProdutos)

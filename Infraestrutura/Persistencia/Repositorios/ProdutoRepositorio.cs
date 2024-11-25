@@ -42,4 +42,14 @@ public class ProdutoRepositorio : IProdutoRepositorio
     {
         _context.Produtos.Update(produto);
     }
+
+    public async Task AtualizarEstoqueAsync(int id, int quantidade)
+    {
+        var produto = await _context.Produtos.FindAsync(id);
+        if (produto != null)
+        {
+            produto.Estoque += quantidade;
+            _context.Produtos.Update(produto);
+        }
+    }
 }
