@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -82,7 +82,6 @@
                 <th>Ações</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var cliente in Model)
             {

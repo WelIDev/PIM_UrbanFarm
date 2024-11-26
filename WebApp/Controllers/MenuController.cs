@@ -48,16 +48,16 @@ public class MenuController : Controller
 
     public IActionResult Configuracoes()
     {
-        return View();
+        return View("Views/Configuracoes/Configuracoes.cshtml");
     }
     public IActionResult Contatos()
     {
-        return View();
+        return View("Views/Configuracoes/Contatos.cshtml");
     }
 
     public IActionResult Sobre()
     {
-        return View();
+        return View("Views/Configuracoes/Sobre.cshtml");
     }
 }
 

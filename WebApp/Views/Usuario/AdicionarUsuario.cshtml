@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -47,7 +47,7 @@
 
 <div id="adicionar" class="tab">
     <form id="profileForm" action="@Url.Action("AdicionarUsuario", "Usuario")" method="post">
-        <label for="nome">Nome Completo:</label>
+        <label for="nome">Nome:</label>
         <input type="text" id="nome" required>
         <label for="email">E-mail:</label>
         <input type="text" id="email" required>
@@ -60,8 +60,8 @@
                 <option value="Administrador">Administrador</option>
             </select>
         </div>
-        <button type="submit" id="submitButton" class="submit-button">Adicionar Perfil</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Cancelar</button>
+        <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GerenciamentoPerfis", "Usuario")'">Adicionar Cliente</button>
+        <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Cancelar</button>
     </form>
 </div>
 

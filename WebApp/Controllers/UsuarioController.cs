@@ -19,7 +19,7 @@ public class UsuarioController : Controller
     public async Task<IActionResult> GerenciamentoPerfis()
     {
         var response = await _httpClient.GetStringAsync
-                    ("https://localhost:7124/api/Usuario/ObterUsuarios");
+            ("https://localhost:7124/api/Usuario/ObterUsuarios");
         var usuarios = JsonConvert.DeserializeObject<List<UsuarioModel>>(response);
         return View("GerenciamentoPerfis", usuarios);
     }
@@ -43,7 +43,7 @@ public class UsuarioController : Controller
         {
             return RedirectToAction("MenuPrincipal");
         }
-        return View("AdicionarUsuario",usuarioModel);
+        return View("AdicionarUsuario", usuarioModel);
     }
 
     public async Task<IActionResult> ObterEndereco(string cep)
