@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("GestaoDePedidos","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -54,7 +54,7 @@
         <label for="filterColumn" class="filter-label">Filtro:</label>
         <select id="filterColumn" class="filter-select">
             <option value="id">ID</option>
-            <option value="nome">Nome Completo</option>
+            <option value="nome">Nome</option>
             <option value="email">E-mail</option>
             <option value="funcao">Função</option>
             <option value="data">Data de Criação</option>
@@ -65,7 +65,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome Completo</th>
+                <th>Nome</th>
                 <th>E-mail</th>
                 <th>Função</th>
                 <th>Data da Criação</th>
@@ -76,7 +76,7 @@
             @foreach (var usuario in Model)
             {
                 <tr>
-                    <td>@usuario.NomeCompleto</td>
+                    <td>@usuario.Nome</td>
                     <td>@usuario.Email</td>
                     <td>@usuario.Senha</td>
                     <td>@usuario.Funcao</td>

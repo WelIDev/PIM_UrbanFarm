@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/menuprincipal.css" asp-append-version="true">
-    <title>@ViewData["Menu Principal"]</title>
+    <title>@ViewData["UF - Menu Principal"]</title>
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
@@ -29,7 +29,7 @@
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
         <li><a href="@Url.Action("GestaoDePedidos","Pedido")">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
-        <li><a href="@Url.Action("GerenciamentoPerfis","Usuario")">Gerenciamento de Perfis</a></li>
+        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
 </div>
 
@@ -75,7 +75,7 @@
         </a>
 
         <!-- Quarta Caixa -->
-        <a href="@Url.Action("GerenciamentoPerfis","Usuario")" class="box">
+        <a href="@Url.Action("AdicionarUsuario","Usuario")" class="box">
             <div class="box-content">
                 <div class="image">
                     <img src="~/imagens/usuario.png" alt="Imagem de Gerenciamento de Perfis">
@@ -88,5 +88,6 @@
         </a>
     </div>
 </div>
+
 <script src="~/js/menuprincipal.js"></script>
 
