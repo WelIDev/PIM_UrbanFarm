@@ -10,7 +10,7 @@ public class ProdutoConfiguracao : IEntityTypeConfiguration<Produto>
     {
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Nome).IsRequired().HasMaxLength(100);
-        builder.Property(p => p.Preco);
+        builder.Property(p => p.Preco).HasColumnType("decimal(10, 2)");
         builder.Property(p => p.Estoque);
         builder.Property(p => p.Descricao).HasMaxLength(255);
 

@@ -1,0 +1,49 @@
+﻿<Page x:Class="DesktopApp.Views.Dashboards.ProdutosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      Title="Dashboard de Produtos">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Produtos Mais Vendidos -->
+        <Border Grid.Column="0" Grid.Row="0" Background="#a9a9a9" Margin="10" Padding="15" 
+        CornerRadius="8" HorizontalAlignment="Left" MinWidth="300">
+            <StackPanel>
+                <TextBlock Text="Produtos Mais Vendidos" FontSize="16" FontWeight="Bold" Foreground="#333" />
+                <ItemsControl x:Name="ProdutosMaisVendidos" />
+            </StackPanel>
+        </Border>
+
+        <!-- Produtos Novos -->
+        <Border Grid.Column="1" Grid.Row="0" Background="#a9a9a9" Margin="10" Padding="15" CornerRadius="8">
+            <StackPanel>
+                <TextBlock Text="Lançamentos Recentes" FontSize="16" FontWeight="Bold" Foreground="#333" />
+                <ItemsControl x:Name="LancamentosRecentes" />
+            </StackPanel>
+        </Border>
+
+        <!-- Nível de Estoque -->
+        <Border Grid.Column="0" Grid.Row="0" Background="#a9a9a9" Margin="10" Padding="15" 
+        CornerRadius="8" HorizontalAlignment="Right" MinWidth="300">
+            <StackPanel>
+                <TextBlock Text="Nível de Estoque" FontSize="16" FontWeight="Bold" Foreground="#333" />
+                <ItemsControl x:Name="NiveisEstoque" />
+            </StackPanel>
+        </Border>
+
+        <!-- Gráfico de Vendas por Produto -->
+        <oxy:PlotView Grid.Column="0" Grid.Row="1" x:Name="GraficoMargemLucro" Height="400" Margin="10" />
+
+        <!-- Gráfico de Evolução de Vendas -->
+        <oxy:PlotView Grid.Column="1" Grid.Row="1" x:Name="GraficoEvolucaoVendas" Height="400" Margin="10" />
+    </Grid>
+</Page>

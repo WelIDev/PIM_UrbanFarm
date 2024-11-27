@@ -68,6 +68,7 @@ builder.Services.AddScoped<IComissaoRepositorio, ComissaoRepositorio>();
 builder.Services.AddScoped<IVendedorRepositorio, VendedorRepositorio>();
 builder.Services.AddScoped<IVendaRepositorio, VendaRepositorio>();
 builder.Services.AddScoped<IHistoricoCompraRepositorio, HistoricoCompraRepositorio>();
+builder.Services.AddScoped<IAbastecimentoEstoqueRepositorio, AbastecimentoEstoqueRepositorio>();
 
 // Servicos
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
@@ -85,6 +86,7 @@ builder.Services.AddScoped<IVendedorServico, VendedorServico>();
 builder.Services.AddScoped<IVendaServico, VendaServico>();
 builder.Services.AddScoped<IHistoricoCompraServico, HistoricoCompraServico>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAbastecimentoEstoqueServico, AbastecimentoEstoqueServico>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

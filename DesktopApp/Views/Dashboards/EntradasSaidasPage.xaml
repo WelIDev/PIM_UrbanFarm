@@ -1,0 +1,54 @@
+﻿<Page x:Class="DesktopApp.Views.Dashboards.EntradasSaidasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      Title="Dashboard de Entradas e Saídas Monetárias">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Visão Geral -->
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="Visão Geral" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+            <Border Background="#a9a9a9" Padding="10" CornerRadius="8" Margin="5">
+                <StackPanel>
+                    <TextBlock x:Name="TotalEntradas" Text="Total de Entradas: R$ 0,00" FontSize="16" FontWeight="Bold" Foreground="#333" Margin="0,0,0,5" />
+                    <TextBlock x:Name="TotalSaidas" Text="Total de Saídas: R$ 0,00" FontSize="16" FontWeight="Bold" Foreground="#333" Margin="0,0,0,5" />
+                    <TextBlock x:Name="Balanco" Text="Balanço: R$ 0,00" FontSize="16" FontWeight="Bold" Foreground="#333" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!-- Detalhes de Entradas e Saídas -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Detalhes de Entradas -->
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Detalhes Abastecimentos" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+                <Border Background="#a9a9a9" Padding="10" CornerRadius="8" Margin="0,0,0,10">
+                    <ItemsControl x:Name="DetalhesEntradas" />
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <!-- Análise Gráfica -->
+        <StackPanel Grid.Row="2" Margin="5">
+            <TextBlock Text="Análise Gráfica" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+            <Border Background="#a9a9a9" Padding="10" CornerRadius="8" Margin="0,0,0,10">
+                <oxy:PlotView x:Name="GraficoEntradasSaidas" Height="300" />
+            </Border>
+            <!-- Botão para Exportar Relatório -->
+            <Button Content="Exportar" HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,10,5,0" Style="{StaticResource MostrarVendasButtonStyle}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</Page>

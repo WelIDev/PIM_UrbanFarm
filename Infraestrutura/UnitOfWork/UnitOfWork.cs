@@ -17,6 +17,9 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public IVendaRepositorio VendaRepositorio => new VendaRepositorio(_context);
+
+    public IAbastecimentoEstoqueRepositorio AbastecimentoEstoqueRepositorio =>
+        new AbastecimentoEstoqueRepositorio(_context);
     
     public async Task<IDbContextTransaction> BeginTransactionAsync()
     {

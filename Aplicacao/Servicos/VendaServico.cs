@@ -1,5 +1,6 @@
 ﻿using Aplicacao.DTOs;
 using Aplicacao.Interfaces;
+using Dominio.Dtos;
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
 
@@ -65,55 +66,6 @@ public class VendaServico : IVendaServico
             return false;
         }
     }
-
-
-/*public bool InserirVenda(VendaDto vendaDto)
-{
-    ArgumentNullException.ThrowIfNull(vendaDto);
-    try
-    {
-        var idsProdutos = vendaDto.VendaProdutos.Select(vp => vp.IdProduto).ToList();
-        var produtos = _produtoRepositorio.ObterProdutosPorId(idsProdutos);
-
-        var produtosDictionary = produtos.ToDictionary(p => p.Id);
-
-        var vendaProdutos = vendaDto.VendaProdutos.Select(vp =>
-        {
-            var produto = produtosDictionary.ContainsKey(vp.IdProduto) ? produtosDictionary[vp.IdProduto] : null;
-
-            if (produto == null)
-            {
-                throw new Exception($"Produto com ID {vp.IdProduto} não encontrado.");
-            }
-
-            return new VendaProduto
-            {
-                IdProduto = vp.IdProduto,
-                Produto = produto,
-                Quantidade = vp.Quantidade,
-                ValorTotal = produto.Preco * vp.Quantidade
-            };
-        }).ToList();
-
-        var venda = new Venda
-        {
-            VendedorId = vendaDto.VendedorId,
-            HistoricoCompraId = vendaDto.HistoricoCompraId,
-            FormaDePagamento = vendaDto.FormaDePagamento,
-            VendaProdutos = vendaProdutos
-        };
-
-        _vendaRepositorio.InserirVenda(venda);
-        return true;
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine("Ocorreu um erro ao tentar inserir: " + e.Message);
-        return false;
-    }
-}
-*/
-
     public VendaDto ObterPorId(int id)
     {
         var venda = _vendaRepositorio.ObterPorId(id);
@@ -170,5 +122,10 @@ public class VendaServico : IVendaServico
             Console.WriteLine("Ocorreu um erro ao tentar excluir: " + e.Message);
             return false;
         }
+    }
+
+    public async Task<List<VendaMensalDto>> ObterVendasMensaisAsync()
+    {
+        return await _vendaRepositorio.ObterVendasMensaisAsync();
     }
 }

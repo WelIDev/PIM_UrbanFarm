@@ -1,5 +1,6 @@
 ﻿using Aplicacao.DTOs;
 using Aplicacao.Interfaces;
+using Dominio.Dtos;
 using Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +18,9 @@ public class VendedorController : Controller
     }
 
     [HttpPost]
-    public ActionResult InserirVendedor(VendedorDto vendedorDto)
+    public ActionResult InserirVendedor(VendedorInserirDto vendedorDto)
     {
-        var vendedor = new Vendedor
+        var vendedor = new VendedorInserirDto
         {
             Nome = vendedorDto.Nome,
             Salario = vendedorDto.Salario,
@@ -39,7 +40,7 @@ public class VendedorController : Controller
         {
             if (_vendedorServico.InserirVendedor(vendedor))
             {
-                return Ok("Vendedor incluído com sucesso! Id: " + vendedor.Id);
+                return Ok("Vendedor incluído com sucesso!");
             }
 
             return BadRequest("Não foi possível incluir");
@@ -91,6 +92,22 @@ public class VendedorController : Controller
         catch (Exception)
         {
             return StatusCode(500, "Ocorreu um erro ao tentar obter todos vendedores.");
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterVendedoresComVendas([FromQuery] DateTime dataInicio, 
+        DateTime dataFim)
+    {
+        try
+        {
+            var vendedores =
+                await _vendedorServico.ObterVendedoresComVendasAsync(dataInicio, dataFim);
+            return Ok(vendedores);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, $"Erro interno: {e.Message}");
         }
     }
 

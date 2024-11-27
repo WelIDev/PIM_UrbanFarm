@@ -1,4 +1,6 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
+using Dominio.Dtos;
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
 
@@ -75,6 +77,7 @@ public class ProdutoServico : IProdutoServico
             {
                 _produtoRepositorio.ExcluirProduto(produto);
             }
+
             return true;
         }
         catch (Exception e)
@@ -103,5 +106,51 @@ public class ProdutoServico : IProdutoServico
             Console.WriteLine("Ocorreu um erro ao tentar alterar : " + e.Message);
             return false;
         }
+    }
+
+    public async Task<List<ProdutosMaisVendidosDto>> ObterProdutosMaisVendidosAsync()
+    {
+        return await _produtoRepositorio.ObterProdutosMaisVendidosAsync();
+    }
+
+    public async Task<List<ProdutoVendasDto>> ObterVendasPorProdutoAsync()
+    {
+        return await _produtoRepositorio.ObterVendasPorProdutoAsync();
+    }
+
+    public async Task<List<ProdutoEstoqueDto>> ObterNiveisEstoqueAsync()
+    {
+        return await _produtoRepositorio.ObterNiveisEstoqueAsync();
+    }
+
+    public async Task<List<ProdutoDto>> ObterUltimosProdutosAsync()
+    {
+        return await _produtoRepositorio.ObterUltimosProdutosAsync();
+    }
+
+    public async Task<List<ProdutoVendaCustoDto>> ObterMargemLucroProdutosAsync()
+    {
+        var produtos = await _produtoRepositorio.ObterVendasCustosProdutosAsync();
+        foreach (var produto in produtos)
+        {
+            produto.MargemLucro = produto.TotalVendas - produto.TotalCusto;
+        }
+
+        return produtos.OrderByDescending(p => p.MargemLucro).ToList();
+    }
+
+    public async Task<ResumoFinanceiroDto> ObterResumoFinanceiroAsync()
+    {
+        return await _produtoRepositorio.ObterResumoFinanceiroAsync();
+    }
+
+    public async Task<List<TransacaoDto>> ObterDetalhesEntradasAsync()
+    {
+        return await _produtoRepositorio.ObterDetalhesEntradasAsync();
+    }
+
+    public async Task<List<MovimentacaoMonetariaDto>> ObterMovimentacoesMonetariasAsync()
+    {
+        return await _produtoRepositorio.ObterMovimentacoesMonetariasAsync();
     }
 }

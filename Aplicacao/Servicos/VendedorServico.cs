@@ -1,4 +1,6 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
+using Dominio.Dtos;
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
 
@@ -13,9 +15,19 @@ public class VendedorServico : IVendedorServico
         _vendedorRepositorio = vendedorRepositorio;
     }
 
-    public bool InserirVendedor(Vendedor vendedor)
+    public bool InserirVendedor(VendedorInserirDto vendedorInserirDto)
     {
-        ArgumentNullException.ThrowIfNull(vendedor);
+        ArgumentNullException.ThrowIfNull(vendedorInserirDto);
+
+        var vendedor = new Vendedor
+        {
+            Nome = vendedorInserirDto.Nome,
+            Salario = vendedorInserirDto.Salario,
+            CpfCnpj = vendedorInserirDto.CpfCnpj,
+            Telefone = vendedorInserirDto.Telefone,
+            DataContratacao = vendedorInserirDto.DataContratacao,
+            Endereco = vendedorInserirDto.Endereco
+        };
         try
         {
             _vendedorRepositorio.InserirVendedor(vendedor);
@@ -53,6 +65,11 @@ public class VendedorServico : IVendedorServico
         }
 
         return vendedores;
+    }
+
+    public async Task<List<VendedorDto>> ObterVendedoresComVendasAsync(DateTime dataInicio, DateTime dataFim)
+    {
+        return await _vendedorRepositorio.ObterVendedoresComVendasAsync(dataInicio, dataFim);
     }
 
     public bool AlterarVendedor(Vendedor vendedor)

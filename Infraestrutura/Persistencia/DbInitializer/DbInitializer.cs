@@ -316,12 +316,12 @@ public class DbInitializer
             context.AbastecimentosEstoque.AddRange(
                 new AbastecimentoEstoque
                 {
-                    ProdutoId = 1, Quantidade = 100, FornecedorId = 1,
+                    FornecedorId = 1,
                     UsuarioId = 1, Observacoes = "Abastecimento de alface orgânica"
                 },
                 new AbastecimentoEstoque
                 {
-                    ProdutoId = 2, Quantidade = 200, FornecedorId = 2,
+                    FornecedorId = 2,
                     UsuarioId = 1, Observacoes = "Tomates cereja frescos"
                 }
             );

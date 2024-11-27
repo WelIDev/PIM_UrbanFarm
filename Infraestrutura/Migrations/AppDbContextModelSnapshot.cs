@@ -42,20 +42,12 @@ namespace Infraestrutura.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FornecedorId");
-
-                    b.HasIndex("ProdutoId");
 
                     b.HasIndex("UsuarioId");
 
@@ -234,6 +226,35 @@ namespace Infraestrutura.Migrations
                     b.ToTable("HistoricoCompras");
                 });
 
+            modelBuilder.Entity("Dominio.Entidades.ItemAbastecimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AbastecimentoEstoqueId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Custo")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbastecimentoEstoqueId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ItensAbastecimento");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Meta", b =>
                 {
                     b.Property<int>("Id")
@@ -289,8 +310,8 @@ namespace Infraestrutura.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("Id");
 
@@ -378,8 +399,8 @@ namespace Infraestrutura.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<double>("ValorTotal")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("IdVenda", "IdProduto");
 
@@ -451,12 +472,6 @@ namespace Infraestrutura.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Dominio.Entidades.Produto", "Produto")
-                        .WithMany("AbastecimentosEstoque")
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Dominio.Entidades.Usuario", "Usuario")
                         .WithMany("AbastecimentosEstoque")
                         .HasForeignKey("UsuarioId")
@@ -464,8 +479,6 @@ namespace Infraestrutura.Migrations
                         .IsRequired();
 
                     b.Navigation("Fornecedor");
-
-                    b.Navigation("Produto");
 
                     b.Navigation("Usuario");
                 });
@@ -512,6 +525,25 @@ namespace Infraestrutura.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Dominio.Entidades.ItemAbastecimento", b =>
+                {
+                    b.HasOne("Dominio.Entidades.AbastecimentoEstoque", "AbastecimentoEstoque")
+                        .WithMany("ItensAbastecimento")
+                        .HasForeignKey("AbastecimentoEstoqueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Dominio.Entidades.Produto", "Produto")
+                        .WithMany("ItensAbastecimento")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AbastecimentoEstoque");
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Meta", b =>
@@ -589,6 +621,11 @@ namespace Infraestrutura.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Dominio.Entidades.AbastecimentoEstoque", b =>
+                {
+                    b.Navigation("ItensAbastecimento");
+                });
+
             modelBuilder.Entity("Dominio.Entidades.Cliente", b =>
                 {
                     b.Navigation("HistoricoCompra")
@@ -612,7 +649,7 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio.Entidades.Produto", b =>
                 {
-                    b.Navigation("AbastecimentosEstoque");
+                    b.Navigation("ItensAbastecimento");
 
                     b.Navigation("VendaProdutos");
                 });

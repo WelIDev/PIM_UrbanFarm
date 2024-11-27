@@ -83,6 +83,62 @@ public class ProdutoController : Controller
         }
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ObterProdutosMaisVendidos()
+    {
+        var produtos = await _produtoServico.ObterProdutosMaisVendidosAsync();
+        return Ok(produtos);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterVendasPorProduto()
+    {
+        var produtos = await _produtoServico.ObterVendasPorProdutoAsync();
+        return Ok(produtos);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterNiveisEstoque()
+    {
+        var niveisEstoque = await _produtoServico.ObterNiveisEstoqueAsync();
+        return Ok(niveisEstoque);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterUltimosProdutos()
+    {
+        var produtosRecentes = await _produtoServico.ObterUltimosProdutosAsync();
+        return Ok(produtosRecentes);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterMargemLucroProdutos()
+    {
+        var produtosLucro = await _produtoServico.ObterMargemLucroProdutosAsync();
+        return Ok(produtosLucro);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterResumoFinanceiro()
+    {
+        var resumoFinanceiro = await _produtoServico.ObterResumoFinanceiroAsync();
+        return Ok(resumoFinanceiro);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterDetalhesEntradas()
+    {
+        var detalhesEntradas = await _produtoServico.ObterDetalhesEntradasAsync();
+        return Ok(detalhesEntradas);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterMovimentacoesMonetarias()
+    {
+        var movimentacoes = await _produtoServico.ObterMovimentacoesMonetariasAsync();
+        return Ok(movimentacoes);
+    }
+
     [HttpPut]
     public ActionResult AlterarProduto(Produto produto)
     {
@@ -95,7 +151,7 @@ public class ProdutoController : Controller
 
             return BadRequest("Não foi possível alterar o produto");
         }
-        catch(ArgumentException e)
+        catch (ArgumentException e)
         {
             return BadRequest(e.Message);
         }

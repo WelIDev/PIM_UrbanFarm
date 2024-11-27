@@ -24,7 +24,9 @@ public class VendaController : Controller
         }
 
         var sucesso = await _vendaServico.InserirVenda(vendaDto);
-        return sucesso ? Ok("Venda inserida com sucesso.") : StatusCode(500, "Ocorreu um erro ao tentar inserir.");
+        return sucesso
+            ? Ok("Venda inserida com sucesso.")
+            : StatusCode(500, "Ocorreu um erro ao tentar inserir.");
     }
 
     [HttpGet]
@@ -53,6 +55,13 @@ public class VendaController : Controller
         {
             return StatusCode(500, $"Ocorreu um erro ao tentar obter as vendas. {e.Message}");
         }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterVendasMensais()
+    {
+        var vendas = await _vendaServico.ObterVendasMensaisAsync();
+        return Ok(vendas);
     }
 
     [HttpDelete]

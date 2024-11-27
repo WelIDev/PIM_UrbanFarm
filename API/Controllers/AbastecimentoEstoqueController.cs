@@ -17,16 +17,24 @@ public class AbastecimentoEstoqueController : Controller
     }
 
     [HttpPost]
-    public ActionResult InserirAbastecimentoEstoque(AbastecimentoEstoque abastecimentoEstoque)
+    public async Task<ActionResult> InserirAbastecimentoEstoque(
+        AbastecimentoEstoqueDto abastecimentoEstoque)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-
-        return _abastecimentoEstoqueServico.InserirAbastecimentoEstoque(abastecimentoEstoque)
-            ? Ok("Abastecimento inserido com sucesso.")
-            : StatusCode(500, "Ocorreu um erro ao tentar inserir.");
+        try
+        {
+            var result =
+                await _abastecimentoEstoqueServico
+                    .InserirAbastecimentoEstoque(abastecimentoEstoque);
+            return result ? Ok("Abastecimento cadastrado com sucesso.") : StatusCode(500, "Erro ao cadastrar abastecimento.");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, $"Erro interno: {e.Message}");
+        }
     }
 
     [HttpGet]

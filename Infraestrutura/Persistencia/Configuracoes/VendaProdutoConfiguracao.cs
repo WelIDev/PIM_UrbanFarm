@@ -22,7 +22,7 @@ namespace Infraestrutura.Persistencia.Configuracoes
 
             builder.Property(vp => vp.Quantidade)
                 .IsRequired();
-            builder.Property(vp => vp.ValorTotal);
+            builder.Property(vp => vp.ValorTotal).HasColumnType("decimal(10, 2)");
         }
     }
 }

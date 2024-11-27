@@ -9,15 +9,40 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Page Update="Main\LoginWindow.xaml">
+      <Page Update="Cadastros\AbastecimentoPage.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Views\Cadastros\AbastecimentoPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Cadastros\CadastroProdutoPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Cadastros\CadastroFornecedorPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Dashboards\VendasPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Dashboards\ProdutosPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Dashboards\EntradasSaidasPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Main\LoginWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Views\Main\MenuWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="imagens\" />
+      <Folder Include="Views\" />
     </ItemGroup>
 
     <ItemGroup>

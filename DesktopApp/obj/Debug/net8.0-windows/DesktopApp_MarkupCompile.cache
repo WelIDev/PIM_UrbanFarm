@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\welli\RiderProjects\PIM_UrbanFarm\DesktopApp\App.xaml
-52100437525
+857301696
 
-8-388963048
+2667091873
 2011573232803
-Dashboards\EntradasSaidasPage.xaml;Dashboards\ProdutosPage.xaml;Dashboards\VendasPage.xaml;Main\LoginWindow.xaml;Main\MenuWindow.xaml;
+Views\Cadastros\AbastecimentoPage.xaml;Views\Cadastros\CadastroFornecedorPage.xaml;Views\Cadastros\CadastroProdutoPage.xaml;Views\Dashboards\EntradasSaidasPage.xaml;Views\Dashboards\ProdutosPage.xaml;Views\Dashboards\VendasPage.xaml;Views\Main\LoginWindow.xaml;Views\Main\MenuWindow.xaml;
 
 False
 

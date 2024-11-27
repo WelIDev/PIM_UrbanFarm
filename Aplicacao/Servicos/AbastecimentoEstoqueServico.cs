@@ -1,4 +1,5 @@
-﻿using Aplicacao.Interfaces;
+﻿using Aplicacao.DTOs;
+using Aplicacao.Interfaces;
 using Dominio.Entidades;
 using Dominio.Interfaces.Repositorios;
 
@@ -7,25 +8,67 @@ namespace Aplicacao.Servicos;
 public class AbastecimentoEstoqueServico : IAbastecimentoEstoqueServico
 {
     private readonly IAbastecimentoEstoqueRepositorio _abastecimentoEstoqueRepositorio;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IProdutoRepositorio _produtoRepositorio;
 
-    public AbastecimentoEstoqueServico(IAbastecimentoEstoqueRepositorio abastecimentoEstoqueRepositorio)
+    public AbastecimentoEstoqueServico(
+        IAbastecimentoEstoqueRepositorio abastecimentoEstoqueRepositorio, IUnitOfWork unitOfWork,
+        IProdutoRepositorio produtoRepositorio)
     {
         _abastecimentoEstoqueRepositorio = abastecimentoEstoqueRepositorio;
+        _unitOfWork = unitOfWork;
+        _produtoRepositorio = produtoRepositorio;
     }
 
-    public bool InserirAbastecimentoEstoque(AbastecimentoEstoque abastecimentoEstoque)
+    public async Task<bool> InserirAbastecimentoEstoque(
+        AbastecimentoEstoqueDto abastecimentoEstoqueDto)
     {
-        ArgumentNullException.ThrowIfNull(abastecimentoEstoque);
+        ArgumentNullException.ThrowIfNull(abastecimentoEstoqueDto);
+
+        using var transaction = await _unitOfWork.BeginTransactionAsync();
 
         try
         {
-            _abastecimentoEstoqueRepositorio.AlterarAbastecimentoEstoque(abastecimentoEstoque);
+            var abastecimentoEstoque = new AbastecimentoEstoque
+            {
+                FornecedorId = abastecimentoEstoqueDto.FornecedorId,
+                UsuarioId = abastecimentoEstoqueDto.UsuarioId,
+                Observacoes = abastecimentoEstoqueDto.Observacoes
+            };
+
+            _abastecimentoEstoqueRepositorio.InserirAbastecimentoEstoque
+                (abastecimentoEstoque);
+            await _unitOfWork.SaveChangesAsync();
+
+            foreach (var produtoDto in abastecimentoEstoqueDto.Produtos)
+            {
+                var produto = _produtoRepositorio.ObterPorId(produtoDto.ProdutoId);
+                if (produto == null)
+                {
+                    throw new Exception("Produto não encontrado");
+                }
+
+                produto.Estoque += produtoDto.Quantidade;
+                _produtoRepositorio.AlterarProduto(produto);
+
+                var itemAbastecimento = new ItemAbastecimento
+                {
+                    AbastecimentoEstoqueId = abastecimentoEstoque.Id,
+                    ProdutoId = produtoDto.ProdutoId,
+                    Quantidade = produtoDto.Quantidade,
+                    Custo = produtoDto.Custo
+                };
+                abastecimentoEstoque.ItensAbastecimento.Add(itemAbastecimento);
+            }
+
+            await _unitOfWork.SaveChangesAsync();
+            await transaction.CommitAsync();
             return true;
         }
         catch (Exception e)
         {
-            Console.WriteLine("Ocorreu um erro ao tentar inserir: " + e.Message);
-            return false;
+            await transaction.RollbackAsync();
+            throw;
         }
     }
 
@@ -59,7 +102,7 @@ public class AbastecimentoEstoqueServico : IAbastecimentoEstoqueServico
     public bool AlterarAbastecimentoEstoque(AbastecimentoEstoque abastecimentoEstoque)
     {
         ArgumentNullException.ThrowIfNull(abastecimentoEstoque);
-        
+
         try
         {
             _abastecimentoEstoqueRepositorio.AlterarAbastecimentoEstoque(abastecimentoEstoque);

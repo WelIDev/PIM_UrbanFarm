@@ -13,6 +13,6 @@ public class Produto
     [JsonIgnore]
     public IList<VendaProduto> VendaProdutos { get; set; } = new List<VendaProduto>();
 
-    public IList<AbastecimentoEstoque> AbastecimentosEstoque { get; set; } =
-        new List<AbastecimentoEstoque>();
+    public IList<ItemAbastecimento> ItensAbastecimento { get; set; } =
+        new List<ItemAbastecimento>();
 }
