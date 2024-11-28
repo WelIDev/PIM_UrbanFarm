@@ -168,38 +168,6 @@
     margin-left: 0; /* Valor inicial */
 }
 
-/* Estilo da tabela de clientes */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: white;
-}
-
-th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-td {
-    vertical-align: middle;
-}
-
-    /* Ajuste das colunas da tabela */
-    th.col-esquerda, td.col-esquerda {
-        text-align: left;
-    }
-
-    th.col-direita, td.col-direita {
-        text-align: right;
-    }
-
 /* Botões de ação */
 button.editar {
     background-color: #ff9800;
@@ -231,39 +199,49 @@ button.excluir {
         background-color: #da190b;
     }
 
-/* Botão de submissão */
-form button {
-    padding: 8px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: #4CAF50;
+/* Botão de submit */
+button.submit-button {
+    background-color: #4CAF50; /* Verde */
     color: white;
+    border: none;
+    padding: 5px 12px;
     cursor: pointer;
+    border-radius: 5px;
     font-size: 16px;
-    transition: background-color 0.3s;
-    width: 200px;
-    margin-top: 32px;
-    margin-right: 280px;
+    width: 100%; /* Mesmo tamanho dos inputs */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
 }
 
-    form button:hover {
-        background-color: #45a049;
+    button.submit-button:hover {
+        background-color: #45a049; /* Verde escuro */
+        transform: translateY(-2px); /* Efeito de "elevação" no hover */
     }
 
-/* Estilo do botão de editar pedido */
-button.edit-button {
-    background-color: #ff9800; /* Cor laranja para edição */
+/* Botão de cancel */
+button.cancel-button {
+    background-color: #cccccc; /* Cinza claro */
+    color: #333; /* Texto cinza escuro */
+    border: none;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Mesmo tamanho dos inputs */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
 }
 
-    button.edit-button:hover {
-        background-color: #df8602; /* Cor laranja para edição */
+    button.cancel-button:hover {
+        background-color: #a6a6a6; /* Cinza escuro */
+        transform: translateY(-2px); /* Efeito de "elevação" no hover */
     }
 
 /* Estilo geral do formulário */
 form {
     display: flex;
     flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
-    gap: 20px; /* Espaço entre os itens do formulário */
+    gap: 30px; /* Espaço entre os itens do formulário */
     max-width: 1000px; /* Ajuste o tamanho conforme necessário */
     margin: 0px auto;
     padding: 20px;
@@ -271,7 +249,6 @@ form {
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
 }
 
 /* Seções do formulário */
@@ -285,7 +262,7 @@ form {
 .esquerda, .direita {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Espaço entre os itens dentro da seção */
+    gap: 10px; /* Espaço entre os itens dentro da seção */
 }
 
 /* Alinhamento dos labels e inputs */
@@ -293,94 +270,12 @@ form label {
     font-weight: bold;
     display: flex;
     align-items: center;
+    gap: 5px; /* Espaço entre o texto e o campo */
 }
 
 form input {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
-}
-
-select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 102.5%;
-    background-color: #fff;
-    font-size: 16px;
-}
-
-/* Estilo das notificações */
-.notification {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    color: white;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-    .notification.visible {
-        display: block;
-        opacity: 1;
-    }
-
-    .notification.hidden {
-        display: none;
-        opacity: 0;
-    }
-
-#successNotification {
-    background-color: #4CAF50;
-}
-
-#editNotification {
-    background-color: #ff9800;
-}
-
-#deleteNotification {
-    background-color: #f44336;
-}
-
-/* Estilo do contêiner de busca e filtro */
-.search-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    color: white;
-}
-
-/* Estilo do rótulo da busca */
-.search-label {
-    font-weight: bold;
-    margin-right: 5px;
-    color: white;
-}
-
-/* Estilo do campo de busca */
-.search-input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    flex: 1;
-    max-width: 300px; /* Limitar a largura máxima */
-}
-
-/* Estilo do rótulo do filtro */
-.filter-label {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-/* Estilo do seletor de filtro */
-.filter-select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    max-width: 200px; /* Limitar a largura máxima */
+    width: 100%; /* Faz com que os inputs ocupem a largura disponível da seção */
 }

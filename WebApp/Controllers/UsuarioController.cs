@@ -45,12 +45,4 @@ public class UsuarioController : Controller
         }
         return View("AdicionarUsuario", usuarioModel);
     }
-
-    public async Task<IActionResult> ObterEndereco(string cep)
-    {
-        var endereco = await _httpClient.GetStringAsync($"https://localhost:7124/api/Cep/ConsultarCep/?cep={cep}");
-        var resultado = JsonConvert.DeserializeObject<EnderecoModel>(endereco);
-
-        return Json(resultado);
-    }
 }

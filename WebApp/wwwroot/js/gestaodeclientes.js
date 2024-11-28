@@ -2,9 +2,6 @@
 const clienteTableBody = document.querySelector('#clienteTable tbody');
 const searchInput = document.getElementById('searchInput');
 const filterColumn = document.getElementById('filterColumn');
-const successNotification = document.getElementById('successNotification');
-const editNotification = document.getElementById('editNotification');
-const deleteNotification = document.getElementById('deleteNotification');
 const dataNascimentoInput = document.getElementById('dataNascimento');
 const submitButton = document.getElementById('submitButton');
 let editingRow = null;
@@ -17,39 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
     showTab('adicionar');
 });
 
-// Função para mostrar a notificação de sucesso
-function showNotification(type) {
-    let notification;
-    switch (type) {
-        case 'success':
-            notification = successNotification;
-            break;
-        case 'edit':
-            notification = editNotification;
-            break;
-        case 'delete':
-            notification = deleteNotification;
-            break;
-        default:
-            return;
-    }
-    notification.classList.remove('hidden');
-    notification.classList.add('visible');
-
-    setTimeout(function () {
-        notification.classList.remove('visible');
-        notification.classList.add('hidden');
-    }, 3000);
-}
-
 // Função para adicionar um novo cliente na tabela
 clienteForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nomeCompleto = document.getElementById('nomeCompleto').value;
-    const email = document.getElementById('email').value;
-    const cpf = document.getElementById('cpf').value;
-    const telefone = document.getElementById('telefone').value;
+    const nomeCompleto = document.getElementById('Nome').value;
+    const email = document.getElementById('Email').value;
+    const cpf = document.getElementById('CpfCnpj').value;
+    const telefone = document.getElementById('Telefone').value;
     const dataNascimento = dataNascimentoInput.value;
     const rua = document.getElementById('rua').value;
     const cep = document.getElementById('cep').value;
@@ -58,17 +30,17 @@ clienteForm.addEventListener('submit', function (event) {
     const cidade = document.getElementById('cidade').value;
     const estado = document.getElementById('estado').value; // Agora é um select
 
-    if (!nomeCompleto || !email || !cpf || !telefone || !dataNascimento || !rua || !cep || !numero || !cidade || !estado) {
+    if (!Nome || !Email || !CpfCnpj || !Telefone || !dataNascimento || !rua || !cep || !numero || !cidade || !estado) {
         alert('Todos os campos obrigatórios devem ser preenchidos.');
         return;
     }
 
     if (editingRow) {
         editingRow.innerHTML =
-            `<td data-label="Nome Completo">${nomeCompleto}</td>
-            <td data-label="E-mail">${email}</td>
-            <td data-label="CPF">${cpf}</td>
-            <td data-label="Telefone">${telefone}</td>
+            `<td data-label="Nome Completo">${Nome}</td>
+            <td data-label="E-mail">${Email}</td>
+            <td data-label="CPF">${CpfCnpj}</td>
+            <td data-label="Telefone">${Telefone}</td>
             <td data-label="Data de Nascimento">${dataNascimento}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
@@ -90,10 +62,10 @@ clienteForm.addEventListener('submit', function (event) {
     } else {
         const newRow = document.createElement('tr');
         newRow.innerHTML =
-            `<td data-label="Nome Completo">${nomeCompleto}</td>
-            <td data-label="E-mail">${email}</td>
-            <td data-label="CPF">${cpf}</td>
-            <td data-label="Telefone">${telefone}</td>
+            `<td data-label="Nome Completo">${Nome}</td>
+            <td data-label="E-mail">${Email}</td>
+            <td data-label="CPF">${CpfCnpj}</td>
+            <td data-label="Telefone">${Telefone}</td>
             <td data-label="Data de Nascimento">${dataNascimento}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
@@ -117,10 +89,10 @@ function editarCliente(button) {
     const row = button.parentElement.parentElement;
     const cells = row.querySelectorAll('td');
 
-    document.getElementById('nomeCompleto').value = cells[0].textContent;
-    document.getElementById('email').value = cells[1].textContent;
-    document.getElementById('cpf').value = cells[2].textContent;
-    document.getElementById('telefone').value = cells[3].textContent;
+    document.getElementById('Nome').value = cells[0].textContent;
+    document.getElementById('Email').value = cells[1].textContent;
+    document.getElementById('CpfCnpj').value = cells[2].textContent;
+    document.getElementById('Telefone').value = cells[3].textContent;
     document.getElementById('dataNascimento').value = cells[4].textContent;
     document.getElementById('rua').value = cells[5].textContent;
     document.getElementById('cep').value = cells[6].textContent;
@@ -160,16 +132,16 @@ function pesquisarCliente() {
         let match = false;
 
         switch (selectedColumn) {
-            case 'nomeCompleto':
+            case 'Nome':
                 match = cells[0].textContent.toUpperCase().includes(filter);
                 break;
-            case 'email':
+            case 'Email':
                 match = cells[1].textContent.toUpperCase().includes(filter);
                 break;
-            case 'cpf':
+            case 'CpfCnpj':
                 match = cells[2].textContent.toUpperCase().includes(filter);
                 break;
-            case 'telefone':
+            case 'Telefone':
                 match = cells[3].textContent.toUpperCase().includes(filter);
                 break;
             case 'dataNascimento':
@@ -263,14 +235,3 @@ function allowOnlyLetters(event) {
     }
 }
 
-// Adicionar validação aos campos específicos
-document.getElementById('telefone').addEventListener('input', allowOnlyNumbers);
-document.getElementById('cpf').addEventListener('input', allowOnlyNumbers);
-document.getElementById('cep').addEventListener('input', allowOnlyNumbers);
-document.getElementById('numero').addEventListener('input', allowOnlyNumbers);
-
-document.getElementById('nomeCompleto').addEventListener('input', allowOnlyLetters);
-document.getElementById('rua').addEventListener('input', allowOnlyLetters);
-document.getElementById('bairro').addEventListener('input', allowOnlyLetters);
-document.getElementById('cidade').addEventListener('input', allowOnlyLetters);
-document.getElementById('estado').addEventListener('input', allowOnlyLetters);

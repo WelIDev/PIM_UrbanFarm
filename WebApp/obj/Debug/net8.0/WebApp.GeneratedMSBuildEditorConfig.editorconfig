@@ -9,63 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebApp
 build_property.RootNamespace = WebApp
-build_property.ProjectDir = C:\Users\alenc\OneDrive\Área de Trabalho\PIM26NOV\WebApp\
+build_property.ProjectDir = C:\Users\alenc\OneDrive\Imagens\PIMOFICIAL\WebApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\alenc\OneDrive\Área de Trabalho\PIM26NOV\WebApp
+build_property.MSBuildProjectDirectory = C:\Users\alenc\OneDrive\Imagens\PIMOFICIAL\WebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Cliente/AdicionarCliente.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Cliente/AdicionarCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxBZGljaW9uYXJDbGllbnRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Cliente/GestaoDeClientes.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Cliente/GestaoDeClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxHZXN0YW9EZUNsaWVudGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Configuracoes/configuracoes.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Configuracoes/configuracoes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhY29lc1xjb25maWd1cmFjb2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Configuracoes/contatos.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Configuracoes/contatos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhY29lc1xjb250YXRvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Configuracoes/sobre.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Configuracoes/sobre.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhY29lc1xzb2JyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Fornecedor/AdicionarFornecedor.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Fornecedor/AdicionarFornecedor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxBZGljaW9uYXJGb3JuZWNlZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Fornecedor/GestaoDeFornecedores.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Fornecedor/GestaoDeFornecedores.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxHZXN0YW9EZUZvcm5lY2Vkb3Jlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Login/Login.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Menu/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxJbmRleC5jc2h0bWw=
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Menu/MenuPrincipal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxNZW51UHJpbmNpcGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Menu/menuprincipal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudVxtZW51cHJpbmNpcGFsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Pedido/GestaoDePedidos.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Pedido/GestaoDePedidos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEdlc3Rhb0RlUGVkaWRvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Usuario/AdicionarUsuario.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Usuario/AdicionarUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xBZGljaW9uYXJVc3VhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/alenc/OneDrive/Área de Trabalho/PIM26NOV/WebApp/Views/Usuario/GerenciamentoPerfis.cshtml]
+[C:/Users/alenc/OneDrive/Imagens/PIMOFICIAL/WebApp/Views/Usuario/GerenciamentoPerfis.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xHZXJlbmNpYW1lbnRvUGVyZmlzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

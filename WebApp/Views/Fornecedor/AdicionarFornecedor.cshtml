@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action()">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -45,22 +45,23 @@
         </div>
 </div>
 
-<div id="adicionar" class="tab">
-    <form id="fornecedorForm" action="@Url.Action("AdicionarFornecedor", "Fornecedor")" method="post">
-        <div class="esquerda">
-            <label for="nomeCompleto">Nome Completo:</label>
-            <input type="text" id="nomeCompleto" name="Nome" required>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="Email" required>
-            <label for="cpf">CPF/CNPJ:</label>
-            <input type="text" id="cpf" name="CpfCnpj" required>
-            <label for="telefone">Número de Telefone:</label>
-            <input type="tel" id="telefone" name="Telefone" required>
-            <label for="dataNascimento">Data de Nascimento:</label>
-            <input type="date" id="dataNascimento" name="DataNascimento" required>
-            <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GestaoDeFornecedores", "Fornecedor")'">Adicionar Fornecedor</button>
-            <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Cancelar</button>
-        </div>
+<div class="main-content">
+    <div id="adicionar" class="tab">
+        <form id="fornecedorForm" action="@Url.Action("AdicionarFornecedor", "Fornecedor")" method="post">       
+            <div class="esquerda">
+                <label for="Nome">Nome Empresa:</label>
+                <input type="text" id="Nome" required>
+                <label for="Email">E-mail:</label>
+                <input type="email" id="Email" required>
+                <label for="Cnpj">CPNJ:</label>
+                <input type="text" id="Cnpj" required>
+                <label for="InscricaoEstadual">Inscrição Estadual:</label>
+                <input type="text" id="InscricaoEstadual" required>
+                <label for="Telefone">Número de Telefone:</label>
+                <input type="tel" id="Telefone" required>
+                <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GestaoDeFornecedores", "Fornecedor")'">Adicionar Fornecedor</button>
+                <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Cancelar</button>
+            </div>
             <div class="direita">
                 <label for="cep">CEP:</label>
                 <div style="display: flex; align-items: center;">
@@ -69,16 +70,16 @@
                         <i class="fas fa-search" style="font-size: 20px; color: #000;"></i>
                     </button>
                 </div>
-                <label for="rua">Rua:</label>
-                <input type="text" id="rua" name="Endereco.Rua" required>
-                <label for="numero">Número:</label>
-                <input type="number" id="numero" name="Endereco.Numero" required>
-                <label for="bairro">Bairro:</label>
-                <input type="text" id="bairro" name="Endereco.Bairro">
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="Endereco.Cidade" required>
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="Endereco.Estado" required>
+                <label for="Rua">Rua:</label>
+                <input type="text" id="Rua" name="Endereco.Rua" required>
+                <label for="Numero">Número:</label>
+                <input type="number" id="Numero" name="Endereco.Numero" required>
+                <label for="Bairro">Bairro:</label>
+                <input type="text" id="Bairro" name="Endereco.Bairro">
+                <label for="Cidade">Cidade:</label>
+                <input type="text" id="Cidade" name="Endereco.Cidade" required>
+                <label for="Estado">Estado:</label>
+                <input type="text" id="Estado" name="Endereco.Estado" required>
             </div>
     </form>
 </div>

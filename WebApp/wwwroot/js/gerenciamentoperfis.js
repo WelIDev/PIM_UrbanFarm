@@ -2,52 +2,25 @@
 const profileTableBody = document.querySelector('#profileTable tbody');
 const searchInput = document.getElementById('searchInput');
 const filterColumn = document.getElementById('filterColumn');
-const successNotification = document.getElementById('successNotification');
-const editNotification = document.getElementById('editNotification');
-const deleteNotification = document.getElementById('deleteNotification');
 const submitButton = document.getElementById('submitButton');
 let editingRow = null;
 
 // Exibe a aba de visualização por padrão
 showTab('adicionar');
 
-// Função para mostrar a notificação de sucesso
-function showNotification(type) {
-    let notification;
-    switch (type) {
-        case 'success':
-            notification = successNotification;
-            break;
-        case 'edit':
-            notification = editNotification;
-            break;
-        case 'delete':
-            notification = deleteNotification;
-            break;
-    }
-    notification.classList.remove('hidden');
-    notification.classList.add('visible');
-
-    // Esconde a notificação automaticamente após 3 segundos
-    setTimeout(function () {
-        notification.classList.remove('visible');
-        notification.classList.add('hidden');
-    }, 3000);
-}
-
 // Função para adicionar um novo perfil na tabela
 profileForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const id = '#' + gerarID(); // Adiciona o "#" antes do ID gerado
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    const funcao = document.getElementById('tipoPerfil').value;
+    const nome = document.getElementById('Nome').value;
+    const email = document.getElementById('Email').value;
+    const senha = document.getElementById('Senha').value;
+    const funcao = document.getElementById('Funcao').value;
     const dataCriacao = obterDataAtual();
 
     if (editingRow) {
-        editingRow.querySelector('td[data-label="nome completo"]').textContent = nome;
+        editingRow.querySelector('td[data-label="Nome"]').textContent = nome;
         editingRow.querySelector('td[data-label="E-mail"]').textContent = email;
         editingRow.querySelector('td[data-label="Função"]').textContent = funcao;
         editingRow.querySelector('td[data-label="Data"]').textContent = dataCriacao;
@@ -62,7 +35,7 @@ profileForm.addEventListener('submit', function (event) {
         newRow.setAttribute('data-senha', senha);
         newRow.innerHTML =
             `<td data-label="ID">${id}</td>
-            <td data-label="nome completo">${nome}</td>
+            <td data-label="Nome">${noome}</td>
             <td data-label="E-mail">${email}</td>
             <td data-label="Função">${funcao}</td>
             <td data-label="Data">${dataCriacao}</td>
@@ -83,9 +56,9 @@ function editarPerfil(button) {
     const row = button.parentElement.parentElement;
     const cells = row.querySelectorAll('td');
 
-    document.getElementById('nome').value = cells[0].textContent;
-    document.getElementById('email').value = cells[1].textContent;
-    document.getElementById('senha').value = row.getAttribute('data-senha'); // Recupera a senha
+    document.getElementById('Nome').value = cells[0].textContent;
+    document.getElementById('Email').value = cells[1].textContent;
+    document.getElementById('Senha').value = row.getAttribute('data-senha'); // Recupera a senha
 
     // Define a linha que está sendo editada
     editingRow = row;
@@ -115,16 +88,16 @@ function pesquisarPerfil() {
         let match = false;
 
         switch (selectedColumn) {
-            case 'id':
+            case 'Id':
                 match = cells[0].textContent.toUpperCase().indexOf(filter) > -1;
                 break;
-            case 'nome':
+            case 'Nome':
                 match = cells[1].textContent.toUpperCase().indexOf(filter) > -1;
                 break;
-            case 'email':
+            case 'Email':
                 match = cells[2].textContent.toUpperCase().indexOf(filter) > -1;
                 break;
-            case 'funcao':
+            case 'Funcao':
                 match = cells[3].textContent.toUpperCase().indexOf(filter) > -1;
                 break;
             case 'data':

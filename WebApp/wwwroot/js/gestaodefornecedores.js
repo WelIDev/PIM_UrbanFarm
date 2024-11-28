@@ -2,48 +2,20 @@
 const fornecedorTableBody = document.querySelector('#fornecedorTable tbody');
 const searchInput = document.getElementById('searchInput');
 const filterColumn = document.getElementById('filterColumn');
-const successNotification = document.getElementById('successNotification');
-const editNotification = document.getElementById('editNotification');
-const deleteNotification = document.getElementById('deleteNotification');
 const submitButton = document.getElementById('submitButton');
 let editingRow = null;
 
 showTab('adicionar');
 
-// Função para mostrar a notificação de sucesso
-function showNotification(type) {
-    let notification;
-    switch (type) {
-        case 'success':
-            notification = successNotification;
-            break;
-        case 'edit':
-            notification = editNotification;
-            break;
-        case 'delete':
-            notification = deleteNotification;
-            break;
-        default:
-            return;
-    }
-    notification.classList.remove('hidden');
-    notification.classList.add('visible');
-
-    setTimeout(function () {
-        notification.classList.remove('visible');
-        notification.classList.add('hidden');
-    }, 3000);
-}
-
 // Função para adicionar um novo fornecedor na tabela
 fornecedorForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const nomeEmpresa = document.getElementById('nomeEmpresa').value;
-    const email = document.getElementById('email').value;
-    const cnpj = document.getElementById('cnpj').value;
-    const inscricao = document.getElementById('inscricao').value;
-    const telefone = document.getElementById('telefone').value;
+    const nomeEmpresa = document.getElementById('Nome').value;
+    const email = document.getElementById('Email').value;
+    const cnpj = document.getElementById('Cnpj').value;
+    const inscricao = document.getElementById('InscricaoEstadual').value;
+    const telefone = document.getElementById('Telefone').value;
     const rua = document.getElementById('rua').value;
     const cep = document.getElementById('cep').value;
     const numero = document.getElementById('numero').value;
@@ -51,18 +23,18 @@ fornecedorForm.addEventListener('submit', function (event) {
     const cidade = document.getElementById('cidade').value;
     const estado = document.getElementById('estado').value;
 
-    if (!nomeEmpresa || !email || !cnpj || !inscricao || !telefone || !rua || !cep || !numero || !cidade || !estado) {
+    if (!Nome || !Email || !Cnpj || !Inscricao || !Telefone || !rua || !cep || !numero || !cidade || !estado) {
         alert('Todos os campos obrigatórios devem ser preenchidos.');
         return;
     }
 
     if (editingRow) {
         editingRow.innerHTML =
-            `<td data-label="Nome Empresa">${nomeEmpresa}</td>
-            <td data-label="E-mail">${email}</td>
-            <td data-label="CNPJ">${cnpj}</td>
-            <td data-label="Inscrição Estadual">${inscricao}</td>
-            <td data-label="Telefone">${telefone}</td>
+            `<td data-label="Nome">${Nome}</td>
+            <td data-label="E-mail">${Email}</td>
+            <td data-label="CNPJ">${Cnpj}</td>
+            <td data-label="Inscrição Estadual">${InscricaoEstadual}</td>
+            <td data-label="Telefone">${Telefone}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
             <td data-label="Número">${numero}</td>
@@ -82,11 +54,11 @@ fornecedorForm.addEventListener('submit', function (event) {
     } else {
         const newRow = document.createElement('tr');
         newRow.innerHTML =
-            `<td data-label="Nome Empresa">${nomeEmpresa}</td>
-            <td data-label="E-mail">${email}</td>
-            <td data-label="CNPJ">${cnpj}</td>
-            <td data-label="Inscrição Estadual">${inscricao}</td>
-            <td data-label="Telefone">${telefone}</td>
+            `<td data-label="Nome">${Nome}</td>
+            <td data-label="E-mail">${Email}</td>
+            <td data-label="CNPJ">${Cnpj}</td>
+            <td data-label="Inscrição Estadual">${InscricaoEstadual}</td>
+            <td data-label="Telefone">${Telefone}</td>
             <td data-label="Rua">${rua}</td>
             <td data-label="CEP">${cep}</td>
             <td data-label="Número">${numero}</td>
@@ -109,11 +81,11 @@ function editarfornecedor(button) {
     const row = button.parentElement.parentElement;
     const cells = row.querySelectorAll('td');
 
-    document.getElementById('nomeEmpresa').value = cells[0].textContent;
-    document.getElementById('email').value = cells[1].textContent;
-    document.getElementById('cnpj').value = cells[2].textContent;
-    document.getElementById('inscricao').value = cells[3].textContent;
-    document.getElementById('telefone').value = cells[4].textContent;
+    document.getElementById('Nome').value = cells[0].textContent;
+    document.getElementById('Email').value = cells[1].textContent;
+    document.getElementById('Cnpj').value = cells[2].textContent;
+    document.getElementById('InscricaoEstadual').value = cells[3].textContent;
+    document.getElementById('Telefone').value = cells[4].textContent;
     document.getElementById('rua').value = cells[5].textContent;
     document.getElementById('cep').value = cells[6].textContent;
     document.getElementById('numero').value = cells[7].textContent;
@@ -147,19 +119,19 @@ function pesquisarfornecedor() {
         let match = false;
 
         switch (selectedColumn) {
-            case 'nomeEmpresa':
+            case 'Nome':
                 match = cells[0].textContent.toUpperCase().includes(filter);
                 break;
-            case 'email':
+            case 'Email':
                 match = cells[1].textContent.toUpperCase().includes(filter);
                 break;
-            case 'cnpj':
+            case 'Cnpj':
                 match = cells[2].textContent.toUpperCase().includes(filter);
                 break;
-            case 'inscricao':
+            case 'InscricaoEstadual':
                 match = cells[3].textContent.toUpperCase().includes(filter);
                 break;
-            case 'telefone':
+            case 'Telefone':
                 match = cells[4].textContent.toUpperCase().includes(filter);
                 break;
             case 'rua':
@@ -249,16 +221,3 @@ function allowOnlyLetters(event) {
         event.target.value = event.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
     }
 }
-
-// Adicionar validação aos campos específicos
-document.getElementById('inscricao').addEventListener('input', allowOnlyNumbers);
-document.getElementById('telefone').addEventListener('input', allowOnlyNumbers);
-document.getElementById('cnpj').addEventListener('input', allowOnlyNumbers);
-document.getElementById('cep').addEventListener('input', allowOnlyNumbers);
-document.getElementById('numero').addEventListener('input', allowOnlyNumbers);
-
-document.getElementById('nomeEmpresa').addEventListener('input', allowOnlyLetters);
-document.getElementById('rua').addEventListener('input', allowOnlyLetters);
-document.getElementById('bairro').addEventListener('input', allowOnlyLetters);
-document.getElementById('cidade').addEventListener('input', allowOnlyLetters);
-document.getElementById('estado').addEventListener('input', allowOnlyLetters);

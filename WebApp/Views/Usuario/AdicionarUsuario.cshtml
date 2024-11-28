@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action()">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -47,15 +47,15 @@
 
 <div id="adicionar" class="tab">
     <form id="profileForm" action="@Url.Action("AdicionarUsuario", "Usuario")" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" required>
-        <label for="email">E-mail:</label>
-        <input type="text" id="email" required>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" required>
+        <label for="Nome">Nome:</label>
+        <input type="text" id="Nome" required>
+        <label for="Email">E-mail:</label>
+        <input type="text" id="Email" required>
+        <label for="Senha">Senha:</label>
+        <input type="password" id="Senha" required>
         <div class="perfil-container">
-            <label for="tipoPerfil">Tipo de Perfil:</label>
-            <select class="tipoPerfil" id="tipoPerfil">
+            <label for="Funcao">Função:</label>
+            <select class="Funcao" id="Funcao">
                 <option value="Vendedor">Vendedor</option>
                 <option value="Administrador">Administrador</option>
             </select>

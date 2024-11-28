@@ -31,7 +31,7 @@
 <div class="sidebar">
     <ul>
         <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action("AdicionarPedido","Venda")">Gestão de Pedidos</a></li>
+        <li><a href="@Url.Action()">Gestão de Pedidos</a></li>
         <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
         <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
     </ul>
@@ -48,16 +48,16 @@
 <div id="adicionar" class="tab">
     <form id="clienteForm" action="@Url.Action("AdicionarCliente", "Cliente")" method="post">
         <div class="esquerda">
-            <label for="nomeCompleto">Nome Completo:</label>
-            <input type="text" id="nomeCompleto" name="Nome" required>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="Email" required>
-            <label for="cpf">CPF/CNPJ:</label>
+            <label for="Nome">Nome:</label>
+            <input type="text" id="Nome" name="Nome" required>
+            <label for="Email">E-mail:</label>
+            <input type="email" id="Email" name="Email" required>
+            <label for="CpfCnpj">CPF/CNPJ:</label>
             <input type="text" id="cpf" name="CpfCnpj" required>
-            <label for="telefone">Número de Telefone:</label>
+            <label for="Telefone">Número de Telefone:</label>
             <input type="tel" id="telefone" name="Telefone" required>
             <label for="dataNascimento">Data de Nascimento:</label>
-            <input type="date" id="dataNascimento" name="DataNascimento" required>
+            <input type="date" id="dataNascimento" name="dataNascimento" required>
             <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GestaoDeClientes", "Cliente")'">Adicionar Cliente</button>
             <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarCliente", "Cliente")'">Cancelar</button>
         </div>

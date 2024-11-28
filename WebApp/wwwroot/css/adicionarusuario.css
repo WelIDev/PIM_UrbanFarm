@@ -187,79 +187,70 @@
     margin-left: 0; /* Valor inicial */
 }
 
-button.editar {
-    background-color: #ff9800; /* Cor laranja para edição */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-    button.editar:hover {
-        background-color: #e68900;
-    }
-
-button.excluir {
-    background-color: #f44336; /* Cor vermelha para exclusão */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-    button.excluir:hover {
-        background-color: #da190b;
-    }
-
-/* Estilo do botão de adicionar pedido */
+/* Botão de submit */
 button.submit-button {
-    background-color: #4CAF50; /* Cor verde */
+    background-color: #4CAF50; /* Verde */
     color: white;
     border: none;
-    padding: 8px 12px; /* Ajusta o tamanho do botão */
+    padding: 8px 12px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px; /* Ajusta o tamanho da fonte */
-    width: 100%;
+    font-size: 16px;
+    width: 95%; /* Mesmo tamanho dos inputs */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
 }
 
     button.submit-button:hover {
-        background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
+        background-color: #45a049; /* Verde escuro */
+        transform: translateY(-2px); /* Efeito de "elevação" no hover */
     }
 
-/* Estilo do botão de editar pedido */
-button.edit-button {
-    background-color: #ff9800; /* Cor laranja para edição */
+/* Botão de cancel */
+button.cancel-button {
+    background-color: #cccccc; /* Cinza claro */
+    color: #333; /* Texto cinza escuro */
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 95%; /* Mesmo tamanho dos inputs */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
 }
 
-    button.edit-button:hover {
-        background-color: #e68900;
+    button.cancel-button:hover {
+        background-color: #a6a6a6; /* Cinza escuro */
+        transform: translateY(-2px); /* Efeito de "elevação" no hover */
     }
+
 
 /* Estilo do formulário de pedido */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: flex-start; /* Alinha os itens do formulário à esquerda */
-    max-width: 600px; /* Define a largura máxima */
+    gap: 10px; /* Espaço uniforme entre os campos */
+    align-items: stretch; /* Estica os itens para ocupar toda a largura disponível */
+    max-width: 800px; /* Largura máxima do formulário */
     margin: 20px auto;
-    padding: 20px;
+    padding: 30px; /* Margem interna para alinhamento */
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 70px;
+    margin-top: 20px; /* Espaço entre o topo e o formulário */
+    padding-right: 10px;
 }
 
+    /* Estilo dos rótulos e inputs */
     form label {
         font-weight: bold;
-        display: flex; /* Utiliza flex para alinhar os rótulos e campos */
-        flex-direction: row; /* Rótulo e campo na mesma linha */
-        align-items: center;
-        gap: 10px; /* Espaço entre o texto e o campo */
-        width: 95%;
+        display: flex;
+        flex-direction: column; /* Rótulo acima do campo */
+        gap: 5px; /* Espaço entre o rótulo e o campo */
     }
+
 
     form input, form button {
         padding: 6px 12px; /* Ajusta o padding para diminuir o tamanho */
@@ -268,100 +259,3 @@ form {
         width: 95%; /* Faz com que os inputs e botões ocupem a largura disponível */
     }
 
-/* Estilo das notificações */
-.notification {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    color: white;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-    .notification.visible {
-        display: block;
-        opacity: 1;
-    }
-
-    .notification.hidden {
-        display: none;
-        opacity: 0;
-    }
-
-#successNotification {
-    background-color: #4CAF50;
-}
-
-#editNotification {
-    background-color: #ff9800;
-}
-
-#deleteNotification {
-    background-color: #f44336;
-}
-
-/* Estilo do contêiner de busca e filtro */
-.search-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    color: white;
-}
-
-/* Estilo do rótulo da busca */
-.search-label {
-    font-weight: bold;
-    margin-right: 5px;
-    color: white;
-}
-
-/* Estilo do campo de busca */
-.search-input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    flex: 1;
-    max-width: 300px; /* Limitar a largura máxima */
-}
-
-/* Estilo do rótulo do filtro */
-.filter-label {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-/* Estilo do seletor de filtro */
-.filter-select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    max-width: 200px; /* Limitar a largura máxima */
-}
-
-/* Estilo da tabela de clientes */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: white;
-}
-
-th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-td {
-    vertical-align: middle;
-}
