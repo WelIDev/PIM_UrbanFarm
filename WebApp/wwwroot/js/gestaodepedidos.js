@@ -1,56 +1,74 @@
-﻿let produtos = [];
+﻿const produtos = [
+    { nome: 'Alface', preco: 2.00 },
+    { nome: 'Couve', preco: 1.50 },
+    { nome: 'Brócolis', preco: 1.80 },
+    { nome: 'Tomate', preco: 3.00 },
+    { nome: 'Cenoura', preco: 2.50 },
+    { nome: 'Limão', preco: 2.20 },
+    { nome: 'Maçã', preco: 4.00 },
+    { nome: 'Banana', preco: 3.00 },
+    { nome: 'Batata', preco: 1.20 },
+    { nome: 'Berinjela', preco: 2.30 }
+];
+
 let carrinho = [];
 let total = 0;
 let compraAtual = null;
 
+// Evento para alternar entre abas
 document.getElementById('tab1').addEventListener('click', function () {
     showTab('carrinho');
 });
 
 document.getElementById('tab2').addEventListener('click', function () {
     showTab('visualizacao');
-    atualizarTabelaVisualizacao();
-});
-document.addEventListener('DOMContentLoaded', function () {
-    carregarProdutos();
-    showTab('visualizacao');
+    atualizarTabelaVisualizacao(); // Atualiza a tabela ao abrir a aba
 });
 
-async function carregarProdutos() {
-    try {
-        const response = await fetch('https://localhost:7124/api/Produto/ObterProdutos');
-        if (!response.ok) {
-            throw new Error(`Erro ao carregar produtos: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        produtos = data.$values;
+// Função para mostrar a aba
+function showTab(tabName) {
+    // Remover a classe 'active' de todos os conteúdos das abas
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    // Adicionar a classe 'active' ao conteúdo da aba atual
+    document.getElementById(tabName).classList.add('active');
 
-        console.log(produtos);
-
-        const produtosList = document.getElementById('produtos');
-        produtos.forEach((produto, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-                ${produto.nome} - R$ ${produto.preco.toFixed(2)} 
-                <div>
-                    <button onclick="addItem(${index})">+</button>
-                    <span id="quantidade-${index}" class="quantidade">0</span>
-                    <button onclick="removeItem(${index})">-</button>
-                </div>
-            `;
-            produtosList.appendChild(li);
-        });
-    } catch (error) {
-        console.error('Erro ao carregar produtos:', error);
+    // Remover a classe 'active' de todos os botões das abas
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    // Adicionar a classe 'active' ao botão correspondente à aba atual
+    if (tabName === 'carrinho') {
+        document.getElementById('tab1').classList.add('active');
+    } else if (tabName === 'visualizacao') {
+        document.getElementById('tab2').classList.add('active');
     }
 }
 
+// Carregar produtos na lista
+function carregarProdutos() {
+    const produtosList = document.getElementById('produtos');
+    produtos.forEach((produto, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${produto.nome} - R$ ${produto.preco.toFixed(2)} 
+            <div>
+                <button onclick="addItem(${index})">+</button>
+                <span id="quantidade-${index}" class="quantidade">0</span>
+                <button onclick="removeItem(${index})">-</button>
+            </div>
+        `;
+        produtosList.appendChild(li);
+    });
+}
 
+// Gerar ID aleatório
 function gerarIdAleatorio() {
     return Math.random().toString(36).substr(2, 5).toUpperCase();
 }
 
+// Finalizar ou editar compra
 function finalizarCompra() {
     const visualizacaoTabelaBody = document.querySelector('#visualizacao-tabela tbody');
 
@@ -65,7 +83,7 @@ function finalizarCompra() {
             const itensComprados = carrinho.map(item => `${item.nome} (x${item.quantidade})`).join(', ');
             linhaParaEditar.cells[2].innerText = itensComprados;
             total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
-            linhaParaEditar.cells[3].innerText = `R$ ${total.toFixed(2)}`;
+            linhaParaEditar.cells[3].innerText = `R$ ${total.toFixed(2)}`; // Atualiza o valor total
             updateTotal();
             updatePrevisaoList();
 
@@ -79,14 +97,14 @@ function finalizarCompra() {
     const compraId = gerarIdAleatorio();
     const dataCompra = new Date().toLocaleDateString('pt-BR');
     const itensComprados = carrinho.map(item => `${item.nome} (x${item.quantidade})`).join(', ');
-    const valorTotal = total.toFixed(2);
+    const valorTotal = total.toFixed(2); // Calcula o valor total do pedido
 
     const novaLinha = document.createElement('tr');
     novaLinha.innerHTML = `
         <td>#${compraId}</td>
         <td>${dataCompra}</td>
         <td>${itensComprados}</td>
-        <td>R$ ${valorTotal}</td>
+        <td>R$ ${valorTotal}</td> <!-- Exibe o valor total -->
         <td>
             <button class="acao-button editar" onclick="editarCompra('${compraId}')">Editar</button>
             <button class="acao-button excluir" onclick="excluirCompra('${compraId}')">Excluir</button>
@@ -105,9 +123,12 @@ function finalizarCompra() {
     });
 
     restaurarBotaoFinalizar();
+
+    // Exibe a notificação de sucesso
     showNotification('success');
 }
 
+// Função de edição da compra
 function editarCompra(id) {
     const visualizacaoTabelaBody = document.querySelector('#visualizacao-tabela tbody');
     const linhaParaEditar = visualizacaoTabelaBody.querySelector(`tr[data-id="${id}"]`);
@@ -127,7 +148,7 @@ function editarCompra(id) {
         const produto = produtos.find(p => p.nome === nome);
 
         if (produto) {
-            carrinho.push({nome: produto.nome, preco: produto.preco, quantidade});
+            carrinho.push({ nome: produto.nome, preco: produto.preco, quantidade });
             const index = produtos.indexOf(produto);
             document.getElementById(`quantidade-${index}`).innerText = quantidade;
         }
@@ -143,14 +164,17 @@ function editarCompra(id) {
 
     compraAtual = id;
     showTab('carrinho');
+
 }
 
+// Função para restaurar o botão de finalizar compra
 function restaurarBotaoFinalizar() {
     const finalizarButton = document.getElementById('finalizar');
     finalizarButton.innerText = 'Finalizar Compra';
     finalizarButton.style.backgroundColor = '#28a745';
 }
 
+// Função para limpar campos após a edição
 function limparCampos() {
     carrinho = [];
     total = 0;
@@ -162,6 +186,7 @@ function limparCampos() {
     });
 }
 
+// Função de exclusão da compra
 function excluirCompra(id) {
     const visualizacaoTabelaBody = document.querySelector('#visualizacao-tabela tbody');
     const linhaParaRemover = visualizacaoTabelaBody.querySelector(`tr[data-id="${id}"]`);
@@ -173,6 +198,7 @@ function excluirCompra(id) {
     }
 }
 
+// Adicionar item ao carrinho
 function addItem(index) {
     const produto = produtos[index];
     const quantidadeSpan = document.getElementById(`quantidade-${index}`);
@@ -184,7 +210,7 @@ function addItem(index) {
     if (itemExistente) {
         itemExistente.quantidade++;
     } else {
-        carrinho.push({nome: produto.nome, preco: produto.preco, quantidade: 1});
+        carrinho.push({ nome: produto.nome, preco: produto.preco, quantidade: 1 });
     }
 
     total += produto.preco;
@@ -192,6 +218,7 @@ function addItem(index) {
     updatePrevisaoList();
 }
 
+// Remover item do carrinho
 function removeItem(index) {
     const produto = produtos[index];
     const quantidadeSpan = document.getElementById(`quantidade-${index}`);
@@ -215,10 +242,12 @@ function removeItem(index) {
     }
 }
 
+// Atualizar total exibido
 function updateTotal() {
     document.getElementById('total').innerText = total.toFixed(2);
 }
 
+// Atualizar lista de previsão
 function updatePrevisaoList() {
     const previsaoList = document.getElementById('previsao-list');
     previsaoList.innerHTML = '';
@@ -230,6 +259,7 @@ function updatePrevisaoList() {
     });
 }
 
+// Função para mostrar a notificações
 function showNotification(type) {
     let notification;
     switch (type) {
@@ -253,3 +283,8 @@ function showNotification(type) {
         notification.classList.add('hidden');
     }, 3000);
 }
+
+// Inicialização
+window.onload = function () {
+    carregarProdutos();
+};

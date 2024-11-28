@@ -73,13 +73,13 @@ body {
     cursor: pointer;
     padding: 10px;
     position: absolute;
-    right: 20px; /* Ajuste conforme necessário */
+    right: 10px; /* Ajuste conforme necessário */
 }
 
 .img-perfil {
     width: 30px; /* Ajustar conforme necessário */
     height: 30px; /* Ajustar conforme necessário */
-    padding-top: 10px;
+    padding-bottom: 1px;
 }
 
 /* Menu de perfil */
