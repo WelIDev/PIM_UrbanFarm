@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alenc\\OneDrive\\Imagens\\PIMOFICIAL\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM26NOV\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alenc\\OneDrive\\Imagens\\PIMOFICIAL\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM26NOV\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alenc\\OneDrive\\Imagens\\PIMOFICIAL\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM26NOV\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\alenc\\OneDrive\\Imagens\\PIMOFICIAL\\WebApp\\WebApp.csproj",
+        "projectPath": "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM26NOV\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\alenc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alenc\\OneDrive\\Imagens\\PIMOFICIAL\\WebApp\\obj\\",
+        "outputPath": "C:\\Users\\alenc\\OneDrive\\Área de Trabalho\\PIM26NOV\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alenc\\AppData\\Roaming\\NuGet\\NuGet.Config",

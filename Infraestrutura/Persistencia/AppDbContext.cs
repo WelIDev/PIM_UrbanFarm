@@ -15,8 +15,6 @@ public class AppDbContext : DbContext
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Produto> Produtos { get; set; }
-    public DbSet<Meta> Metas { get; set; }
-    public DbSet<Comissao> Comissoes { get; set; }
     public DbSet<Vendedor> Vendedores { get; set; }
     public DbSet<Venda> Vendas { get; set; }
     public DbSet<HistoricoCompra> HistoricoCompras { get; set; }
@@ -31,8 +29,6 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ClienteConfiguracao());
         modelBuilder.ApplyConfiguration(new EnderecoConfiguracao());
         modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
-        modelBuilder.ApplyConfiguration(new MetaConfiguracao());
-        modelBuilder.ApplyConfiguration(new ComissaoConfiguracao());
         modelBuilder.ApplyConfiguration(new VendedorConfiguracao());
         modelBuilder.ApplyConfiguration(new VendaConfiguracao());
         modelBuilder.ApplyConfiguration(new AbastecimentoEstoqueConfiguracao());

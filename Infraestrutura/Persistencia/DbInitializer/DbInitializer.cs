@@ -19,15 +19,11 @@ public class DbInitializer
 
         SeedHistoricoCompra(context);
 
-        SeedMetas(context);
-
         SeedUsuarios(context);
 
         SeedAbastecimentosEstoque(context);
 
         SeedVendas(context);
-
-        SeedComissoes(context);
     }
 
     private static void SeedEnderecos(AppDbContext context)
@@ -283,32 +279,7 @@ public class DbInitializer
             context.SaveChanges();
         }
     }
-
-    private static void SeedMetas(AppDbContext context)
-    {
-        if (!context.Metas.Any())
-        {
-            context.Metas.AddRange(
-                new Meta
-                {
-                    Descricao = "Meta de vendas mensal", Valor = 5000.00, Periodo = 1,
-                    VendedorId = 1
-                },
-                new Meta
-                {
-                    Descricao = "Meta de vendas trimestral", Valor = 15000.00, Periodo = 3,
-                    VendedorId = 2
-                },
-                new Meta
-                {
-                    Descricao = "Meta de vendas anual", Valor = 60000.00, Periodo = 12,
-                    VendedorId = 3
-                }
-            );
-            context.SaveChanges();
-        }
-    }
-
+    
     private static void SeedAbastecimentosEstoque(AppDbContext context)
     {
         if (!context.AbastecimentosEstoque.Any())
@@ -424,19 +395,6 @@ public class DbInitializer
             // Adiciona os produtos de venda de uma vez após salvar as vendas
             context.VendaProduto.AddRange(vendaProdutos);
             context.SaveChanges(); // Salvar os produtos de venda
-        }
-    }
-
-
-    private static void SeedComissoes(AppDbContext context)
-    {
-        if (!context.Comissoes.Any())
-        {
-            context.Comissoes.AddRange(
-                new Comissao { Valor = 500.00, MetaId = 1 },
-                new Comissao { Valor = 1500.00, MetaId = 2 }
-            );
-            context.SaveChanges();
         }
     }
 

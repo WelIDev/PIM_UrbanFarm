@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers;
 
@@ -15,18 +16,19 @@ public class PedidoController : Controller
     {
         return View("GestaoDePedidos");
     }
-    
+
     [HttpGet]
     public async Task<JsonResult> ObterProdutos()
     {
-        var produtos = new List<object>();
+        var produtos = new List<ProdutoModel>();
         try
         {
             var response = await _httpClient.GetAsync("api/Produto/ObterProdutos");
 
             if (response.IsSuccessStatusCode)
             {
-                produtos = await response.Content.ReadFromJsonAsync<List<object>>();
+                produtos = await response.Content.ReadFromJsonAsync<List<ProdutoModel>>();
+                return Json(produtos);
             }
             else
             {
@@ -37,7 +39,5 @@ public class PedidoController : Controller
         {
             return Json(new { error = $"Erro na requisição: {e.Message}" });
         }
-
-        return Json(produtos);
     }
 }

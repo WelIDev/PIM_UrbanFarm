@@ -96,32 +96,6 @@ namespace Infraestrutura.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.Comissao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Data")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<int>("MetaId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MetaId");
-
-                    b.ToTable("Comissoes");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Endereco", b =>
                 {
                     b.Property<int>("Id")
@@ -253,40 +227,6 @@ namespace Infraestrutura.Migrations
                     b.HasIndex("ProdutoId");
 
                     b.ToTable("ItensAbastecimento");
-                });
-
-            modelBuilder.Entity("Dominio.Entidades.Meta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Periodo")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
-
-                    b.Property<int>("VendedorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VendedorId");
-
-                    b.ToTable("Metas");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Produto", b =>
@@ -494,17 +434,6 @@ namespace Infraestrutura.Migrations
                     b.Navigation("Endereco");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.Comissao", b =>
-                {
-                    b.HasOne("Dominio.Entidades.Meta", "Meta")
-                        .WithMany("Comissoes")
-                        .HasForeignKey("MetaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Meta");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Fornecedor", b =>
                 {
                     b.HasOne("Dominio.Entidades.Endereco", "Endereco")
@@ -544,17 +473,6 @@ namespace Infraestrutura.Migrations
                     b.Navigation("AbastecimentoEstoque");
 
                     b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("Dominio.Entidades.Meta", b =>
-                {
-                    b.HasOne("Dominio.Entidades.Vendedor", "Vendedor")
-                        .WithMany("Metas")
-                        .HasForeignKey("VendedorId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Vendedor");
                 });
 
             modelBuilder.Entity("Dominio.Entidades.Venda", b =>
@@ -642,11 +560,6 @@ namespace Infraestrutura.Migrations
                     b.Navigation("Vendas");
                 });
 
-            modelBuilder.Entity("Dominio.Entidades.Meta", b =>
-                {
-                    b.Navigation("Comissoes");
-                });
-
             modelBuilder.Entity("Dominio.Entidades.Produto", b =>
                 {
                     b.Navigation("ItensAbastecimento");
@@ -666,8 +579,6 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio.Entidades.Vendedor", b =>
                 {
-                    b.Navigation("Metas");
-
                     b.Navigation("Vendas");
                 });
 #pragma warning restore 612, 618
