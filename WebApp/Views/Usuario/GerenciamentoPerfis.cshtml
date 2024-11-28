@@ -46,7 +46,7 @@
 </div>
 
 <div class="main-content">
-    <div id="visualizacao" class="tab">
+    <div id="visualizacao" class="tab" action="@Url.Action("GerenciamentoPerfis", "Usuario")" method="post">
     <div class="search-container">
         <label for="searchInput" class="search-label">Buscar:</label>
         <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarPerfil()">
@@ -92,6 +92,7 @@
     </table>
 </div>
 </div>
+
 <script src="~/js/gerenciamentoperfis.js"></script>
 
 

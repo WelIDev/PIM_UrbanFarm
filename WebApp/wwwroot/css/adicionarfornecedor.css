@@ -39,7 +39,7 @@
 /* Sidebar */
 .sidebar {
     position: fixed;
-    top: 115px; /* Abaixo da barra superior */
+    top: 124px; /* Abaixo da barra superior */
     left: -250px; /* Inicialmente escondido */
     height: calc(100% - 30px); /* Altura da página menos a barra superior */
     background-color: #000000cc;
@@ -73,13 +73,13 @@
     cursor: pointer;
     padding: 10px;
     position: absolute;
-    right: 20px; /* Ajuste conforme necessário */
+    right: 10px; /* Ajuste conforme necessário */
 }
 
 .img-perfil {
     width: 30px; /* Ajustar conforme necessário */
     height: 30px; /* Ajustar conforme necessário */
-    padding-top: 10px;
+    padding-bottom: 1px;
 }
 
 /* Menu de perfil */

@@ -49,12 +49,13 @@
     <div class="search-container">
         <label for="searchInput" class="search-label">Buscar:</label>
         <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarCliente()">
+        
         <label for="filterColumn" class="filter-label">Filtro:</label>
         <select id="filterColumn" class="filter-select">
-            <option value="nomeCompleto">Nome Completo</option>
-            <option value="email">E-mail</option>
-            <option value="cpf">CPF/CPNJ</option>
-            <option value="telefone">Telefone</option>
+            <option value="Nome">Nome Completo</option>
+            <option value="Email">E-mail</option>
+            <option value="CpfCpnj">CPF/CPNJ</option>
+            <option value="Telefone">Telefone</option>
             <option value="dataNascimento">Data de Nascimento</option>
             <option value="rua">Rua</option>
             <option value="cep">CEP</option>
@@ -82,6 +83,7 @@
                 <th>Ações</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (var cliente in Model)
             {

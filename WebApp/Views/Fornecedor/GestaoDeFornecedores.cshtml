@@ -45,11 +45,11 @@
     </div>
 </div>
 
-<div id="visualizacao" class="tab">
+<div id="visualizacao" class="tab" action="@Url.Action("GestaoDeFornecedores", "Fornecedor")" method="post">
     <div class="search-container">
         <label for="searchInput" class="search-label">Buscar:</label>
         <input type="text" id="searchInput" class="search-input" placeholder="Digite para pesquisar..." onkeyup="pesquisarfornecedor()">
-            
+
         <label for="filterColumn" class="filter-label">Filtro:</label>
         <select id="filterColumn" class="filter-select">
             <option value="Nome">Nome Empresa</option>
@@ -57,55 +57,56 @@
             <option value="Cnpj">CPNJ</option>
             <option value="InscricaoEstadual">Inscrição Estadual</option>
             <option value="Telefone">Número de Telefone</option>
-            <option value="Rua">Rua</option>
-            <option value="Cep">CEP</option>
-            <option value="Numero">Número</option>
-            <option value="Bairro">Bairro</option>
-            <option value="Cidade">Cidade</option>
-            <option value="Estado">Estado</option>
+            <option value="rua">Rua</option>
+            <option value="cep">CEP</option>
+            <option value="numero">Número</option>
+            <option value="bairro">Bairro</option>
+            <option value="cidade">Cidade</option>
+            <option value="estado">Estado</option>
         </select>
     </div>
 
-<table id="fornecedorTable">
-    <thead>
-        <tr>
-            <th>Nome Empresa</th>
-            <th>E-mail</th>
-            <th>CNPJ</th>
-            <th>Inscrição Estadual</th>
-            <th>Telefone</th>
-            <th>Rua</th>
-            <th>CEP</th>
-            <th>Número</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var fornecedor in Model)
-        {
+    <table id="fornecedorTable">
+        <thead>
             <tr>
-                <td>@fornecedor.Nome</td>
-                <td>@fornecedor.Email</td>
-                <td>@fornecedor.Cnpj</td>
-                <td>@fornecedor.InscricaoEstadual</td>
-                <td>@fornecedor.Telefone</td>
-                <td>@fornecedor.Endereco.Rua</td>
-                <td>@fornecedor.Endereco.Cep</td>
-                <td>@fornecedor.Endereco.Numero</td>
-                <td>@fornecedor.Endereco.Bairro</td>
-                <td>@fornecedor.Endereco.Cidade</td>
-                <td>@fornecedor.Endereco.Estado</td>
-                <td>
-                    <button class="editar" onclick="editarFornecedor(this)">Editar</button>
-                    <button class="excluir" onclick="excluirFornecedor(this)">Excluir</button>
-                </td>
+                <th>Nome Empresa</th>
+                <th>E-mail</th>
+                <th>CNPJ</th>
+                <th>Inscrição Estadual</th>
+                <th>Telefone</th>
+                <th>Rua</th>
+                <th>CEP</th>
+                <th>Número</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var fornecedor in Model)
+            {
+                <tr>
+                    <td>@fornecedor.Nome</td>
+                    <td>@fornecedor.Email</td>
+                    <td>@fornecedor.Cnpj</td>
+                    <td>@fornecedor.InscricaoEstadual</td>
+                    <td>@fornecedor.Telefone</td>
+                    <td>@fornecedor.Endereco.Rua</td>
+                    <td>@fornecedor.Endereco.Cep</td>
+                    <td>@fornecedor.Endereco.Numero</td>
+                    <td>@fornecedor.Endereco.Bairro</td>
+                    <td>@fornecedor.Endereco.Cidade</td>
+                    <td>@fornecedor.Endereco.Estado</td>
+                    <td>
+                        <button class="editar" onclick="editarFornecedor(this)">Editar</button>
+                        <button class="excluir" onclick="excluirFornecedor(this)">Excluir</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
 <script src="~/js/gestaodefornecedores.js"></script>

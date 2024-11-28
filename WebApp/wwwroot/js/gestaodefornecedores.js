@@ -221,3 +221,19 @@ function allowOnlyLetters(event) {
         event.target.value = event.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
     }
 }
+
+async function buscarEndereco() {
+    const cep = document.getElementById('cep').value.trim();
+
+    try {
+        const response = await fetch(`@Url.Action("ObterEndereco", "Fornecedor")?cep=${cep}`);
+        const { rua, bairro, cidade, estado } = await response.json();
+
+        document.getElementById('rua').value = rua || '';
+        document.getElementById('bairro').value = bairro || '';
+        document.getElementById('cidade').value = cidade || '';
+        document.getElementById('estado').value = estado || '';
+    } catch (error) {
+        alert(error.message);
+    }
+}

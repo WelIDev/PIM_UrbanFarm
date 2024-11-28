@@ -90,26 +90,24 @@
     // Função para alternar a visibilidade da sidebar
     window.toggleSidebar = function () {
         const sidebar = document.querySelector('.sidebar');
-        sidebar.style.display = (sidebar.style.display === 'block') ? 'none' : 'block';
-    }
+        const mainContent = document.querySelector('.main-content');
+
+        if (sidebar && mainContent) {
+            sidebar.classList.toggle('open'); // Alterna a classe 'open' na sidebar
+            mainContent.classList.toggle('shifted'); // Alterna a classe 'shifted' no conteúdo principal
+        } else {
+            console.error('Erro: .sidebar ou .main-content não encontrados no DOM.');
+        }
+    };
 
     // Função para alternar o menu de perfil
     window.toggleProfileMenu = function (event) {
         const profileMenu = document.querySelector('.profile-menu');
-        const isVisible = profileMenu.style.display === 'block';
 
-        // Fecha o menu de perfil se ele estiver aberto
-        profileMenu.style.display = isVisible ? 'none' : 'block';
-
-        // Fecha o menu ao clicar fora
-        if (!isVisible) {
-            document.addEventListener('click', function (e) {
-                if (!profileMenu.contains(e.target) && !event.target.closest('.profile-icon')) {
-                    profileMenu.style.display = 'none';
-                }
-            }, { once: true });
-        }
-    }
+        // Alterna a visibilidade do menu de perfil
+        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+        event.stopPropagation(); // Impede a propagação do clique para a janela
+    };
 });
 
 function showTab(tabId) {
