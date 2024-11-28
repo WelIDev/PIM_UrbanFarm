@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/gestaodepedidos.css">
-    <title>@ViewData["UF - Gestão de Pedidos"]</title>
+    <title>@ViewData["Title"]</title>
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
@@ -51,8 +51,16 @@
                     <div class="adicionar-itens">
                         <div class="cliente-container">
                             <p>Cliente:</p>
-                            <select class="cliente" id="cliente">
-                            </select>    
+                            <select class="cliente" id="cliente"></select>
+                        </div>
+                        <div class="formapgt-container">
+                            <p>Forma de Pagamento:</p>
+                            <select class="formapgt" id="formaPagamento">
+                                <option value="1">Pix</option>
+                                <option value="2">Cartão de Crédito</option>
+                                <option value="3">Cartão de Débito</option>
+                                <option value="4">Dinheiro</option>
+                            </select>
                         </div>
                           
                         <p>Adicione itens:</p>

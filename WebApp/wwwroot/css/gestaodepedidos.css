@@ -199,6 +199,21 @@ p {
     margin-bottom: 15px;
 }
 
+.formapgt-container {
+    display: flex; /* Flexbox para alinhar horizontalmente */
+    align-items: center; /* Alinhar verticalmente ao centro */
+    margin-bottom: 5px;
+    gap: 10px; /* Espaçamento entre o texto e o select */
+}
+
+.formapgt {
+    width: 120px; /* Largura do select */
+    padding: 5px; /* Padding para dar mais espaçamento interno */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
 .total {
     position: fixed;
     bottom: -12px; /* Ajuste conforme necessário */
