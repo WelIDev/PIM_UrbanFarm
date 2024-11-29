@@ -1,4 +1,4 @@
-﻿﻿let produtos = [];
+﻿let produtos = [];
 let carrinho = [];
 let total = 0;
 let compraAtual = null;

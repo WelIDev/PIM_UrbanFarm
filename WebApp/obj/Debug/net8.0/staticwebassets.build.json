@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J7UohnbTiIyJp3p6JMe5TmNI42EidZWcKT2YBkpzcpg=",
+  "Hash": "KhCIhT0bucjjw21RxbuYiQWjBgHPz81iyLEPMqFO6d8=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "v3ltfmb9wg",
-      "Integrity": "5XjKfgW30JG6MhskBmEWJhhYlCtVmCcLla8B2+SvWPI=",
+      "Fingerprint": "e3w6mc4gdc",
+      "Integrity": "+q0lkH0rPLs5ozX53xK/k75XZpLupsA5Jn5SFuTsICw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\adicionarcliente.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "im43z42a9k",
-      "Integrity": "Km3jkjVtSwNeqdioPJCsDwhiCMKS4Chui9KQ/zVT7EA=",
+      "Fingerprint": "esgbp7jrds",
+      "Integrity": "vk7fqUxcflFHADQLLrVtfxi+JksjWuRqBSUf2nIATnA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\adicionarfornecedor.css"
@@ -178,8 +178,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "gwo284sr6g",
-      "Integrity": "cP1JaVNGczT9TTybTmZXjx0MyPx4ZPoUo8QXgPswrp0=",
+      "Fingerprint": "g6jxo5bqgc",
+      "Integrity": "qKTzyOGjIDyJ8x0EREI+XPFVbDwfiGzNEF8gxQbSvbY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\gestaodefornecedores.css"
@@ -577,8 +577,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2e0kl4txrt",
-      "Integrity": "BuzSPOZlduHW/5mw4krgGWGo4Z2wOeFsoJfomxroSvw=",
+      "Fingerprint": "jsgkbzaiii",
+      "Integrity": "/fYhwz92M17hwU9TLpm0l6tVSF5aRRv6HXj1GXySklA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\gestaodefornecedores.js"
@@ -1856,7 +1856,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6806"
+          "Value": "6807"
         },
         {
           "Name": "Content-Type",
@@ -1864,11 +1864,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"5XjKfgW30JG6MhskBmEWJhhYlCtVmCcLla8B2+SvWPI=\""
+          "Value": "\"+q0lkH0rPLs5ozX53xK/k75XZpLupsA5Jn5SFuTsICw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 14:30:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1878,12 +1878,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-5XjKfgW30JG6MhskBmEWJhhYlCtVmCcLla8B2+SvWPI="
+          "Value": "sha256-+q0lkH0rPLs5ozX53xK/k75XZpLupsA5Jn5SFuTsICw="
         }
       ]
     },
     {
-      "Route": "css/adicionarcliente.v3ltfmb9wg.css",
+      "Route": "css/adicionarcliente.e3w6mc4gdc.css",
       "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\css\\adicionarcliente.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1893,7 +1893,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6806"
+          "Value": "6807"
         },
         {
           "Name": "Content-Type",
@@ -1901,11 +1901,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"5XjKfgW30JG6MhskBmEWJhhYlCtVmCcLla8B2+SvWPI=\""
+          "Value": "\"+q0lkH0rPLs5ozX53xK/k75XZpLupsA5Jn5SFuTsICw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 14:30:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1915,7 +1915,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v3ltfmb9wg"
+          "Value": "e3w6mc4gdc"
         },
         {
           "Name": "label",
@@ -1923,7 +1923,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-5XjKfgW30JG6MhskBmEWJhhYlCtVmCcLla8B2+SvWPI="
+          "Value": "sha256-+q0lkH0rPLs5ozX53xK/k75XZpLupsA5Jn5SFuTsICw="
         }
       ]
     },
@@ -1938,7 +1938,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6805"
+          "Value": "6806"
         },
         {
           "Name": "Content-Type",
@@ -1946,11 +1946,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Km3jkjVtSwNeqdioPJCsDwhiCMKS4Chui9KQ/zVT7EA=\""
+          "Value": "\"vk7fqUxcflFHADQLLrVtfxi+JksjWuRqBSUf2nIATnA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 15:18:52 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1960,12 +1960,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Km3jkjVtSwNeqdioPJCsDwhiCMKS4Chui9KQ/zVT7EA="
+          "Value": "sha256-vk7fqUxcflFHADQLLrVtfxi+JksjWuRqBSUf2nIATnA="
         }
       ]
     },
     {
-      "Route": "css/adicionarfornecedor.im43z42a9k.css",
+      "Route": "css/adicionarfornecedor.esgbp7jrds.css",
       "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\css\\adicionarfornecedor.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1975,7 +1975,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6805"
+          "Value": "6806"
         },
         {
           "Name": "Content-Type",
@@ -1983,11 +1983,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Km3jkjVtSwNeqdioPJCsDwhiCMKS4Chui9KQ/zVT7EA=\""
+          "Value": "\"vk7fqUxcflFHADQLLrVtfxi+JksjWuRqBSUf2nIATnA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 15:18:52 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1997,7 +1997,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "im43z42a9k"
+          "Value": "esgbp7jrds"
         },
         {
           "Name": "label",
@@ -2005,7 +2005,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Km3jkjVtSwNeqdioPJCsDwhiCMKS4Chui9KQ/zVT7EA="
+          "Value": "sha256-vk7fqUxcflFHADQLLrVtfxi+JksjWuRqBSUf2nIATnA="
         }
       ]
     },
@@ -2430,7 +2430,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5769"
+          "Value": "5770"
         },
         {
           "Name": "Content-Type",
@@ -2438,11 +2438,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cP1JaVNGczT9TTybTmZXjx0MyPx4ZPoUo8QXgPswrp0=\""
+          "Value": "\"qKTzyOGjIDyJ8x0EREI+XPFVbDwfiGzNEF8gxQbSvbY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 15:24:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2452,12 +2452,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-cP1JaVNGczT9TTybTmZXjx0MyPx4ZPoUo8QXgPswrp0="
+          "Value": "sha256-qKTzyOGjIDyJ8x0EREI+XPFVbDwfiGzNEF8gxQbSvbY="
         }
       ]
     },
     {
-      "Route": "css/gestaodefornecedores.gwo284sr6g.css",
+      "Route": "css/gestaodefornecedores.g6jxo5bqgc.css",
       "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\css\\gestaodefornecedores.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2467,7 +2467,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5769"
+          "Value": "5770"
         },
         {
           "Name": "Content-Type",
@@ -2475,11 +2475,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cP1JaVNGczT9TTybTmZXjx0MyPx4ZPoUo8QXgPswrp0=\""
+          "Value": "\"qKTzyOGjIDyJ8x0EREI+XPFVbDwfiGzNEF8gxQbSvbY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 15:24:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2489,7 +2489,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "gwo284sr6g"
+          "Value": "g6jxo5bqgc"
         },
         {
           "Name": "label",
@@ -2497,7 +2497,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-cP1JaVNGczT9TTybTmZXjx0MyPx4ZPoUo8QXgPswrp0="
+          "Value": "sha256-qKTzyOGjIDyJ8x0EREI+XPFVbDwfiGzNEF8gxQbSvbY="
         }
       ]
     },
@@ -3978,51 +3978,6 @@
       ]
     },
     {
-      "Route": "js/gestaodefornecedores.2e0kl4txrt.js",
-      "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\js\\gestaodefornecedores.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9652"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"BuzSPOZlduHW/5mw4krgGWGo4Z2wOeFsoJfomxroSvw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "2e0kl4txrt"
-        },
-        {
-          "Name": "label",
-          "Value": "js/gestaodefornecedores.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-BuzSPOZlduHW/5mw4krgGWGo4Z2wOeFsoJfomxroSvw="
-        }
-      ]
-    },
-    {
       "Route": "js/gestaodefornecedores.js",
       "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\js\\gestaodefornecedores.js",
       "Selectors": [],
@@ -4033,7 +3988,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9652"
+          "Value": "8313"
         },
         {
           "Name": "Content-Type",
@@ -4041,11 +3996,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"BuzSPOZlduHW/5mw4krgGWGo4Z2wOeFsoJfomxroSvw=\""
+          "Value": "\"/fYhwz92M17hwU9TLpm0l6tVSF5aRRv6HXj1GXySklA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 28 Nov 2024 23:17:50 GMT"
+          "Value": "Fri, 29 Nov 2024 15:31:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4055,7 +4010,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-BuzSPOZlduHW/5mw4krgGWGo4Z2wOeFsoJfomxroSvw="
+          "Value": "sha256-/fYhwz92M17hwU9TLpm0l6tVSF5aRRv6HXj1GXySklA="
+        }
+      ]
+    },
+    {
+      "Route": "js/gestaodefornecedores.jsgkbzaiii.js",
+      "AssetFile": "C:\\Users\\welli\\RiderProjects\\PIM_UrbanFarm\\WebApp\\wwwroot\\js\\gestaodefornecedores.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8313"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/fYhwz92M17hwU9TLpm0l6tVSF5aRRv6HXj1GXySklA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 29 Nov 2024 15:31:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jsgkbzaiii"
+        },
+        {
+          "Name": "label",
+          "Value": "js/gestaodefornecedores.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/fYhwz92M17hwU9TLpm0l6tVSF5aRRv6HXj1GXySklA="
         }
       ]
     },
