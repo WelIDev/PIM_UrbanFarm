@@ -10,7 +10,7 @@ namespace MobileApp.Services
     public class ApiService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "https://192.168.1.9:7124/api";
+        private const string BaseUrl = "https://192.168.1.2:7124/api";
 
         public ApiService()
         {
