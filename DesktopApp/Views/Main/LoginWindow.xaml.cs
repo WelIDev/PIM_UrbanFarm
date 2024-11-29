@@ -20,8 +20,6 @@ public partial class LoginWindow : Window
 
     private async void Login_OnClick(object sender, RoutedEventArgs e)
     {
-        
-
         var loginData = new
         {
             email = Email.Text,

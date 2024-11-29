@@ -16,7 +16,7 @@ public class ClienteController : Controller
         _httpClient = httpClient;
     }
 
-    public async Task<IActionResult> GestaoDeClientes()
+    public async Task<IActionResult> Index()
     {
         var response = await _httpClient.GetStringAsync
             ("https://localhost:7124/api/Cliente/ObterClientes");
@@ -31,7 +31,7 @@ public class ClienteController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AdicionarCliente(ClienteModel clienteModel)
+    public async Task<IActionResult> Adicionar(ClienteModel clienteModel)
     {
         if (!ModelState.IsValid)
         {
@@ -41,7 +41,7 @@ public class ClienteController : Controller
         var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Cliente/InserirCliente", clienteModel);
         if (response.IsSuccessStatusCode)
         {
-            return RedirectToAction("MenuPrincipal");
+            return RedirectToAction("Index");
         }
         return View("AdicionarCliente",clienteModel);
     }

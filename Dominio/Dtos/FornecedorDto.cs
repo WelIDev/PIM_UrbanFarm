@@ -1,6 +1,6 @@
 ﻿using Dominio.Entidades;
 
-namespace Aplicacao.DTOs;
+namespace Dominio.Dtos;
 
 public class FornecedorDto
 {

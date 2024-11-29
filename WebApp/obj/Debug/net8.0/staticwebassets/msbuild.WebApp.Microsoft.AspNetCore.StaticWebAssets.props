@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jq2fs8wl7x</Fingerprint>
-      <Integrity>ZUhK2JvojPKj59taKgqPC6T904pCnaXiLixsENA0dCE=</Integrity>
+      <Fingerprint>8jvqoh2hdj</Fingerprint>
+      <Integrity>3IEn7eM2kJHEFEehmSzpK1sy/HXY631w0UtrBuqeJZ8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\adicionarusuario.css'))</OriginalItemSpec>
@@ -102,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>byloa0ssk3</Fingerprint>
-      <Integrity>3XD5/QOnPDD+CS+t1HUY8IRnfQueVsfpiHiUsLCM3fg=</Integrity>
+      <Fingerprint>n98nrtvvuu</Fingerprint>
+      <Integrity>m8hLmeZbclYI5Xc4Yf35teWCk6DBK10FOmxiMOUASHc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\gerenciamentoperfis.css'))</OriginalItemSpec>
@@ -444,8 +444,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>camhb6oabk</Fingerprint>
-      <Integrity>7LE2SRjNiDab4hv3T2mlCHvMtbHlfPYb4xKV2ZqvYxs=</Integrity>
+      <Fingerprint>ygw0vforoe</Fingerprint>
+      <Integrity>Yv9EiT0BN08npR4CAJoFqY9QE5aJA4YwyIjprgTbNgw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\gerenciamentoperfis.js'))</OriginalItemSpec>
@@ -498,8 +498,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>fc83k5esdg</Fingerprint>
-      <Integrity>//R2aZ1z188n2lo4UJ4/KT3tHSuLP8r/wYWZT+7VaD0=</Integrity>
+      <Fingerprint>bcw8zplnfx</Fingerprint>
+      <Integrity>RZNXLahuVjO+9Y4KfIGOPNK+LExBBMGl2YeVTuz4AdI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\gestaodepedidos.js'))</OriginalItemSpec>

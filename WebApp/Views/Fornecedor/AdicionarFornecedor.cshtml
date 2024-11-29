@@ -1,14 +1,14 @@
 ﻿@model WebApp.Models.FornecedorModel
 
 @{
-    ViewData["Title"] = "UF - Gestão de Fornecedores";
+ViewData["Title"] = "UF - Gestão de Fornecedores";
 }
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="~/css/adicionarfornecedor.css">
     <title>@ViewData["UF - Gestão de Fornecedores"]</title>
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
@@ -22,54 +22,66 @@
     </div>
     <div class="profile-menu">
         <ul>
-            <li><a href="configuracoes.html">Configurações</a></li>
-            <li><a href="login.html">Sair</a></li>
+            <li>
+                <a href="configuracoes.html">Configurações</a>
+            </li>
+            <li>
+                <a href="login.html">Sair</a>
+            </li>
         </ul>
     </div>
 </header>
 
 <div class="sidebar">
     <ul>
-        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action()">Gestão de Pedidos</a></li>
-        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
-        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+        <li>
+            <a href="@Url.Action("AdicionarCliente", "Cliente")">Gestão de Clientes</a>
+        </li>
+        <li>
+            <a href="@Url.Action()">Gestão de Pedidos</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AdicionarFornecedor", "Fornecedor")">Gestão de Fornecedores</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AdicionarUsuario", "Usuario")">Gerenciamento de Perfis</a>
+        </li>
     </ul>
 </div>
 
 <div class="tab-buttons">
-    <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
-        <div class="tab-buttons-left">
-            <button class="back-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Adicionar Fornecedor</button>
-            <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeFornecedores","Fornecedor")'">Ver Fornecedores</button>
-        </div>
+    <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal", "Menu")'">Retornar</button>
+    <div class="tab-buttons-left">
+        <button class="back-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Adicionar Fornecedor</button>
+        <button class="tab-button" onclick="location.href='@Url.Action("GestaoDeFornecedores", "Fornecedor")'">Ver Fornecedores</button>
+    </div>
 </div>
 
 <div class="main-content">
     <div id="adicionar" class="tab">
-        <form id="fornecedorForm" action="@Url.Action("AdicionarFornecedor", "Fornecedor")" method="post">       
+        <form id="fornecedorForm" onsubmit="return handleFormSubmit(event)">
             <div class="esquerda">
                 <label for="Nome">Nome Empresa:</label>
-                <input type="text" id="Nome" required>
+                <input type="text" id="Nome" name="Nome" required>
                 <label for="Email">E-mail:</label>
-                <input type="email" id="Email" required>
+                <input type="email" id="Email" name="Email" required>
                 <label for="Cnpj">CPNJ:</label>
-                <input type="text" id="Cnpj" required>
+                <input type="text" id="Cnpj" name="Cnpj" required>
                 <label for="InscricaoEstadual">Inscrição Estadual:</label>
-                <input type="text" id="InscricaoEstadual" required>
+                <input type="text" id="InscricaoEstadual" name="InscricaoEstadual" required>
                 <label for="Telefone">Número de Telefone:</label>
-                <input type="tel" id="Telefone" required>
-                <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GestaoDeFornecedores", "Fornecedor")'">Adicionar Fornecedor</button>
-                <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarFornecedor", "Fornecedor")'">Cancelar</button>
+                <input type="tel" id="Telefone" name="Telefone" required>
+                <button type="submit" id="submitButton" class="submit-button">Adicionar Fornecedor</button>
+                <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("Adicionar", "Fornecedor")'">Cancelar</button>
             </div>
-                <div class="direita">
-                    <label for="cep">CEP:</label>
-                    <div style="display: flex; align-items: center;">
-                        <input type="text" id="cep" name="Endereco.Cep" required style="flex: 1;">
-                        <button type="button" class="btn" onclick="buscarEndereco()" style="margin-left: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; padding: 0;">
-                            <i class="fas fa-search" style="font-size: 20px; color: #000;"></i>
-                        </button>
-                    </div>
+            <div class="direita">
+                <label for="cep">CEP:</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="text" id="cep" name="Endereco.Cep" required style="flex: 1;">
+                    <button type="button" class="btn" onclick="buscarEnderecos()" style="margin-left: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; padding: 0;">
+                        <i class="fas fa-search" style="font-size: 20px; color: #000;"></i>
+                    </button>
+                </div>
                 <label for="rua">Rua:</label>
                 <input type="text" id="rua" name="Endereco.Rua" required>
                 <label for="numero">Número:</label>
@@ -81,24 +93,25 @@
                 <label for="estado">Estado:</label>
                 <input type="text" id="estado" name="Endereco.Estado" required>
             </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <script>
-    async function buscarEndereco() {
-    const cep = document.getElementById('cep').value.trim();
+    async function buscarEnderecos() {
+        const cep = document.getElementById('cep').value.trim();
 
-    try {
-    const response = await fetch(`@Url.Action("ObterEndereco", "Fornecedor")?cep=${cep}`);
-    const { rua, bairro, cidade, estado } = await response.json();
+        try {
+            const response = await fetch(`@Url.Action("ObterEndereco", "Fornecedor")?cep=${cep}`);
+            const { rua, bairro, cidade, estado } = await response.json();
 
-    document.getElementById('rua').value = rua || '';
-    document.getElementById('bairro').value = bairro || '';
-    document.getElementById('cidade').value = cidade || '';
-    document.getElementById('estado').value = estado || '';
-    } catch (error) {
-    alert(error.message);
-    }
+            document.getElementById('rua').value = rua || '';
+            document.getElementById('bairro').value = bairro || '';
+            document.getElementById('cidade').value = cidade || '';
+            document.getElementById('estado').value = estado || '';
+        } catch (error) {
+            alert('Erro ao buscar endereço: ' + error.message);
+        }
     }
 </script>
 

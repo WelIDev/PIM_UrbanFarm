@@ -114,7 +114,7 @@
 
 /* Estilo das abas */
 .tab {
-    display: none;
+    display: block;
     padding: 20px;
 }
 
@@ -254,7 +254,7 @@ form {
 /* Seções do formulário */
 .esquerda, .direita {
     flex: 1;
-    min-width: 300px; /* Ajuste a largura mínima das seções */
+    min-width: 100px; /* Ajuste a largura mínima das seções */
     padding-right: 20px;
 }
 

@@ -57,16 +57,13 @@
                 <PasswordBox Name="Senha" Background="Transparent" BorderBrush="White"
                              Foreground="White" FontSize="16" Margin="30,0,30,35" Padding="10,5" />
             </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
                 <!-- Login Button -->
                 <Button Content="Entrar" Foreground="White" Background="#80000000" FontSize="13"
-                        FontWeight="Bold" Padding="12,5" Margin="20,30,100,30" Width="100"
-                        HorizontalAlignment="Left" Click="Login_OnClick"/>
-                
-                <!-- Forget Password -->
-                <TextBlock Text="Esqueceu a senha?" Foreground="White" FontSize="14"
-                           HorizontalAlignment="Right" Margin="100,30,20,30" />
+                        FontWeight="Bold" Padding="12,5" Margin="20,30,50,30" Width="100"
+                        Click="Login_OnClick" />
 
             </StackPanel>
         </StackPanel>

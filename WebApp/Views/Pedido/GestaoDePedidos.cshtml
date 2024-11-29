@@ -10,28 +10,40 @@
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
-    <header class="top-bar">
-        <a href="menuprincipal.html">
-            <img class="img-top-bar" src="imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
-        </a>
-        <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
-        <div class="profile-icon" onclick="toggleProfileMenu(event)">
-            <img class="img-perfil" src="imagens/perfil.png" alt="iconePerfil">
-        </div>
-        <div class="profile-menu">
-            <ul>
-                <li class="lista"><a href="configuracoes.html">Configurações</a></li>
-                <li class="lista"><a href="login.html">Sair</a></li>
-            </ul>
-        </div>
-    </header>
+<header class="top-bar">
+    <a href="menuprincipal.html">
+        <img class="img-top-bar" src="imagens/logonovaurbanfarmpng.png" alt="logoUrbanFarm">
+    </a>
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="profile-icon" onclick="toggleProfileMenu(event)">
+        <img class="img-perfil" src="imagens/perfil.png" alt="iconePerfil">
+    </div>
+    <div class="profile-menu">
+        <ul>
+            <li class="lista">
+                <a href="configuracoes.html">Configurações</a>
+            </li>
+            <li class="lista">
+                <a href="login.html">Sair</a>
+            </li>
+        </ul>
+    </div>
+</header>
 
 <div class="sidebar">
     <ul>
-        <li><a href="@Url.Action("AdicionarCliente","Cliente")">Gestão de Clientes</a></li>
-        <li><a href="@Url.Action()">Gestão de Pedidos</a></li>
-        <li><a href="@Url.Action("AdicionarFornecedor","Fornecedor")">Gestão de Fornecedores</a></li>
-        <li><a href="@Url.Action("AdicionarUsuario","Usuario")">Gerenciamento de Perfis</a></li>
+        <li>
+            <a href="@Url.Action("AdicionarCliente", "Cliente")">Gestão de Clientes</a>
+        </li>
+        <li>
+            <a href="@Url.Action("MenuPrincipal", "Pedido")">Gestão de Pedidos</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AdicionarFornecedor", "Fornecedor")">Gestão de Fornecedores</a>
+        </li>
+        <li>
+            <a href="@Url.Action("AdicionarUsuario", "Usuario")">Gerenciamento de Perfis</a>
+        </li>
     </ul>
 </div>
 
@@ -43,73 +55,73 @@
     <div class="container">
         <div class="tabs">
             <button id="tab1" class="tab-button active">Novo Pedido</button>
-            <button id="tab2" class="tab-button">Visualização de Pedidos</button>
+            <button id="tab2" class="tab-button"></button>
         </div>
 
-<div id="carrinho" class="tab-content active">            
-                <div class="carrinho-container">
-                    <div class="adicionar-itens">
-                        <div class="cliente-container">
-                            <p>Cliente:</p>
-                            <select class="cliente" id="cliente"></select>
-                        </div>
-                        <div class="formapgt-container">
-                            <p>Forma de Pagamento:</p>
-                            <select class="formapgt" id="formaPagamento">
-                                <option value="1">Pix</option>
-                                <option value="2">Cartão de Crédito</option>
-                                <option value="3">Cartão de Débito</option>
-                                <option value="4">Dinheiro</option>
-                            </select>
-                        </div>
-                          
-                        <p>Adicione itens:</p>
-                        <div class="produtos-container">
-                            <ul id="produtos" class="produtos-list"></ul>
-                        </div>
-                        <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        <div id="carrinho" class="tab-content active">
+            <div class="carrinho-container">
+                <div class="adicionar-itens">
+                    <div class="cliente-container">
+                        <p>Cliente:</p>
+                        <select class="cliente" id="cliente"></select>
+                    </div>
+                    <div class="formapgt-container">
+                        <p>Forma de Pagamento:</p>
+                        <select class="formapgt" id="formaPagamento">
+                            <option value="1">Pix</option>
+                            <option value="2">Cartão de Crédito</option>
+                            <option value="3">Cartão de Débito</option>
+                            <option value="4">Dinheiro</option>
+                        </select>
                     </div>
 
-                    <div class="previsao">
-                        <p>Pré-visualização:</p>
-                        <ul id="previsao-list"></ul>
-                        <p class="total">Total: R$ <span id="total">0.00</span></p>
+                    <p>Adicione itens:</p>
+                    <div class="produtos-container">
+                        <ul id="produtos" class="produtos-list"></ul>
                     </div>
+                    <button id="finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+
+                <div class="previsao">
+                    <p>Pré-visualização:</p>
+                    <ul id="previsao-list"></ul>
+                    <p class="total">Total: R$ <span id="total">0.00</span></p>
                 </div>
             </div>
+        </div>
 
-            <div id="visualizacao" class="tab-content">
-                <div class="filtro">
-                    <label for="busca">Buscar: </label>
-                    <input type="text" id="busca" oninput="filtrarTabela()">
-                    <label for="filtro">Filtro: </label>
-                    <select id="filtro" onchange="filtrarTabela()">
-                        <option value="id">ID</option>
-                        <option value="cliente">Cliente</option>
-                        <option value="data">Data</option>
-                        <option value="itens">Itens</option>
-                        <option value="valor">Valor Total</option>
-                    </select>
-                </div>
-                <div class="tabela-container">
-                    <table id="visualizacao-tabela">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Cliente</th>
-                                <th>Data</th>
-                                <th>Itens</th>
-                                <th>Valor Total</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- As linhas das compras realizadas serão adicionadas dinamicamente aqui -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>    
+        <div id="visualizacao" class="tab-content">
+            <div class="filtro">
+                <label for="busca">Buscar: </label>
+                <input type="text" id="busca" oninput="filtrarTabela()">
+                <label for="filtro">Filtro: </label>
+                <select id="filtro" onchange="filtrarTabela()">
+                    <option value="id">ID</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="data">Data</option>
+                    <option value="itens">Itens</option>
+                    <option value="valor">Valor Total</option>
+                </select>
+            </div>
+            <div class="tabela-container">
+                <table id="visualizacao-tabela">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Data</th>
+                        <th>Itens</th>
+                        <th>Valor Total</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- As linhas das compras realizadas serão adicionadas dinamicamente aqui -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 
 <script src="~/js/gestaodepedidos.js" asp-append-version="true"></script>

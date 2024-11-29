@@ -25,13 +25,13 @@ public class FornecedorController : Controller
     }
 
     [HttpGet]
-    public IActionResult AdicionarFornecedor()
+    public IActionResult Adicionar()
     {
-        return View();
+        return View("AdicionarFornecedor");
     }
 
     [HttpPost]
-    public async Task<IActionResult> AdicionarFornecedor(FornecedorModel fornecedorModel)
+    public async Task<IActionResult> AdicionarFornecedor([FromBody] FornecedorModel fornecedorModel)
     {
         if (!ModelState.IsValid)
         {
@@ -41,7 +41,7 @@ public class FornecedorController : Controller
         var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Fornecedor/Inserir", fornecedorModel);
         if (response.IsSuccessStatusCode)
         {
-            return RedirectToAction("MenuPrincipal");
+            return RedirectToAction("GestaoDeFornecedores");
         }
         return View("AdicionarFornecedor", fornecedorModel);
     }

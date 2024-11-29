@@ -133,7 +133,7 @@
 
 /* Estilo das abas */
 .tab {
-    display: none;
+    display: block;
     padding: 20px;
 }
 

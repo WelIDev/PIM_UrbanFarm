@@ -1,7 +1,7 @@
 ﻿@model WebApp.Models.UsuarioModel
 
 @{
-    ViewData["Title"] = "UF - Gerenciamento de Perfis";
+ViewData["Title"] = "UF - Gerenciamento de Perfis";
 }
 
 <head>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="~/css/adicionarusuario.css">
-    <title>@ViewData["UF - Gerenciamento de Perfis"]</title>
+    <title>@ViewData["Title"]</title>
     <link rel="shortcut icon" type="icon" href="~/imagens/celeirourbanfarm.png">
 </head>
 
@@ -39,14 +39,15 @@
 
 <div class="tab-buttons">
     <button class="back-button" onclick="window.location.href='@Url.Action("MenuPrincipal","Menu")'">Retornar</button>
-        <div class="tab-buttons-left">
-            <button class="back-button" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Adicionar Perfil</button>
-            <button class="tab-button" onclick="location.href='@Url.Action("GerenciamentoPerfis","Usuario")'">Ver Perfis</button>
-        </div>
+    <div class="tab-buttons-left">
+        <button class="back-button" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Adicionar Perfil</button>
+        <button class="tab-button" onclick="location.href='@Url.Action("GerenciamentoPerfis","Usuario")'">Ver Perfis</button>
+    </div>
 </div>
 
+<!-- Aba para adicionar perfil -->
 <div id="adicionar" class="tab">
-    <form id="profileForm" action="@Url.Action("AdicionarUsuario", "Usuario")" method="post">
+    <form id="profileForm">
         <label for="Nome">Nome:</label>
         <input type="text" id="Nome" required>
         <label for="Email">E-mail:</label>
@@ -56,13 +57,32 @@
         <div class="perfil-container">
             <label for="Funcao">Função:</label>
             <select class="Funcao" id="Funcao">
-                <option value="Vendedor">Vendedor</option>
-                <option value="Administrador">Administrador</option>
+                <option value="0">Vendedor</option>
+                <option value="1">Administrador</option>
             </select>
         </div>
-        <button type="submit" id="submitButton" class="submit-button" onclick="location.href='@Url.Action("GerenciamentoPerfis", "Usuario")'">Adicionar Cliente</button>
-        <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("AdicionarUsuario", "Usuario")'">Cancelar</button>
+        <button type="submit" id="submitButton" class="submit-button">Adicionar Perfil</button>
+        <button type="button" id="cancelButton" class="cancel-button" onclick="location.href='@Url.Action("GerenciamentoPerfis", "Usuario")'">Cancelar</button>
     </form>
+</div>
+
+<!-- Tabela para exibição de perfis -->
+<div id="visualizacao" class="tab">
+    <table id="profileTable" class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Função</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- As linhas da tabela serão adicionadas dinamicamente via JavaScript -->
+        </tbody>
+    </table>
 </div>
 
 <script src="~/js/gerenciamentoperfis.js"></script>

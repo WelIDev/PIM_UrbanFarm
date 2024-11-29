@@ -79,12 +79,11 @@
                     <td>@usuario.Id</td>
                     <td>@usuario.Nome</td>
                     <td>@usuario.Email</td>
-                    <td>@usuario.Senha</td>
-                    <td>@usuario.Funcao</td>
+                    <td>@usuario.FuncaoString</td>
                     <td>@usuario.DataCriacao.ToString("dd/MM/yyyy")</td>
                     <td>
-                    <button class="editar" onclick="editarUsuario(this)">Editar</button>
-                    <button class="excluir" onclick="excluirUsuario(this)">Excluir</button>
+                    <button class="excluir" onclick="excluirUsuario(this, @usuario.Id)
+                        ">Excluir</button>
                     </td>
                 </tr>
             }

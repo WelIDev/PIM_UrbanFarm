@@ -46,7 +46,6 @@ public class UsuarioController : Controller
     }
 
     [HttpGet]
-    [Authorize]
     public ActionResult ObterPorId(int id)
     {
         var usuario = _usuarioServico.ObterPorId(id);
@@ -59,7 +58,6 @@ public class UsuarioController : Controller
     }
 
     [HttpGet]
-    [Authorize]
     public ActionResult ObterUsuarios()
     {
         var usuarios = _usuarioServico.ObterUsuarios();
@@ -73,7 +71,6 @@ public class UsuarioController : Controller
     }
 
     [HttpDelete]
-    [Authorize]
     public ActionResult ExcluirUsuario(int id)
     {
         var usuario = _usuarioServico.ObterPorId(id);

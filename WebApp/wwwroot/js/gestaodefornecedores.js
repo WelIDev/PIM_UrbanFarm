@@ -1,20 +1,11 @@
-﻿const fornecedorForm = document.getElementById('fornecedorForm');
-const fornecedorTableBody = document.querySelector('#fornecedorTable tbody');
-const searchInput = document.getElementById('searchInput');
-const filterColumn = document.getElementById('filterColumn');
-const submitButton = document.getElementById('submitButton');
-let editingRow = null;
+﻿document.getElementById('submitButton').addEventListener('click', async function (event) {
+    event.preventDefault(); // Impede o envio tradicional do formulário
 
-showTab('adicionar');
-
-// Função para adicionar um novo fornecedor na tabela
-fornecedorForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const nomeEmpresa = document.getElementById('Nome').value;
+    // Coletar os valores do formulário
+    const nome = document.getElementById('Nome').value;
     const email = document.getElementById('Email').value;
     const cnpj = document.getElementById('Cnpj').value;
-    const inscricao = document.getElementById('InscricaoEstadual').value;
+    const inscricaoEstadual = document.getElementById('InscricaoEstadual').value;
     const telefone = document.getElementById('Telefone').value;
     const rua = document.getElementById('rua').value;
     const cep = document.getElementById('cep').value;
@@ -23,63 +14,59 @@ fornecedorForm.addEventListener('submit', function (event) {
     const cidade = document.getElementById('cidade').value;
     const estado = document.getElementById('estado').value;
 
-    if (!Nome || !Email || !Cnpj || !Inscricao || !Telefone || !rua || !cep || !numero || !cidade || !estado) {
+    // Validação dos campos obrigatórios
+    if (!nome || !email || !cnpj || !inscricaoEstadual || !telefone || !rua || !cep || !numero || !cidade || !estado) {
         alert('Todos os campos obrigatórios devem ser preenchidos.');
         return;
     }
 
-    if (editingRow) {
-        editingRow.innerHTML =
-            `<td data-label="Nome">${Nome}</td>
-            <td data-label="E-mail">${Email}</td>
-            <td data-label="CNPJ">${Cnpj}</td>
-            <td data-label="Inscrição Estadual">${InscricaoEstadual}</td>
-            <td data-label="Telefone">${Telefone}</td>
-            <td data-label="Rua">${rua}</td>
-            <td data-label="CEP">${cep}</td>
-            <td data-label="Número">${numero}</td>
-            <td data-label="Bairro">${bairro}</td>
-            <td data-label="Cidade">${cidade}</td>
-            <td data-label="Estado">${estado}</td>
-            <td data-label="Ações">
-                <button class="editar" onclick="editarfornecedor(this)">Editar</button>
-                <button class="excluir" onclick="excluirfornecedor(this)">Excluir</button>
-            </td>`;
+    // Monta o objeto fornecedor a ser enviado
+    const fornecedor = {
+        Id: 0,
+        Nome: nome,
+        Email: email,
+        Cnpj: cnpj,
+        InscricaoEstadual: inscricaoEstadual,
+        Telefone: telefone,
+        EnderecoId: 0,
+        Endereco: {
+            Id: 0,
+            Rua: rua,
+            Cep: cep,
+            Numero: numero,
+            Bairro: bairro,
+            Cidade: cidade,
+            Estado: estado
+        }
+    };
+console.log(JSON.stringify(fornecedor))
+    
+    try {
+        const response = await fetch('/Fornecedor/AdicionarFornecedor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fornecedor)
+        });
 
-        editingRow = null;
-        submitButton.textContent = 'Adicionar fornecedor';
-        submitButton.classList.remove('edit-button');
-        showNotification('edit');
-        showTab('visualizacao');
-    } else {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML =
-            `<td data-label="Nome">${Nome}</td>
-            <td data-label="E-mail">${Email}</td>
-            <td data-label="CNPJ">${Cnpj}</td>
-            <td data-label="Inscrição Estadual">${InscricaoEstadual}</td>
-            <td data-label="Telefone">${Telefone}</td>
-            <td data-label="Rua">${rua}</td>
-            <td data-label="CEP">${cep}</td>
-            <td data-label="Número">${numero}</td>
-            <td data-label="Bairro">${bairro}</td>
-            <td data-label="Cidade">${cidade}</td>
-            <td data-label="Estado">${estado}</td>
-            <td data-label="Ações">
-                <button class="editar" onclick="editarfornecedor(this)">Editar</button>
-                <button class="excluir" onclick="excluirfornecedor(this)">Excluir</button>
-            </td>`;
-
-        fornecedorTableBody.appendChild(newRow);
-        fornecedorForm.reset();
-        showNotification('success');
+        if (response.ok) {
+            // Se a resposta for bem-sucedida, redireciona para a página de gestão de fornecedores
+            alert('Fornecedor adicionado com sucesso!');
+            window.location.href = '/Fornecedor/GestaoDeFornecedores';
+        } else {
+            // Caso o servidor retorne um erro
+            alert('Erro ao adicionar fornecedor.');
+        }
+    } catch (error) {
+        alert('Erro na requisição: ' + error.message);
     }
 });
 
 // Função para editar um fornecedor
-function editarfornecedor(button) {
-    const row = button.parentElement.parentElement;
-    const cells = row.querySelectorAll('td');
+function editarFornecedor(button) {
+    const row = button.closest('tr');
+    const cells = row.getElementsByTagName('td');
 
     document.getElementById('Nome').value = cells[0].textContent;
     document.getElementById('Email').value = cells[1].textContent;
@@ -93,25 +80,27 @@ function editarfornecedor(button) {
     document.getElementById('cidade').value = cells[9].textContent;
     document.getElementById('estado').value = cells[10].textContent;
 
+    // Altera o botão de envio para "Editar Fornecedor"
+    document.getElementById('submitButton').textContent = 'Editar Fornecedor';
+
+    // Salva a linha a ser editada (opcional, caso precise fazer uma atualização no servidor)
     editingRow = row;
-
-    submitButton.textContent = 'Editar fornecedor';
-    submitButton.classList.add('edit-button');
-
-    showTab('adicionar');
 }
 
-// Função para excluir um fornecedor sem confirmação
-function excluirfornecedor(button) {
-    const row = button.parentElement.parentElement;
-    fornecedorTableBody.removeChild(row);
-    showNotification('delete');
+// Função para excluir um fornecedor
+function excluirFornecedor(button) {
+    const row = button.closest('tr');
+    row.remove();
+    alert('Fornecedor excluído!');
 }
 
-// Função para pesquisar fornecedors
+// Função para pesquisar fornecedores
 function pesquisarfornecedor() {
+    const searchInput = document.getElementById('searchInput');
     const filter = searchInput.value.toUpperCase();
+    const filterColumn = document.getElementById('filterColumn');
     const selectedColumn = filterColumn.value;
+    const fornecedorTableBody = document.getElementById('fornecedorTableBody');
     const rows = fornecedorTableBody.getElementsByTagName('tr');
 
     for (let i = 0; i < rows.length; i++) {
@@ -175,6 +164,7 @@ function showTab(tabId) {
     });
 }
 
+// Função para alternar a visibilidade da sidebar
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
@@ -188,7 +178,7 @@ function toggleSidebar() {
     }
 }
 
-// Fechar o menu ao clicar fora dele
+// Fechar a sidebar ao clicar fora dela
 window.onclick = function (event) {
     const sidebar = document.querySelector('.sidebar');
     if (!event.target.matches('.menu-icon') && sidebar.style.left === '0px') {
@@ -197,7 +187,7 @@ window.onclick = function (event) {
     }
 };
 
-//profile itens
+// Alternar o menu de perfil
 function toggleProfileMenu(event) {
     const profileMenu = document.querySelector('.profile-menu');
 
@@ -219,21 +209,5 @@ function allowOnlyLetters(event) {
     const regex = /^[A-Za-zÀ-ÿ\s]*$/;
     if (!regex.test(event.target.value)) {
         event.target.value = event.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
-    }
-}
-
-async function buscarEndereco() {
-    const cep = document.getElementById('cep').value.trim();
-
-    try {
-        const response = await fetch(`@Url.Action("ObterEndereco", "Fornecedor")?cep=${cep}`);
-        const { rua, bairro, cidade, estado } = await response.json();
-
-        document.getElementById('rua').value = rua || '';
-        document.getElementById('bairro').value = bairro || '';
-        document.getElementById('cidade').value = cidade || '';
-        document.getElementById('estado').value = estado || '';
-    } catch (error) {
-        alert(error.message);
     }
 }

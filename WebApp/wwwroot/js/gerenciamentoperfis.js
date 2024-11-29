@@ -1,80 +1,84 @@
 ﻿const profileForm = document.getElementById('profileForm');
-const profileTableBody = document.querySelector('#profileTable tbody');
-const searchInput = document.getElementById('searchInput');
-const filterColumn = document.getElementById('filterColumn');
 const submitButton = document.getElementById('submitButton');
 let editingRow = null;
 
-// Exibe a aba de visualização por padrão
-showTab('adicionar');
-
-// Função para adicionar um novo perfil na tabela
 profileForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault();  // Previne o envio do formulário, que redirecionaria a página
 
-    const id = '#' + gerarID(); // Adiciona o "#" antes do ID gerado
     const nome = document.getElementById('Nome').value;
     const email = document.getElementById('Email').value;
     const senha = document.getElementById('Senha').value;
     const funcao = document.getElementById('Funcao').value;
-    const dataCriacao = obterDataAtual();
 
-    if (editingRow) {
-        editingRow.querySelector('td[data-label="Nome"]').textContent = nome;
-        editingRow.querySelector('td[data-label="E-mail"]').textContent = email;
-        editingRow.querySelector('td[data-label="Função"]').textContent = funcao;
-        editingRow.querySelector('td[data-label="Data"]').textContent = dataCriacao;
-        editingRow.setAttribute('data-senha', senha);
-        editingRow = null;
-        submitButton.textContent = 'Adicionar Perfil';
-        submitButton.classList.remove('edit-button');
-        showNotification('edit');
-        showTab('visualizacao');
-    } else {
-        const newRow = document.createElement('tr');
-        newRow.setAttribute('data-senha', senha);
-        newRow.innerHTML =
-            `<td data-label="ID">${id}</td>
-            <td data-label="Nome">${noome}</td>
-            <td data-label="E-mail">${email}</td>
-            <td data-label="Função">${funcao}</td>
-            <td data-label="Data">${dataCriacao}</td>
-            <td data-label="Ações">
-                <button class="editar" onclick="editarPerfil(this)">Editar</button>
-                <button class="excluir" onclick="excluirPerfil(this)">Excluir</button>
-            </td>`;
-        profileTableBody.appendChild(newRow);
-        showNotification('success');
-    }
+    // Cria o objeto para enviar para a API
+    const usuario = {
+        nome: nome,
+        email: email,
+        senha: senha,
+        funcao: parseInt(funcao)
+    };
 
-    profileForm.reset();
-    showTab('visualizacao');
+    // Envia os dados para a API
+    fetch('https://localhost:7124/api/Usuario/InserirUsuario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(usuario),
+    })
+        .then(response => response.text())  // Captura a resposta como texto
+        .then(text => {
+            console.log('Resposta da API:', text);
+
+            // Verifica se a resposta contém o texto de sucesso
+            if (text === "Usuario gravado com sucesso!") {
+                console.log('Usuário adicionado com sucesso');
+
+                // Após o sucesso, redireciona para a página de "Gerenciamento de Perfis"
+                window.location.href = 'GerenciamentoPerfis'
+                console.error('Erro ao adicionar usuário:', text);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
 });
 
+
 // Função para editar um perfil
-function editarPerfil(button) {
-    const row = button.parentElement.parentElement;
-    const cells = row.querySelectorAll('td');
 
-    document.getElementById('Nome').value = cells[0].textContent;
-    document.getElementById('Email').value = cells[1].textContent;
-    document.getElementById('Senha').value = row.getAttribute('data-senha'); // Recupera a senha
 
-    // Define a linha que está sendo editada
-    editingRow = row;
+function excluirUsuario(button, usuarioId) {
+    // Encontrar a linha (tr) mais próxima do botão
+    const row = button.closest('tr');
 
-    // Atualiza o botão para edição
-    submitButton.textContent = 'Editar Perfil';
-    submitButton.classList.add('edit-button');
+    // Verifica se a linha foi encontrada
+    if (!row) {
+        console.error("Não foi possível encontrar a linha");
+        return;
+    }
 
-    showTab('adicionar');
-}
-
-// Função para excluir um perfil sem confirmação
-function excluirPerfil(button) {
-    const row = button.parentElement.parentElement;
-    profileTableBody.removeChild(row);
-    showNotification('delete');
+    // Envia a requisição para a API para excluir o usuário
+    fetch(`https://localhost:7124/api/Usuario/ExcluirUsuario/?id=${usuarioId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                // Se a requisição for bem-sucedida, remova a linha da tabela
+                row.remove(); // Usar row.remove() para remover a linha
+                showNotification('delete'); // Exibir notificação de sucesso
+            } else {
+                console.error('Erro ao excluir o usuário');
+                alert('Erro ao excluir o usuário');
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            alert('Erro ao excluir o usuário');
+        });
 }
 
 // Função para pesquisar perfis
@@ -146,7 +150,27 @@ function obterDataAtual() {
     return `${dia}/${mes}/${ano}`;
 }
 
+// Função para mostrar a notificação
+function showNotification(type) {
+    let message = '';
+    switch (type) {
+        case 'success':
+            message = 'Perfil adicionado com sucesso!';
+            break;
+        case 'edit':
+            message = 'Perfil editado com sucesso!';
+            break;
+        case 'delete':
+            message = 'Perfil excluído com sucesso!';
+            break;
+        default:
+            message = 'Ação realizada com sucesso!';
+            break;
+    }
+    alert(message);
+}
 
+// Função para exibir a barra lateral
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
@@ -169,7 +193,7 @@ window.onclick = function (event) {
     }
 };
 
-//profile itens
+// Itens do perfil
 function toggleProfileMenu(event) {
     const profileMenu = document.querySelector('.profile-menu');
 

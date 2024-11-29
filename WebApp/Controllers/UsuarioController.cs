@@ -41,7 +41,7 @@ public class UsuarioController : Controller
         var response = await _httpClient.PostAsJsonAsync("https://localhost:7124/api/Usuario/InserirUsuario", usuarioModel);
         if (response.IsSuccessStatusCode)
         {
-            return RedirectToAction("MenuPrincipal");
+            return RedirectToAction("GerenciamentoPerfis");
         }
         return View("AdicionarUsuario", usuarioModel);
     }
